@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-02T05:47:44.151Z</updated>
+  <updated>2019-04-02T05:48:50.056Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,13 +21,13 @@
     <link href="http://yoursite.com/2019/04/02/python%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2019/04/02/python笔记/</id>
     <published>2019-04-02T05:16:00.000Z</published>
-    <updated>2019-04-02T05:47:44.151Z</updated>
+    <updated>2019-04-02T05:48:50.056Z</updated>
     
-    <content type="html"><![CDATA[<p>一、dict使用<br>二、tuple使用<br>三、函数<br>四、类<br>五、@abstractmethod方法</p><a id="more"></a><p>一、dict使用<br>    1、创建{}<br>    2、使用dict()将含有双值子序列的序列转化成字典<br>    3、使用update()合并两个字典，若有重复则替换<br>    4、使用del删除指定key的字典<br>    5、使用clear()或指向一个{}清空dict<br>    6、使用in判断键值是否在字典中<br>    7、使用keys()获取所有键。使用values获取所有值<br>    8、使用items获取所有键值对，每一个键值对用tuple形式存储，整体用list存储<br>二、tuple使用<br>    1、创建， </p><p>三、函数<br>    1、yield 创建迭代器函数使用的关键字，每一次迭代遇到yield就返回其后的值，下一次迭代从此处(函数处)开始。<br>        def my_range(first=0,last=5,step=1):<br>            number = first<br>            while number &lt; last:<br>                yield number<br>                number += step</p><p>四、类<br>    1、self 指向这个被创建的对象本身<br>    2、对象调用成员函数做的两件事：<br>        a、找到对象所属的类<br>        b、将对象传递给成员函数的self参数<br>    3、super()方法<br>    4、属性 name=property(get,set)<br>    5、名称重整：<strong>name<br>    6、@classmethod 类方法，@staticmethod 静态方法<br>    7、iterator和iteratable：重要的两个方法：</strong>iter__()：返回迭代器本身<br>                                             <strong>next</strong>():返回当前值<br>                                                       :改变iterator状态<br>    8、generator 只要包含<strong>iter</strong>()和<strong>next</strong>()即可，但直接用yield也可以。有两种使用方式：next()和send()<br>    9、特殊方法，其实就是运算符重载<br>五、@abstractmethod方法<br>    python中的接口必须借助ABC模块使用–from abc import AECMeta,abstarctmethod<br>    @abstractmethod<br>    def 方法名():</p><pre><code>@abstractmethod方法必须被子类重载。带@abstractmethod的方法不能实例化        </code></pre>]]></content>
+    <content type="html"><![CDATA[<p>1、dict使用<br>2、tuple使用<br>3、函数<br>4、类<br>5、@abstractmethod方法</p><a id="more"></a><p>一、dict使用<br>    1、创建{}<br>    2、使用dict()将含有双值子序列的序列转化成字典<br>    3、使用update()合并两个字典，若有重复则替换<br>    4、使用del删除指定key的字典<br>    5、使用clear()或指向一个{}清空dict<br>    6、使用in判断键值是否在字典中<br>    7、使用keys()获取所有键。使用values获取所有值<br>    8、使用items获取所有键值对，每一个键值对用tuple形式存储，整体用list存储<br>二、tuple使用<br>    1、创建， </p><p>三、函数<br>    1、yield 创建迭代器函数使用的关键字，每一次迭代遇到yield就返回其后的值，下一次迭代从此处(函数处)开始。<br>        def my_range(first=0,last=5,step=1):<br>            number = first<br>            while number &lt; last:<br>                yield number<br>                number += step</p><p>四、类<br>    1、self 指向这个被创建的对象本身<br>    2、对象调用成员函数做的两件事：<br>        a、找到对象所属的类<br>        b、将对象传递给成员函数的self参数<br>    3、super()方法<br>    4、属性 name=property(get,set)<br>    5、名称重整：<strong>name<br>    6、@classmethod 类方法，@staticmethod 静态方法<br>    7、iterator和iteratable：重要的两个方法：</strong>iter__()：返回迭代器本身<br>                                             <strong>next</strong>():返回当前值<br>                                                       :改变iterator状态<br>    8、generator 只要包含<strong>iter</strong>()和<strong>next</strong>()即可，但直接用yield也可以。有两种使用方式：next()和send()<br>    9、特殊方法，其实就是运算符重载<br>五、@abstractmethod方法<br>    python中的接口必须借助ABC模块使用–from abc import AECMeta,abstarctmethod<br>    @abstractmethod<br>    def 方法名():</p><pre><code>@abstractmethod方法必须被子类重载。带@abstractmethod的方法不能实例化        </code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;一、dict使用&lt;br&gt;二、tuple使用&lt;br&gt;三、函数&lt;br&gt;四、类&lt;br&gt;五、@abstractmethod方法&lt;/p&gt;
+      &lt;p&gt;1、dict使用&lt;br&gt;2、tuple使用&lt;br&gt;3、函数&lt;br&gt;4、类&lt;br&gt;5、@abstractmethod方法&lt;/p&gt;
     
     </summary>
     
