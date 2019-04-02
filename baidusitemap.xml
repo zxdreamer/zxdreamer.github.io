@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    <lastmod>2019-04-02T02:54:45.756Z</lastmod>
+    <data>
+        <display>
+        <title>vim学习笔记(一)</title>
+        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
+        
+        <tag>hexo </tag>
+         
+        <tag>blog </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux指令" url="http://yoursite.com/categories/linux%E6%8C%87%E4%BB%A4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/02/hello-world/</loc>
+    <lastmod>2019-04-02T01:29:40.110Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2019-04-02T01:29:40.110Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+</urlset>

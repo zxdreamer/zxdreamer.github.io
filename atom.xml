@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dreamer</title>
+  
+  <subtitle>莫厌追欢笑语频，寻思离乱好伤神。闲来屈指从头数，得见清平有几人</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-04-02T02:54:45.756Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>梦的蓝天</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vim学习笔记(一)</title>
+    <link href="http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
+    <id>http://yoursite.com/2019/04/02/vim学习笔记一/</id>
+    <published>2019-04-02T02:31:56.000Z</published>
+    <updated>2019-04-02T02:54:45.756Z</updated>
+    
+    <content type="html"><![CDATA[<p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p><p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;常用vim指令&lt;br&gt;
+    
+    </summary>
+    
+      <category term="linux指令" scheme="http://yoursite.com/categories/linux%E6%8C%87%E4%BB%A4/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+      <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2019/04/02/hello-world/"/>
+    <id>http://yoursite.com/2019/04/02/hello-world/</id>
+    <published>2019-04-02T01:29:40.110Z</published>
+    <updated>2019-04-02T01:29:40.110Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
