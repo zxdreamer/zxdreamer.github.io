@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-02T03:26:23.428Z</updated>
+  <updated>2019-04-02T05:16:00.348Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python笔记</title>
+    <link href="http://yoursite.com/2019/04/02/python%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/04/02/python笔记/</id>
+    <published>2019-04-02T05:16:00.000Z</published>
+    <updated>2019-04-02T05:16:00.348Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>vim学习笔记(一)</title>
@@ -27,7 +41,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;常用vim指令&lt;br&gt;
+      &lt;p&gt;常用vim指令&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
