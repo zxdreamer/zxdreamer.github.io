@@ -107,7 +107,7 @@
     <link href="http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
     <id>http://yoursite.com/2019/04/02/vim学习笔记一/</id>
     <published>2019-04-02T02:31:56.000Z</published>
-    <updated>2019-04-02T05:36:45.067Z</updated>
+    <updated>2019-04-03T05:12:05.651Z</updated>
     
     <content type="html"><![CDATA[<p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p><p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>]]></content>
     
@@ -117,7 +117,7 @@
     
     </summary>
     
-      <category term="linux指令" scheme="http://yoursite.com/categories/linux%E6%8C%87%E4%BB%A4/"/>
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>

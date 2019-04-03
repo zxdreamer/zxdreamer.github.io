@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    
+    <lastmod>2019-04-03T05:12:05.651Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/04/03/%E7%BC%96%E8%AF%91%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2019-04-03T04:56:46.387Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2019/04/02/python%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2019-04-02T05:50:15.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
-    
-    <lastmod>2019-04-02T05:36:45.067Z</lastmod>
     
   </url>
   
