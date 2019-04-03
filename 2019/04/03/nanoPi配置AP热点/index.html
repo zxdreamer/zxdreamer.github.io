@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="loveNight,linux,C++,python,ARM">
+  <meta name="keywords" content="ways,">
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
+<meta name="description" content="在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。">
+<meta name="keywords" content="ways">
 <meta property="og:type" content="article">
-<meta property="og:title" content="naoPi配置AP热点">
+<meta property="og:title" content="nanoPi配置AP热点">
 <meta property="og:url" content="http://yoursite.com/2019/04/03/nanoPi配置AP热点/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
+<meta property="og:description" content="在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T05:18:45.437Z">
+<meta property="og:updated_time" content="2019-04-03T06:01:04.171Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="naoPi配置AP热点">
-<meta name="twitter:description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
+<meta name="twitter:title" content="nanoPi配置AP热点">
+<meta name="twitter:description" content="在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。">
 
 
 
@@ -127,7 +128,7 @@
 
 
 
-  <title>naoPi配置AP热点 | Dreamer</title>
+  <title>nanoPi配置AP热点 | Dreamer</title>
   
 
 
@@ -271,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">naoPi配置AP热点</h1>
+          <h1 class="post-title" itemprop="name headline">nanoPi配置AP热点</h1>
         
 
         <div class="post-meta">
@@ -293,6 +294,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -321,7 +344,9 @@
       
 
       
-        
+        <p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br><a id="more"></a><br>一、AP是无线访问接入点，可以是WiFi，可以是蓝牙，可以将无线网络客户端连接到一起，然后将无线网络连接到以太网。hostapd可以将无线网卡切换成AP/master模式的守护进程。DHCP服务是根据mac地址自动分配ip的进程。DNS服务器是将域名与ip地址建立在数据库的主机。<br>二、配置AP接入点时要确保没有任何一个应用程序占用无线网卡。包括WSP进程。<br>三、nanaopi通过pppoe连接以太网，需要输入用户名与密码。<br>详见网址：<br><a href="https://www.cnblogs.com/ssooking/p/8571749.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssooking/p/8571749.html</a><br>需要注意的是在输入username是要把横向上的字符串清0<br>四、busybox的作用和功能以及在arm版上安装<a href="https://blog.csdn.net/cy_weiyi/article/details/46953233" target="_blank" rel="noopener">https://blog.csdn.net/cy_weiyi/article/details/46953233</a><br>待补充。</p>
+<p>五、管理网络的工具ip，iw，rfkill<br>1、rfkill用于对系统的无线设备进行打开关闭查找<br>sudo rfkill list :列出所有无线设备<br>sudo rfkill block 0  关闭第0个无线设备<br>ip a<br>ip addr add 192.168.1.199 dev eth0<br>ip link set eth0 up/down<br>iw 启动WIFI连接。<br><a href="https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/" target="_blank" rel="noopener">https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/</a><br>sudo -s 进入root目录<br>service networking restart<br>server isc-dhcp-server restart<br>文件 /etc/network/interface 修改动态ip和静态ip,改完之后重启networking服务<br>文件 /etc/hostapd/hostapd.config<br>文件 /etc/dhcp/dhcpd.config<br>rfkill unblock wlan 启动wlan<br>rfkill block wlan wlan<br>ifup wlan 修改配置文件之后的启动网卡。从静态ip到动态ip<br>hostapd /etc/hostapd/hostapd.config<br>dhcpd</p>
+
       
     </div>
     
@@ -336,6 +361,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ways/" rel="tag"># ways</a>
+          
+        </div>
+      
 
       
       
@@ -345,8 +376,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/naoPi配置AP热点/" rel="next" title="naoPi配置AP热点">
-                <i class="fa fa-chevron-left"></i> naoPi配置AP热点
+              <a href="/2019/04/03/编译连接原理/" rel="next" title="编译连接原理">
+                <i class="fa fa-chevron-left"></i> 编译连接原理
               </a>
             
           </div>
@@ -453,7 +484,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -464,7 +495,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

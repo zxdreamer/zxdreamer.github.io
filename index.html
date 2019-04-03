@@ -346,12 +346,14 @@
 
       
         
-          
-            <a id="more"></a>
-<p>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p>
-<p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"></p>
-
-          
+          <p>记录TCP滑动窗口，带外数据和缓冲区<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/03/协议/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -563,126 +565,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/03/nanoPi配置AP热点/" itemprop="url">naoPi配置AP热点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T13:18:45+08:00">
-                2019-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/naoPi配置AP热点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦的蓝天">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/background.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dreamer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/03/naoPi配置AP热点/" itemprop="url">naoPi配置AP热点</a></h1>
+                <a class="post-title-link" href="/2019/04/03/nanoPi配置AP热点/" itemprop="url">nanoPi配置AP热点</a></h1>
         
 
         <div class="post-meta">
@@ -718,7 +601,7 @@
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">-linux</span>
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -758,7 +641,7 @@
           <p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/03/naoPi配置AP热点/#more" rel="contents">
+            <a class="btn" href="/2019/04/03/nanoPi配置AP热点/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1574,7 +1457,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1585,7 +1468,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

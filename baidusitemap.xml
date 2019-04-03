@@ -3,8 +3,28 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/</loc>
+    <lastmod>2019-04-03T06:01:04.171Z</lastmod>
+    <data>
+        <display>
+        <title>nanoPi配置AP热点</title>
+        <pubTime>2019-04-03T05:18:45.000Z</pubTime>
+        
+        <tag>ways </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/04/03/%E5%8D%8F%E8%AE%AE/</loc>
-    <lastmod>2019-04-03T05:51:31.974Z</lastmod>
+    <lastmod>2019-04-03T05:58:55.383Z</lastmod>
     <data>
         <display>
         <title>滑动串口、OOD数据</title>
@@ -16,6 +36,26 @@
            
              
               <breadCrumb title="协议" url="http://yoursite.com/categories/%E5%8D%8F%E8%AE%AE/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    <lastmod>2019-04-03T05:57:37.869Z</lastmod>
+    <data>
+        <display>
+        <title>vim学习笔记(一)</title>
+        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
+        
+        <tag>operator </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
         </display>
     </data>
@@ -36,26 +76,6 @@
            
              
               <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
-    <lastmod>2019-04-03T05:36:27.275Z</lastmod>
-    <data>
-        <display>
-        <title>vim学习笔记(一)</title>
-        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
-        
-        <tag>operator </tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
         </display>
     </data>
@@ -95,41 +115,6 @@
              
               <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/03/naoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/</loc>
-    <lastmod>2019-04-03T05:23:11.859Z</lastmod>
-    <data>
-        <display>
-        <title>naoPi配置AP热点</title>
-        <pubTime>2019-04-03T05:18:45.000Z</pubTime>
-        
-        <tag>ways </tag>
-         
-         
-           
-             
-              <breadCrumb title="-linux" url="http://yoursite.com/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/</loc>
-    <lastmod>2019-04-03T05:18:45.437Z</lastmod>
-    <data>
-        <display>
-        <title>naoPi配置AP热点</title>
-        <pubTime>2019-04-03T05:18:45.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-03T05:51:31.974Z</updated>
+  <updated>2019-04-03T05:58:55.383Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="http://yoursite.com/2019/04/03/%E5%8D%8F%E8%AE%AE/"/>
     <id>http://yoursite.com/2019/04/03/协议/</id>
     <published>2019-04-03T05:47:13.000Z</published>
-    <updated>2019-04-03T05:51:31.974Z</updated>
+    <updated>2019-04-03T05:58:55.383Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><p>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p><p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"></p>]]></content>
+    <content type="html"><![CDATA[<p>记录TCP滑动窗口，带外数据和缓冲区<br><a id="more"></a><br>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p><p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1
-      
+      &lt;p&gt;记录TCP滑动窗口，带外数据和缓冲区&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -65,25 +61,11 @@
   </entry>
   
   <entry>
-    <title>naoPi配置AP热点</title>
+    <title>nanoPi配置AP热点</title>
     <link href="http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
     <id>http://yoursite.com/2019/04/03/nanoPi配置AP热点/</id>
     <published>2019-04-03T05:18:45.000Z</published>
-    <updated>2019-04-03T05:18:45.437Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>naoPi配置AP热点</title>
-    <link href="http://yoursite.com/2019/04/03/naoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
-    <id>http://yoursite.com/2019/04/03/naoPi配置AP热点/</id>
-    <published>2019-04-03T05:18:45.000Z</published>
-    <updated>2019-04-03T05:23:11.859Z</updated>
+    <updated>2019-04-03T06:01:04.171Z</updated>
     
     <content type="html"><![CDATA[<p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br><a id="more"></a><br>一、AP是无线访问接入点，可以是WiFi，可以是蓝牙，可以将无线网络客户端连接到一起，然后将无线网络连接到以太网。hostapd可以将无线网卡切换成AP/master模式的守护进程。DHCP服务是根据mac地址自动分配ip的进程。DNS服务器是将域名与ip地址建立在数据库的主机。<br>二、配置AP接入点时要确保没有任何一个应用程序占用无线网卡。包括WSP进程。<br>三、nanaopi通过pppoe连接以太网，需要输入用户名与密码。<br>详见网址：<br><a href="https://www.cnblogs.com/ssooking/p/8571749.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssooking/p/8571749.html</a><br>需要注意的是在输入username是要把横向上的字符串清0<br>四、busybox的作用和功能以及在arm版上安装<a href="https://blog.csdn.net/cy_weiyi/article/details/46953233" target="_blank" rel="noopener">https://blog.csdn.net/cy_weiyi/article/details/46953233</a><br>待补充。</p><p>五、管理网络的工具ip，iw，rfkill<br>1、rfkill用于对系统的无线设备进行打开关闭查找<br>sudo rfkill list :列出所有无线设备<br>sudo rfkill block 0  关闭第0个无线设备<br>ip a<br>ip addr add 192.168.1.199 dev eth0<br>ip link set eth0 up/down<br>iw 启动WIFI连接。<br><a href="https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/" target="_blank" rel="noopener">https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/</a><br>sudo -s 进入root目录<br>service networking restart<br>server isc-dhcp-server restart<br>文件 /etc/network/interface 修改动态ip和静态ip,改完之后重启networking服务<br>文件 /etc/hostapd/hostapd.config<br>文件 /etc/dhcp/dhcpd.config<br>rfkill unblock wlan 启动wlan<br>rfkill block wlan wlan<br>ifup wlan 修改配置文件之后的启动网卡。从静态ip到动态ip<br>hostapd /etc/hostapd/hostapd.config<br>dhcpd</p>]]></content>
     
@@ -93,7 +75,7 @@
     
     </summary>
     
-      <category term="-linux" scheme="http://yoursite.com/categories/linux/"/>
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
     
       <category term="ways" scheme="http://yoursite.com/tags/ways/"/>
@@ -191,7 +173,7 @@
     <link href="http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
     <id>http://yoursite.com/2019/04/02/vim学习笔记一/</id>
     <published>2019-04-02T02:31:56.000Z</published>
-    <updated>2019-04-03T05:36:27.275Z</updated>
+    <updated>2019-04-03T05:57:37.869Z</updated>
     
     <content type="html"><![CDATA[<p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p><p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>]]></content>
     
