@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="讲述二叉排序树的插入，查找，删除操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T14:59:38.732Z">
+<meta property="og:updated_time" content="2019-04-03T15:09:32.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉排序树">
 <meta name="twitter:description" content="讲述二叉排序树的插入，查找，删除操作">
@@ -344,7 +344,7 @@
       
 
       
-        <p>讲述二叉排序树的插入，查找，删除操作<br><a id="more"></a></p>
+        <p>讲述二叉排序树的插入，查找，删除操作<br><a id="more"></a><br>‘’’ c</p>
 <p>#include &lt;stdio.h&gt;</p>
 <p>#include &lt;stdlib.h&gt;</p>
 <p>#define TRUE 1</p>
@@ -386,8 +386,7 @@ else
 return d;
 </code></pre><p>}</p>
 <p>int DeleteBST(BiTree <em>T,int key)<br>{<br>    if(</em>T == NULL)<br>        return FALSE;<br>    else<br>    {<br>        if(key == (<em>T)-&gt;data)<br>            return Delete(T);<br>        else if(key &lt;(</em>T)-&gt;data)<br>            return DeleteBST(&amp;(<em>T)-&gt;lchild,key);<br>        else<br>            return DeleteBST(&amp;(</em>T)-&gt;rchild,key);<br>    }<br>}</p>
-<p>int main()<br>{<br>    int arr[10]={62,88,58,73,99,93,41,51,35,37};<br>    int i = 0;<br>    int state;<br>    BiTree <em>T = (BiTree </em>)malloc(sizeof(BiTNode));<br>    BiTree f;<br>    BiTree <em>p = (BiTree </em>)malloc(sizeof(BiTNode));<br>    //create a Binary Tree<br>    for(i = 0;i &lt; 10;i++)<br>        InsertBST(T,arr[i]);<br>    int d = DeleteBST(T,88);<br>    printf(“%d\n”,d);<br>    return 0;<br>}</p>
-<p>注意：这里特别强调主函数中传递的实参T，必须用malloc申请内存，应为InsertBST中使用了指针*T。</p>
+<p>int main()<br>{<br>    int arr[10]={62,88,58,73,99,93,41,51,35,37};<br>    int i = 0;<br>    int state;<br>    BiTree <em>T = (BiTree </em>)malloc(sizeof(BiTNode));<br>    BiTree f;<br>    BiTree <em>p = (BiTree </em>)malloc(sizeof(BiTNode));<br>    //create a Binary Tree<br>    for(i = 0;i &lt; 10;i++)<br>        InsertBST(T,arr[i]);<br>    int d = DeleteBST(T,88);<br>    printf(“%d\n”,d);<br>    return 0;<br>}<br>‘’’<br>注意：这里特别强调主函数中传递的实参T，必须用malloc申请内存，应为InsertBST中使用了指针*T。</p>
 
       
     </div>
