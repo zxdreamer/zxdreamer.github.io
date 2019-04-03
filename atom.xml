@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-03T00:59:02.462Z</updated>
+  <updated>2019-04-03T04:49:34.202Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux并发API</title>
+    <link href="http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/"/>
+    <id>http://yoursite.com/2019/04/03/linux并发API/</id>
+    <published>2019-04-03T04:43:57.000Z</published>
+    <updated>2019-04-03T04:49:34.202Z</updated>
+    
+    <content type="html"><![CDATA[<p>总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：<br>线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存<br><a id="more"></a><br>1、int pthread_attr_init(pthread_attr_t <em>attr)<br>   int pthread_attr_destory(pthread_attr_t </em>attr)</p><p>2、int pthread_equal(pthread_t th1,pthread_t th2)   // 比较两个线程id<br>    pthread_self(void)                                 // 获取自身线程id</p><p>3、int pthread_create(pthread_t tidp,pthread_attr_t <em>restrict attr,void </em>(<em>start_rtn(void </em>)),void <em>arg)   //每个线程提供一个errno副本<br>4、线程退出方式：（1）简单返回：return n<br>                   （2）被同一进程中的其他线程取消<br>                   （3）pthread_exit(void </em>rval_ptr)<br>5、void pthread_join(pthread_t thread,void *<em> rval_ptr) //阻塞等待指定线程退出<br>6、int pthread_cancel(pthread_t tid) //请求同一进程中的其他线程非正常退出<br>7、void pthread_cleanup_push(void (</em>rtn)(void <em>),void </em>arg)    //线程退出时回调函数，将函数依次放到栈中<br>   void pthread_cleanup_pop(int execute);                        //1.清理回调函数 2.execute非0时调用回调函数<br>   //线程执行以下动作时，回调函数才会触发：<br>   (1)调用pthread_exit()<br>   (2)用非0execute调用pthread_cleanup_pop<br>   (3)响应请求取消</p><p>8、int pthread_detach(pthread_t tid)  //将结合态的线程变成分离态的线程<br>9、int pthread_mutex_init(pthread_mutex_t <em>restrict mutex,const pthread_mutexattr_t </em>restrict attr);<br>    int pthread_mutex_destroy(pthread_mutex_t <em>);<br>    int pthread_mutex_lock(pthread_mutex_t </em>);<br>    int pthread_mutex_unlock(pthread_mutex_t <em>);<br>    int pthread_mutex_trylock(pthread_mutex_t </em>);  //如果互斥锁已经被锁住，返回一个错误状态。<br>10、int pthread_mutex_timedlock();<br>11、int pthread_rwlock_init(pthread_rwlock_t <em>restrict attr,const pthread_rwlockattr_t </em>restrict attr) //初始化读写锁<br>    int pthread_rwlock_destory(pthread_rwlock_t <em>rwlock)<br>    int pthread_rwlock_rdlock(pthread_rwlock_t </em>);<br>    int pthread_rwlock_wrlock(pthread_rwlock_t <em>);<br>    int pthread_rwlock_unlock(pthread_rwlock_t </em>);<br>12、pthread_cond_init(pthread_cond_t <em>reatrict cond,const pthread_condattr_t </em>restrict attr);           //初始化条件变量<br>    int pthread_cond_destory(pthread_cond_t <em>);<br>    int pthread_cond_wait(pthread_cond_t </em>restrict cond,pthread_mutex_t *restrict mutex);</p><p>13、int pthread_barrier_init();                            //屏障，同步多个线程，参数省略<br>    int pthread_barrier_destory();<br>    int pthread_barrier_wait(pthread_barrier_t *)      // 屏障等待多个线程</p><p>14、//内存映射(进程)<br>    void<em> mmap(void </em>addr,size_t len,int port,int flags,int fd,off_t offset)  //将文件映射成内存<br>    int munmap(void <em>addr,size_t len)                                            //解除映射，共享内存中的内容写入文件<br>    int msync(void </em>addr,size_t len,int flags)                                  //保证共享内存与文件的内容一致<br>    //XSI共享存储<br>    int shmget(key_t key,size_t size,int flags)                                 //创建或得到共享内存，返回shmid<br>    void <em>shmat(int shmid,const void </em>addr,int flags)                          //将shmget得到的共享内存映射到进程的地址空间，返回被映射的地址<br>    int shmdt(void *addr);                                                       //解除映射</p><p>15、//消息队列<br>    int msgget(key_t key,int msgflag);                                            //IPC_PRIVATE:创建消息队列<br>    int msgctl(key_t key,int cmd,struct msqid_ds<em> buf)                          //设置<br>    ssize_t msgsnd(int msgid,const void</em> msgp,size_t msgsz,int flag)           //消息写入队列  flag常设置成IPC_NOWAIT，空/满不阻塞<br>    int msgrcv(int msgid,const void* msgp,size_t msgsz,int flag)                //从队列中取消息    msgp指向消息的类型，接下来是消息信息</p><pre><code>//用户定义的通用结构：struct msgstru{    long mtype;                    //大于0，消息类型    char mtext[512];                //消息内容};</code></pre><p>16、//system V信号量<br>    int semget(key_t key,int nsems,int semflg)                                  //创建，成功返回信号量的id<br>    int semop(int semid,struct sembuf *sops,unsigned nsops)                    //执行信号量集合上的操作数组，PV操作函数<br>    int semctl(int semid,int semnum,int cmd,union semun arg)                   //实现对信号量的各种控制操作，初始化，删除等</p><pre><code>//POSIX信号量int sem_init(sem_t *sem.int pshared,unsigned value)                        //初始化信号量int sem_wait(sem_t *)                                                         //阻塞当前线程直到sem大于0int sem_post(sem_t *)                                                         //信号量的值加1intsem_destory(sem_t *)                                                       //释放信号量</code></pre><p>17、//条件变量<br>    int pthread_cond_init(pthread_cond_t <em>cond,pthread_condattr_t </em>attr)      //动态初始化条件变量，静态初始化PTHREAD_COND_INITIALIZER<br>    int pthread_cond_wait(pthread_cond_t <em>cond,pthread_mutex_lock </em>lock)      //等待条件变量发信号，同时释放互斥锁<br>    int pthread_cond_signal(pthread_cond_t <em>cond)                                // 只能使一个等待的条件变量编程非阻塞，若有多个条件变量处于等待状态，会按照线程优先级选择<br>    int pthread_cond_broadsignal(pthread_cond_t </em>cond)                          //</p><pre><code>//xxxctl常用命令字IPC_STAT  //取东西IPC_SRT   //设置东西IPC_RMID  //删除</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：&lt;br&gt;线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="API" scheme="http://yoursite.com/tags/API/"/>
+    
+  </entry>
   
   <entry>
     <title>C++查漏补缺</title>
