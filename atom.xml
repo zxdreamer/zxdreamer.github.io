@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-03T04:49:34.202Z</updated>
+  <updated>2019-04-03T04:56:46.387Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>编译连接原理</title>
+    <link href="http://yoursite.com/2019/04/03/%E7%BC%96%E8%AF%91%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2019/04/03/编译连接原理/</id>
+    <published>2019-04-03T04:51:05.000Z</published>
+    <updated>2019-04-03T04:56:46.387Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置<br>指定链接库的指令。<br><a id="more"></a><br>1、C语言的编译连接原理—-2018/7/4<br>编辑器：编写代码的窗口<br>编译器：检查代码的语法错误，并将其编译成汇编代码<br>汇编器：将编译出的汇编文件编译成一定功能的目标代码。<br>连接器：将目标代码连接成可执行文件。<br>C语言编译原理：<br>c源程序——预编译处理——编译，优化处理——汇编程序——连接程序——可执行文件。<br>预处理：</p><p>#define 宏定义展开<br>条件编译指令：#if/#endif等</p><p>#include<br>处理注释等特殊符号<br>添加行号和文件标识，输出编译错误警告输出行号。</p><p>#pragma被保留，<br>使用gcc -E可以只进行预编译。<br>编译<br>把预编译的文件进行一系列语法分析生成相应的汇编代码。<br>使用gcc -S 生成编译后的汇编代码<br>汇编：汇编器将汇编代码转换成机器可以执行的命令，每一个汇编指令几乎都对应一条机器指令。根据汇编指令与机器指令的对照表一一翻译即可。<br>执行汇编的指令：gcc -c<br>连接：程序运行需要一多个目标文件，以及所依赖的其他库文件。最后生成可执行文件。连接的目的是将各个模块相互引用的部分处理好。<br>静态连接：在编译阶段将静态库加入到可执行文件中去。相当于复制静态链接库。<br>         -l静态库名（是艾欧）<br>动态连接：连接只需要一些描述信息，而程序执行时在从系统中把相应的动态库加载到内存中。linux动态链接库: .so<br>windows动态连接库 .dll<br>2、C语言的编译连接原理—-2018/7/16<br>预编译会把偷吻键全部复制过去，在编译时会保留使用的将要使用的函数，并编译成汇编文件。<br>今天主要针对多个.c ”重定义“问题进行了思考，对于多个.c与.h文件，虽然有预编译指令#ifndef，但是只对单独的.c文件有过滤性，每个.c文件在预编译时都会复制一份.h中的内容。也就是说，一个.c文件包含了多个.h文件，这些.h文件又相互包含，此时#ifndef才起作用。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置&lt;br&gt;指定链接库的指令。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>linux并发API</title>
