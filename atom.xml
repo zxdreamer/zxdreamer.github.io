@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-03T04:56:46.387Z</updated>
+  <updated>2019-04-03T05:51:31.974Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,97 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>滑动串口、OOD数据</title>
+    <link href="http://yoursite.com/2019/04/03/%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://yoursite.com/2019/04/03/协议/</id>
+    <published>2019-04-03T05:47:13.000Z</published>
+    <updated>2019-04-03T05:51:31.974Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><p>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p><p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1
+      
+    
+    </summary>
+    
+      <category term="协议" scheme="http://yoursite.com/categories/%E5%8D%8F%E8%AE%AE/"/>
+    
+    
+      <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C语言DLL文件产生和调用</title>
+    <link href="http://yoursite.com/2019/04/03/C%E8%AF%AD%E8%A8%80DLL%E6%96%87%E4%BB%B6%E4%BA%A7%E7%94%9F%E5%92%8C%E8%B0%83%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/</id>
+    <published>2019-04-03T05:33:33.000Z</published>
+    <updated>2019-04-03T05:44:18.723Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述C/C++产生的DLL文件怎样被C++或C#调用<br><a id="more"></a><br>创建DLL文件，选择win32项目，选择生成DLL<br><img src="/2019/04/03/C语言DLL文件产生和调用/创建.png" alt="创建"><br>添加头文件和.c文件<br>头文件中的声明<br><img src="/2019/04/03/C语言DLL文件产生和调用/声明.png" alt="声明"><br>.c文件中可以定义中间函数，这个中间函数可一直任何普通函数。然后导出函数一定要加<br>_stdcall 并且导出函数一定是要在头文件中用_declsped声明的。<br><img src="/2019/04/03/C语言DLL文件产生和调用/导出.png" alt="导出"><br>3.添加模块文件.def。<br>4.点击生成解决方案就产生了DLL。</p><p>二、C#调用DLL的方法<br>  包含运行时库<br>using System.Runtime.InteropServices;//运行时库<br>将DLL拷贝到根目录<br>导出语法如下：<br><img src="/2019/04/03/C语言DLL文件产生和调用/Csharp导入.png" alt="Csharp导入"><br>4.Area就是一个在C#中直接调用的成员方法。<br>详细网址<br><a href="https://blog.csdn.net/C_xxy/article/details/78998758" target="_blank" rel="noopener">https://blog.csdn.net/C_xxy/article/details/78998758</a></p><p>三、C++调用DLL的方法<br>1、加载DLL库<br>    HINSTANCE hinstLib = LoadLibrary(TEXT(“ytr.dll”));<br>2、声明函数指针<br>    typedef int (__stdcall *MYPROC)(LPWSTR,LPWSTR);<br>    MYPROC ProcAdd;<br>3、函数指针赋值<br>    ProcAdd = (MYPROC)GetProcAddress(hinstLib,”FB_Open”);<br>4、函数指针调用函数<br>    ProcAdd(3,”abc”)    //两个参数的函数指针调用过程<br>5、释放DLL<br>    BOOL fFreeResult = FreeLibrary(hinstLib);<br>用VS查看DLL是多少位的，这里需要注意64为的应用程序不能调用32 为DLL，32 为应用程序也不能调用64为DLL。<br><img src="/2019/04/03/C语言DLL文件产生和调用/查看.png" alt="查看"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述C/C++产生的DLL文件怎样被C++或C#调用&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="program" scheme="http://yoursite.com/tags/program/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>naoPi配置AP热点</title>
+    <link href="http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
+    <id>http://yoursite.com/2019/04/03/nanoPi配置AP热点/</id>
+    <published>2019-04-03T05:18:45.000Z</published>
+    <updated>2019-04-03T05:18:45.437Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>naoPi配置AP热点</title>
+    <link href="http://yoursite.com/2019/04/03/naoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
+    <id>http://yoursite.com/2019/04/03/naoPi配置AP热点/</id>
+    <published>2019-04-03T05:18:45.000Z</published>
+    <updated>2019-04-03T05:23:11.859Z</updated>
+    
+    <content type="html"><![CDATA[<p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br><a id="more"></a><br>一、AP是无线访问接入点，可以是WiFi，可以是蓝牙，可以将无线网络客户端连接到一起，然后将无线网络连接到以太网。hostapd可以将无线网卡切换成AP/master模式的守护进程。DHCP服务是根据mac地址自动分配ip的进程。DNS服务器是将域名与ip地址建立在数据库的主机。<br>二、配置AP接入点时要确保没有任何一个应用程序占用无线网卡。包括WSP进程。<br>三、nanaopi通过pppoe连接以太网，需要输入用户名与密码。<br>详见网址：<br><a href="https://www.cnblogs.com/ssooking/p/8571749.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssooking/p/8571749.html</a><br>需要注意的是在输入username是要把横向上的字符串清0<br>四、busybox的作用和功能以及在arm版上安装<a href="https://blog.csdn.net/cy_weiyi/article/details/46953233" target="_blank" rel="noopener">https://blog.csdn.net/cy_weiyi/article/details/46953233</a><br>待补充。</p><p>五、管理网络的工具ip，iw，rfkill<br>1、rfkill用于对系统的无线设备进行打开关闭查找<br>sudo rfkill list :列出所有无线设备<br>sudo rfkill block 0  关闭第0个无线设备<br>ip a<br>ip addr add 192.168.1.199 dev eth0<br>ip link set eth0 up/down<br>iw 启动WIFI连接。<br><a href="https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/" target="_blank" rel="noopener">https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/</a><br>sudo -s 进入root目录<br>service networking restart<br>server isc-dhcp-server restart<br>文件 /etc/network/interface 修改动态ip和静态ip,改完之后重启networking服务<br>文件 /etc/hostapd/hostapd.config<br>文件 /etc/dhcp/dhcpd.config<br>rfkill unblock wlan 启动wlan<br>rfkill block wlan wlan<br>ifup wlan 修改配置文件之后的启动网卡。从静态ip到动态ip<br>hostapd /etc/hostapd/hostapd.config<br>dhcpd</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，&lt;br&gt;通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="-linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="ways" scheme="http://yoursite.com/tags/ways/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编译连接原理</title>
     <link href="http://yoursite.com/2019/04/03/%E7%BC%96%E8%AF%91%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2019/04/03/编译连接原理/</id>
     <published>2019-04-03T04:51:05.000Z</published>
-    <updated>2019-04-03T04:56:46.387Z</updated>
+    <updated>2019-04-03T05:31:29.259Z</updated>
     
-    <content type="html"><![CDATA[<p>讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置<br>指定链接库的指令。<br><a id="more"></a><br>1、C语言的编译连接原理—-2018/7/4<br>编辑器：编写代码的窗口<br>编译器：检查代码的语法错误，并将其编译成汇编代码<br>汇编器：将编译出的汇编文件编译成一定功能的目标代码。<br>连接器：将目标代码连接成可执行文件。<br>C语言编译原理：<br>c源程序——预编译处理——编译，优化处理——汇编程序——连接程序——可执行文件。<br>预处理：</p><p>#define 宏定义展开<br>条件编译指令：#if/#endif等</p><p>#include<br>处理注释等特殊符号<br>添加行号和文件标识，输出编译错误警告输出行号。</p><p>#pragma被保留，<br>使用gcc -E可以只进行预编译。<br>编译<br>把预编译的文件进行一系列语法分析生成相应的汇编代码。<br>使用gcc -S 生成编译后的汇编代码<br>汇编：汇编器将汇编代码转换成机器可以执行的命令，每一个汇编指令几乎都对应一条机器指令。根据汇编指令与机器指令的对照表一一翻译即可。<br>执行汇编的指令：gcc -c<br>连接：程序运行需要一多个目标文件，以及所依赖的其他库文件。最后生成可执行文件。连接的目的是将各个模块相互引用的部分处理好。<br>静态连接：在编译阶段将静态库加入到可执行文件中去。相当于复制静态链接库。<br>         -l静态库名（是艾欧）<br>动态连接：连接只需要一些描述信息，而程序执行时在从系统中把相应的动态库加载到内存中。linux动态链接库: .so<br>windows动态连接库 .dll<br>2、C语言的编译连接原理—-2018/7/16<br>预编译会把偷吻键全部复制过去，在编译时会保留使用的将要使用的函数，并编译成汇编文件。<br>今天主要针对多个.c ”重定义“问题进行了思考，对于多个.c与.h文件，虽然有预编译指令#ifndef，但是只对单独的.c文件有过滤性，每个.c文件在预编译时都会复制一份.h中的内容。也就是说，一个.c文件包含了多个.h文件，这些.h文件又相互包含，此时#ifndef才起作用。</p>]]></content>
+    <content type="html"><![CDATA[<p>讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置<br>指定链接库的指令。<br><a id="more"></a><br>1、C语言的编译连接原理—-2018/7/4<br>编辑器：编写代码的窗口<br>编译器：检查代码的语法错误，并将其编译成汇编代码<br>汇编器：将编译出的汇编文件编译成一定功能的目标代码。<br>连接器：将目标代码连接成可执行文件。<br>C语言编译原理：<br>c源程序——预编译处理——编译，优化处理——汇编程序——连接程序——可执行文件。<br>预处理：</p><p>#define 宏定义展开<br>条件编译指令：#if/#endif等</p><p>#include<br>处理注释等特殊符号<br>添加行号和文件标识，输出编译错误警告输出行号。</p><p>#pragma被保留，<br>使用gcc -E可以只进行预编译。<br>编译<br>把预编译的文件进行一系列语法分析生成相应的汇编代码。<br>使用gcc -S 生成编译后的汇编代码<br>汇编：汇编器将汇编代码转换成机器可以执行的命令，每一个汇编指令几乎都对应一条机器指令。根据汇编指令与机器指令的对照表一一翻译即可。<br>执行汇编的指令：gcc -c<br>连接：程序运行需要一多个目标文件，以及所依赖的其他库文件。最后生成可执行文件。连接的目的是将各个模块相互引用的部分处理好。<br>静态连接：在编译阶段将静态库加入到可执行文件中去。相当于复制静态链接库。<br>         -l静态库名（是艾欧）<br>动态连接：连接只需要一些描述信息，而程序执行时在从系统中把相应的动态库加载到内存中。linux动态链接库: .so<br>windows动态连接库 .dll<br>2、C语言的编译连接原理—-2018/7/16<br>预编译会把偷吻键全部复制过去，在编译时会保留使用的将要使用的函数，并编译成汇编文件。<br>今天主要针对多个.c ”重定义“问题进行了思考，对于多个.c与.h文件，虽然有预编译指令#ifndef，但是只对单独的.c文件有过滤性，每个.c文件在预编译时都会复制一份.h中的内容。也就是说，一个.c文件包含了多个.h文件，这些.h文件又相互包含，此时#ifndef才起作用。</p><p>备注：将多个静态库打包成一个静态库的方法：<br>问题：<br>    我有多个静态连接库比如A.a,B.a,C.a，并且我并不知道A B C三个库<br>    由那些文件编译而来，现在我想把他们编译成一个库。</p><p>解答：<br>    .a 文件的结构和.tar文件就没有什么区别。 x 命令解出来， a 命令添加， t命令列表</p><pre><code>楼主的要求只需要，假设A.a, B.a C.a 在/usr/local/lib目录下mkdir /tmp/libABCcd /tmp/libABCar x /usr/local/lib/A.aar x /usr/local/lib/B.aar x /usr/local/lib/C.aar cru libABC.a *.oranlib libABC.a</code></pre>]]></content>
     
     <summary type="html">
     
@@ -85,7 +169,7 @@
     <link href="http://yoursite.com/2019/04/02/python%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2019/04/02/python笔记/</id>
     <published>2019-04-02T05:16:00.000Z</published>
-    <updated>2019-04-02T05:50:15.006Z</updated>
+    <updated>2019-04-03T05:36:02.138Z</updated>
     
     <content type="html"><![CDATA[<p>python学习笔记<br><a id="more"></a></p><p>一、dict使用<br>    1、创建{}<br>    2、使用dict()将含有双值子序列的序列转化成字典<br>    3、使用update()合并两个字典，若有重复则替换<br>    4、使用del删除指定key的字典<br>    5、使用clear()或指向一个{}清空dict<br>    6、使用in判断键值是否在字典中<br>    7、使用keys()获取所有键。使用values获取所有值<br>    8、使用items获取所有键值对，每一个键值对用tuple形式存储，整体用list存储<br>二、tuple使用<br>    1、创建， </p><p>三、函数<br>    1、yield 创建迭代器函数使用的关键字，每一次迭代遇到yield就返回其后的值，下一次迭代从此处(函数处)开始。<br>        def my_range(first=0,last=5,step=1):<br>            number = first<br>            while number &lt; last:<br>                yield number<br>                number += step</p><p>四、类<br>    1、self 指向这个被创建的对象本身<br>    2、对象调用成员函数做的两件事：<br>        a、找到对象所属的类<br>        b、将对象传递给成员函数的self参数<br>    3、super()方法<br>    4、属性 name=property(get,set)<br>    5、名称重整：<strong>name<br>    6、@classmethod 类方法，@staticmethod 静态方法<br>    7、iterator和iteratable：重要的两个方法：</strong>iter__()：返回迭代器本身<br>                                             <strong>next</strong>():返回当前值<br>                                                       :改变iterator状态<br>    8、generator 只要包含<strong>iter</strong>()和<strong>next</strong>()即可，但直接用yield也可以。有两种使用方式：next()和send()<br>    9、特殊方法，其实就是运算符重载<br>五、@abstractmethod方法<br>    python中的接口必须借助ABC模块使用–from abc import AECMeta,abstarctmethod<br>    @abstractmethod<br>    def 方法名():</p><pre><code>@abstractmethod方法必须被子类重载。带@abstractmethod的方法不能实例化        </code></pre>]]></content>
     
@@ -98,7 +182,7 @@
       <category term="python" scheme="http://yoursite.com/categories/python/"/>
     
     
-      <category term="generator,class" scheme="http://yoursite.com/tags/generator-class/"/>
+      <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
     
   </entry>
   
@@ -107,7 +191,7 @@
     <link href="http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
     <id>http://yoursite.com/2019/04/02/vim学习笔记一/</id>
     <published>2019-04-02T02:31:56.000Z</published>
-    <updated>2019-04-03T05:12:05.651Z</updated>
+    <updated>2019-04-03T05:36:27.275Z</updated>
     
     <content type="html"><![CDATA[<p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p><p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>]]></content>
     
@@ -120,9 +204,7 @@
       <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-      <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
+      <category term="operator" scheme="http://yoursite.com/tags/operator/"/>
     
   </entry>
   

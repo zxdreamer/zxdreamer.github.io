@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置指定链接库的指令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T04:56:46.387Z">
+<meta property="og:updated_time" content="2019-04-03T05:31:29.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译连接原理">
 <meta name="twitter:description" content="讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置指定链接库的指令。">
@@ -347,7 +347,17 @@
 <p>#define 宏定义展开<br>条件编译指令：#if/#endif等</p>
 <p>#include<br>处理注释等特殊符号<br>添加行号和文件标识，输出编译错误警告输出行号。</p>
 <p>#pragma被保留，<br>使用gcc -E可以只进行预编译。<br>编译<br>把预编译的文件进行一系列语法分析生成相应的汇编代码。<br>使用gcc -S 生成编译后的汇编代码<br>汇编：汇编器将汇编代码转换成机器可以执行的命令，每一个汇编指令几乎都对应一条机器指令。根据汇编指令与机器指令的对照表一一翻译即可。<br>执行汇编的指令：gcc -c<br>连接：程序运行需要一多个目标文件，以及所依赖的其他库文件。最后生成可执行文件。连接的目的是将各个模块相互引用的部分处理好。<br>静态连接：在编译阶段将静态库加入到可执行文件中去。相当于复制静态链接库。<br>         -l静态库名（是艾欧）<br>动态连接：连接只需要一些描述信息，而程序执行时在从系统中把相应的动态库加载到内存中。linux动态链接库: .so<br>windows动态连接库 .dll<br>2、C语言的编译连接原理—-2018/7/16<br>预编译会把偷吻键全部复制过去，在编译时会保留使用的将要使用的函数，并编译成汇编文件。<br>今天主要针对多个.c ”重定义“问题进行了思考，对于多个.c与.h文件，虽然有预编译指令#ifndef，但是只对单独的.c文件有过滤性，每个.c文件在预编译时都会复制一份.h中的内容。也就是说，一个.c文件包含了多个.h文件，这些.h文件又相互包含，此时#ifndef才起作用。</p>
-
+<p>备注：将多个静态库打包成一个静态库的方法：<br>问题：<br>    我有多个静态连接库比如A.a,B.a,C.a，并且我并不知道A B C三个库<br>    由那些文件编译而来，现在我想把他们编译成一个库。</p>
+<p>解答：<br>    .a 文件的结构和.tar文件就没有什么区别。 x 命令解出来， a 命令添加， t命令列表</p>
+<pre><code>楼主的要求只需要，假设A.a, B.a C.a 在/usr/local/lib目录下
+mkdir /tmp/libABC
+cd /tmp/libABC
+ar x /usr/local/lib/A.a
+ar x /usr/local/lib/B.a
+ar x /usr/local/lib/C.a
+ar cru libABC.a *.o
+ranlib libABC.a
+</code></pre>
       
     </div>
     
@@ -380,6 +390,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/03/naoPi配置AP热点/" rel="prev" title="naoPi配置AP热点">
+                naoPi配置AP热点 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -475,7 +489,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -486,7 +500,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -497,7 +511,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
