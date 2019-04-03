@@ -3,6 +3,46 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/02/03/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</loc>
+    <lastmod>2019-04-03T14:59:38.732Z</lastmod>
+    <data>
+        <display>
+        <title>二叉排序树</title>
+        <pubTime>2019-02-03T14:53:58.000Z</pubTime>
+        
+        <tag>algorithm </tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://yoursite.com/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/03/C-%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/</loc>
+    <lastmod>2019-04-03T12:28:30.362Z</lastmod>
+    <data>
+        <display>
+        <title>C++查漏补缺</title>
+        <pubTime>2019-04-03T00:44:16.000Z</pubTime>
+        
+        <tag>program </tag>
+         
+         
+           
+             
+              <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2019-04-03T06:05:41.820Z</lastmod>
     <data>
@@ -154,26 +194,6 @@
            
              
               <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/03/C-%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/</loc>
-    <lastmod>2019-04-03T00:59:02.462Z</lastmod>
-    <data>
-        <display>
-        <title>C++查漏补缺</title>
-        <pubTime>2019-04-03T00:44:16.000Z</pubTime>
-        
-        <tag>template,alogorithm,class,API </tag>
-         
-         
-           
-             
-              <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
           
         </display>
     </data>

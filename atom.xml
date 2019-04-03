@@ -151,7 +151,7 @@
     <link href="http://yoursite.com/2019/04/03/C-%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
     <id>http://yoursite.com/2019/04/03/C-查漏补缺/</id>
     <published>2019-04-03T00:44:16.000Z</published>
-    <updated>2019-04-03T00:59:02.462Z</updated>
+    <updated>2019-04-03T12:28:30.362Z</updated>
     
     <content type="html"><![CDATA[<p>主要记录使用C++的过程中的不足和tips<br><a id="more"></a><br>C语言知识盲点<br>一、c register and static用法<br>    1、register变量将被频繁调用，请求编译器尽可能存在cpu中，而不是内存中<br>        注意：<br>        register变量必须是被cpu寄存器接受的值。<br>        register变量不能用取地址符&amp;<br>        只有局部变量和形参可以用static，全局变量和静态变量不可以<br>    2、static关键字的作用<br>        首先static的最主要功能是隐藏，其次因为static变量存放在静态存储区，所以它具备持久性和默认值0</p><p>二、#define的高级用法——定义复杂函数,只是没有{}，语句结尾没有分号<br>    用#define和连接符可以定义复杂函数<br>    比如：</p><pre><code>#define swap(a.b) do{\    int t = 0;\    t=a;\    a=b;\    b=t;\    }while(0)</code></pre><p>三、虚函数表<br>    1、虚函数表是在对象被创建的时候生成的，每一个对象对应一张虚函数表<br>    2、虚函数表中存有对象的所有函数，包括从基类继承的，没有被派生类覆盖的<br>    3、键关系图<br>    至少包含一个纯虚函数的类是抽象类，抽象类不能实例化对象。<br>    接口中不予许含有成员变量，但可以含有静态变量，不可以有构造函数，但一定要有纯虚析构函数<br>    虚函数就可以执行动态绑定。纯虚函数是在虚函数的末尾加入=0;<br>    <img src="/2019/04/03/C-查漏补缺/虚函数表.png" alt="虚函数表"><br>四、#undefined 临时关闭一个#define的宏<br>五、指针数组与指向指针的数组，引出指针运算的结合顺序：<br>        在无括号时，从右向左解释；有括号时，先解释括号中的内容，然后再说明按照从右向左的顺序解释<br>        typedef int Patharc[10];<br>        void shortPath(MGrath g,Patharc <em>p)<br>        形参的类型：int (</em>p)[10],说明p是一个指向数组的指针<br>        特别注意的一点是：行指针与指针数组都需要先申请内存才能用。<br>六、深拷贝和浅拷贝主要针对指针来说，对于存在指针变量的对象，执行浅拷贝时没有分离两个对象的关联。此时需要自定义深拷贝构造函数<br>     原则是：对于值类型直接赋值，指针类型要重新分配内存空间。<br>     拷贝构造函数形式：类名(类名 &amp;,…)<br>七、C++使用默认参数<br>    1、在声明中指定默认参数，在定义时要省略这个参数<br>    2、若不声明，可以在定义中直接指定默认参数<br>    double sqrt(double f = 1.0); //函数声明</p><pre><code>double sqrt(double f)  //函数定义{  // ....  }</code></pre><p>八、函数指针作为形参有两种形式<br>    1、直接在形参的位置声明一个函数指针—void Mysort(vector<int> v,bool (*cmp)(const int a,const int b))<br>    2、使用typedef定义一种函数指针新类型，然后在形参处使用这种类型定义的变量相当于函数指针了。<br>九、c register and static用法<br>    1、register变量将被频繁调用，请求编译器尽可能存在cpu中，而不是内存中<br>        注意：<br>        register变量必须是被cpu寄存器接受的值。<br>        register变量不能用取地址符&amp;<br>        只有局部变量和形参可以用static，全局变量和静态变量不可以<br>    2、static关键字的作用<br>        首先static的最主要功能是隐藏，其次因为static变量存放在静态存储区，所以它具备持久性和默认值0<br>十、#define的高级用法——定义复杂函数,只是没有{}，语句结尾没有分号<br>    用#define和连接符可以定义复杂函数<br>    比如：</int></p><pre><code>#define swap(a.b) do{\    int t = 0;\    t=a;\    a=b;\    b=t;\    }while(0)</code></pre>]]></content>
     
@@ -164,7 +164,7 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="template,alogorithm,class,API" scheme="http://yoursite.com/tags/template-alogorithm-class-API/"/>
+      <category term="program" scheme="http://yoursite.com/tags/program/"/>
     
   </entry>
   
@@ -209,6 +209,28 @@
     
     
       <category term="operate" scheme="http://yoursite.com/tags/operate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二叉排序树</title>
+    <link href="http://yoursite.com/2019/02/03/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/02/03/二叉排序树/</id>
+    <published>2019-02-03T14:53:58.000Z</published>
+    <updated>2019-04-03T14:59:38.732Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述二叉排序树的插入，查找，删除操作<br><a id="more"></a></p><p>#include &lt;stdio.h&gt;</p><p>#include &lt;stdlib.h&gt;</p><p>#define TRUE 1</p><p>#define FALSE 0</p><p>typedef struct BiTNode<br>{<br>    int data;<br>    struct BiTNode <em>lchild,</em>rchild;<br>}BiTNode,*BiTree;</p><p>int SearchBST(BiTree T,int key,BiTree f,BiTree <em>p)<br>{<br>    if(T==NULL)<br>    {        </em>p = f;<br>        return FALSE;<br>    }<br>    else if(key == T-&gt;data)<br>    {<br>        *p = T;<br>        return TRUE;<br>    }<br>    else if(key &lt; T-&gt;data)<br>        return SearchBST(T-&gt;lchild,key,T,p);<br>    else<br>        return SearchBST(T-&gt;rchild,key,T,p);<br>}</p><p>int InsertBST(BiTree <em>T,int key)<br>{<br>    BiTree s;<br>    BiTree p = (BiTree)malloc(sizeof(BiTNode));<br>    if(SearchBST(</em>T,key,NULL,&amp;p) == FALSE)<br>    {<br>        s = (BiTree)malloc(sizeof(BiTNode));<br>        s-&gt;data = key;<br>        s-&gt;lchild=s-&gt;rchild=NULL;<br>        if(p == NULL)      //haven’t root node<br>            *T = s;<br>        else if(key &lt; p-&gt;data)<br>            p-&gt;lchild = s;<br>        else if(key &gt; p-&gt;data)<br>            p-&gt;rchild = s;<br>        return TRUE;<br>    }</p><pre><code>return FALSE;</code></pre><p>}<br>int Delete(BiTree <em>p)<br>{<br>    int d=0;<br>    BiTree q,s;<br>    d=(</em>p)-&gt;data;</p><pre><code>if((*p)-&gt;rchild == NULL){    q = *p;    *p = (*p)-&gt;lchild;    free(q);}else if((*p)-&gt;lchild == NULL){    q = *p;    *p = (*p)-&gt;rchild;    free(q);}else{    q=*p;    s=(*p)-&gt;lchild;    while(s-&gt;rchild)    {        q=s;        s=s-&gt;rchild;    }    (*p)-&gt;data = s-&gt;data;    if(q!=*p)        q-&gt;rchild = s-&gt;lchild;    else        q-&gt;lchild = s-&gt;lchild;    free(s);}return d;</code></pre><p>}</p><p>int DeleteBST(BiTree <em>T,int key)<br>{<br>    if(</em>T == NULL)<br>        return FALSE;<br>    else<br>    {<br>        if(key == (<em>T)-&gt;data)<br>            return Delete(T);<br>        else if(key &lt;(</em>T)-&gt;data)<br>            return DeleteBST(&amp;(<em>T)-&gt;lchild,key);<br>        else<br>            return DeleteBST(&amp;(</em>T)-&gt;rchild,key);<br>    }<br>}</p><p>int main()<br>{<br>    int arr[10]={62,88,58,73,99,93,41,51,35,37};<br>    int i = 0;<br>    int state;<br>    BiTree <em>T = (BiTree </em>)malloc(sizeof(BiTNode));<br>    BiTree f;<br>    BiTree <em>p = (BiTree </em>)malloc(sizeof(BiTNode));<br>    //create a Binary Tree<br>    for(i = 0;i &lt; 10;i++)<br>        InsertBST(T,arr[i]);<br>    int d = DeleteBST(T,88);<br>    printf(“%d\n”,d);<br>    return 0;<br>}</p><p>注意：这里特别强调主函数中传递的实参T，必须用malloc申请内存，应为InsertBST中使用了指针*T。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述二叉排序树的插入，查找，删除操作&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="algorithm" scheme="http://yoursite.com/categories/algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
     
   </entry>
   

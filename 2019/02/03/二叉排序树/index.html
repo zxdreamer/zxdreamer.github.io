@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="API,">
+  <meta name="keywords" content="algorithm,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存">
-<meta name="keywords" content="API">
+<meta name="description" content="讲述二叉排序树的插入，查找，删除操作">
+<meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux并发API">
-<meta property="og:url" content="http://yoursite.com/2019/04/03/linux并发API/index.html">
+<meta property="og:title" content="二叉排序树">
+<meta property="og:url" content="http://yoursite.com/2019/02/03/二叉排序树/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存">
+<meta property="og:description" content="讲述二叉排序树的插入，查找，删除操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T04:49:34.202Z">
+<meta property="og:updated_time" content="2019-04-03T14:59:38.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux并发API">
-<meta name="twitter:description" content="总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存">
+<meta name="twitter:title" content="二叉排序树">
+<meta name="twitter:description" content="讲述二叉排序树的插入，查找，删除操作">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/03/linux并发API/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/03/二叉排序树/">
 
 
 
 
 
-  <title>linux并发API | Dreamer</title>
+  <title>二叉排序树 | Dreamer</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/linux并发API/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/03/二叉排序树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦的蓝天">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux并发API</h1>
+          <h1 class="post-title" itemprop="name headline">二叉排序树</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T12:43:57+08:00">
-                2019-04-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-03T22:53:58+08:00">
+                2019-02-03
               </time>
             
 
@@ -307,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
                   </a>
                 </span>
 
@@ -344,30 +344,51 @@
       
 
       
-        <p>总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：<br>线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存<br><a id="more"></a><br>1、int pthread_attr_init(pthread_attr_t <em>attr)<br>   int pthread_attr_destory(pthread_attr_t </em>attr)</p>
-<p>2、int pthread_equal(pthread_t th1,pthread_t th2)   // 比较两个线程id<br>    pthread_self(void)                                 // 获取自身线程id</p>
-<p>3、int pthread_create(pthread_t tidp,pthread_attr_t <em>restrict attr,void </em>(<em>start_rtn(void </em>)),void <em>arg)   //每个线程提供一个errno副本<br>4、线程退出方式：（1）简单返回：return n<br>                   （2）被同一进程中的其他线程取消<br>                   （3）pthread_exit(void </em>rval_ptr)<br>5、void pthread_join(pthread_t thread,void *<em> rval_ptr) //阻塞等待指定线程退出<br>6、int pthread_cancel(pthread_t tid) //请求同一进程中的其他线程非正常退出<br>7、void pthread_cleanup_push(void (</em>rtn)(void <em>),void </em>arg)    //线程退出时回调函数，将函数依次放到栈中<br>   void pthread_cleanup_pop(int execute);                        //1.清理回调函数 2.execute非0时调用回调函数<br>   //线程执行以下动作时，回调函数才会触发：<br>   (1)调用pthread_exit()<br>   (2)用非0execute调用pthread_cleanup_pop<br>   (3)响应请求取消</p>
-<p>8、int pthread_detach(pthread_t tid)  //将结合态的线程变成分离态的线程<br>9、int pthread_mutex_init(pthread_mutex_t <em>restrict mutex,const pthread_mutexattr_t </em>restrict attr);<br>    int pthread_mutex_destroy(pthread_mutex_t <em>);<br>    int pthread_mutex_lock(pthread_mutex_t </em>);<br>    int pthread_mutex_unlock(pthread_mutex_t <em>);<br>    int pthread_mutex_trylock(pthread_mutex_t </em>);  //如果互斥锁已经被锁住，返回一个错误状态。<br>10、int pthread_mutex_timedlock();<br>11、int pthread_rwlock_init(pthread_rwlock_t <em>restrict attr,const pthread_rwlockattr_t </em>restrict attr) //初始化读写锁<br>    int pthread_rwlock_destory(pthread_rwlock_t <em>rwlock)<br>    int pthread_rwlock_rdlock(pthread_rwlock_t </em>);<br>    int pthread_rwlock_wrlock(pthread_rwlock_t <em>);<br>    int pthread_rwlock_unlock(pthread_rwlock_t </em>);<br>12、pthread_cond_init(pthread_cond_t <em>reatrict cond,const pthread_condattr_t </em>restrict attr);           //初始化条件变量<br>    int pthread_cond_destory(pthread_cond_t <em>);<br>    int pthread_cond_wait(pthread_cond_t </em>restrict cond,pthread_mutex_t *restrict mutex);</p>
-<p>13、int pthread_barrier_init();                            //屏障，同步多个线程，参数省略<br>    int pthread_barrier_destory();<br>    int pthread_barrier_wait(pthread_barrier_t *)      // 屏障等待多个线程</p>
-<p>14、//内存映射(进程)<br>    void<em> mmap(void </em>addr,size_t len,int port,int flags,int fd,off_t offset)  //将文件映射成内存<br>    int munmap(void <em>addr,size_t len)                                            //解除映射，共享内存中的内容写入文件<br>    int msync(void </em>addr,size_t len,int flags)                                  //保证共享内存与文件的内容一致<br>    //XSI共享存储<br>    int shmget(key_t key,size_t size,int flags)                                 //创建或得到共享内存，返回shmid<br>    void <em>shmat(int shmid,const void </em>addr,int flags)                          //将shmget得到的共享内存映射到进程的地址空间，返回被映射的地址<br>    int shmdt(void *addr);                                                       //解除映射</p>
-<p>15、//消息队列<br>    int msgget(key_t key,int msgflag);                                            //IPC_PRIVATE:创建消息队列<br>    int msgctl(key_t key,int cmd,struct msqid_ds<em> buf)                          //设置<br>    ssize_t msgsnd(int msgid,const void</em> msgp,size_t msgsz,int flag)           //消息写入队列  flag常设置成IPC_NOWAIT，空/满不阻塞<br>    int msgrcv(int msgid,const void* msgp,size_t msgsz,int flag)                //从队列中取消息    msgp指向消息的类型，接下来是消息信息</p>
-<pre><code>//用户定义的通用结构：
-struct msgstru{
-    long mtype;                    //大于0，消息类型
-    char mtext[512];                //消息内容
-};
-</code></pre><p>16、//system V信号量<br>    int semget(key_t key,int nsems,int semflg)                                  //创建，成功返回信号量的id<br>    int semop(int semid,struct sembuf *sops,unsigned nsops)                    //执行信号量集合上的操作数组，PV操作函数<br>    int semctl(int semid,int semnum,int cmd,union semun arg)                   //实现对信号量的各种控制操作，初始化，删除等</p>
-<pre><code>//POSIX信号量
-int sem_init(sem_t *sem.int pshared,unsigned value)                        //初始化信号量
-int sem_wait(sem_t *)                                                         //阻塞当前线程直到sem大于0
-int sem_post(sem_t *)                                                         //信号量的值加1
-intsem_destory(sem_t *)                                                       //释放信号量
-</code></pre><p>17、//条件变量<br>    int pthread_cond_init(pthread_cond_t <em>cond,pthread_condattr_t </em>attr)      //动态初始化条件变量，静态初始化PTHREAD_COND_INITIALIZER<br>    int pthread_cond_wait(pthread_cond_t <em>cond,pthread_mutex_lock </em>lock)      //等待条件变量发信号，同时释放互斥锁<br>    int pthread_cond_signal(pthread_cond_t <em>cond)                                // 只能使一个等待的条件变量编程非阻塞，若有多个条件变量处于等待状态，会按照线程优先级选择<br>    int pthread_cond_broadsignal(pthread_cond_t </em>cond)                          //</p>
-<pre><code>//xxxctl常用命令字
-IPC_STAT  //取东西
-IPC_SRT   //设置东西
-IPC_RMID  //删除
-</code></pre>
+        <p>讲述二叉排序树的插入，查找，删除操作<br><a id="more"></a></p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>#include &lt;stdlib.h&gt;</p>
+<p>#define TRUE 1</p>
+<p>#define FALSE 0</p>
+<p>typedef struct BiTNode<br>{<br>    int data;<br>    struct BiTNode <em>lchild,</em>rchild;<br>}BiTNode,*BiTree;</p>
+<p>int SearchBST(BiTree T,int key,BiTree f,BiTree <em>p)<br>{<br>    if(T==NULL)<br>    {
+        </em>p = f;<br>        return FALSE;<br>    }<br>    else if(key == T-&gt;data)<br>    {<br>        *p = T;<br>        return TRUE;<br>    }<br>    else if(key &lt; T-&gt;data)<br>        return SearchBST(T-&gt;lchild,key,T,p);<br>    else<br>        return SearchBST(T-&gt;rchild,key,T,p);<br>}</p>
+<p>int InsertBST(BiTree <em>T,int key)<br>{<br>    BiTree s;<br>    BiTree p = (BiTree)malloc(sizeof(BiTNode));<br>    if(SearchBST(</em>T,key,NULL,&amp;p) == FALSE)<br>    {<br>        s = (BiTree)malloc(sizeof(BiTNode));<br>        s-&gt;data = key;<br>        s-&gt;lchild=s-&gt;rchild=NULL;<br>        if(p == NULL)      //haven’t root node<br>            *T = s;<br>        else if(key &lt; p-&gt;data)<br>            p-&gt;lchild = s;<br>        else if(key &gt; p-&gt;data)<br>            p-&gt;rchild = s;<br>        return TRUE;<br>    }</p>
+<pre><code>return FALSE;
+</code></pre><p>}<br>int Delete(BiTree <em>p)<br>{<br>    int d=0;<br>    BiTree q,s;<br>    d=(</em>p)-&gt;data;</p>
+<pre><code>if((*p)-&gt;rchild == NULL)
+{
+    q = *p;
+    *p = (*p)-&gt;lchild;
+    free(q);
+}
+else if((*p)-&gt;lchild == NULL)
+{
+    q = *p;
+    *p = (*p)-&gt;rchild;
+    free(q);
+}
+else
+{
+    q=*p;
+    s=(*p)-&gt;lchild;
+    while(s-&gt;rchild)
+    {
+        q=s;
+        s=s-&gt;rchild;
+    }
+    (*p)-&gt;data = s-&gt;data;
+    if(q!=*p)
+        q-&gt;rchild = s-&gt;lchild;
+    else
+        q-&gt;lchild = s-&gt;lchild;
+    free(s);
+}
+return d;
+</code></pre><p>}</p>
+<p>int DeleteBST(BiTree <em>T,int key)<br>{<br>    if(</em>T == NULL)<br>        return FALSE;<br>    else<br>    {<br>        if(key == (<em>T)-&gt;data)<br>            return Delete(T);<br>        else if(key &lt;(</em>T)-&gt;data)<br>            return DeleteBST(&amp;(<em>T)-&gt;lchild,key);<br>        else<br>            return DeleteBST(&amp;(</em>T)-&gt;rchild,key);<br>    }<br>}</p>
+<p>int main()<br>{<br>    int arr[10]={62,88,58,73,99,93,41,51,35,37};<br>    int i = 0;<br>    int state;<br>    BiTree <em>T = (BiTree </em>)malloc(sizeof(BiTNode));<br>    BiTree f;<br>    BiTree <em>p = (BiTree </em>)malloc(sizeof(BiTNode));<br>    //create a Binary Tree<br>    for(i = 0;i &lt; 10;i++)<br>        InsertBST(T,arr[i]);<br>    int d = DeleteBST(T,88);<br>    printf(“%d\n”,d);<br>    return 0;<br>}</p>
+<p>注意：这里特别强调主函数中传递的实参T，必须用malloc申请内存，应为InsertBST中使用了指针*T。</p>
+
       
     </div>
     
@@ -384,7 +405,7 @@ IPC_RMID  //删除
       
         <div class="post-tags">
           
-            <a href="/tags/API/" rel="tag"># API</a>
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
           
         </div>
       
@@ -397,18 +418,14 @@ IPC_RMID  //删除
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/C-查漏补缺/" rel="next" title="C++查漏补缺">
-                <i class="fa fa-chevron-left"></i> C++查漏补缺
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/03/编译连接原理/" rel="prev" title="编译连接原理">
-                编译连接原理 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/02/vim学习笔记一/" rel="prev" title="vim学习笔记(一)">
+                vim学习笔记(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
