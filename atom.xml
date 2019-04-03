@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-02T05:50:15.006Z</updated>
+  <updated>2019-04-03T00:59:02.462Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++查漏补缺</title>
+    <link href="http://yoursite.com/2019/04/03/C-%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
+    <id>http://yoursite.com/2019/04/03/C-查漏补缺/</id>
+    <published>2019-04-03T00:44:16.000Z</published>
+    <updated>2019-04-03T00:59:02.462Z</updated>
+    
+    <content type="html"><![CDATA[<p>主要记录使用C++的过程中的不足和tips<br><a id="more"></a><br>C语言知识盲点<br>一、c register and static用法<br>    1、register变量将被频繁调用，请求编译器尽可能存在cpu中，而不是内存中<br>        注意：<br>        register变量必须是被cpu寄存器接受的值。<br>        register变量不能用取地址符&amp;<br>        只有局部变量和形参可以用static，全局变量和静态变量不可以<br>    2、static关键字的作用<br>        首先static的最主要功能是隐藏，其次因为static变量存放在静态存储区，所以它具备持久性和默认值0</p><p>二、#define的高级用法——定义复杂函数,只是没有{}，语句结尾没有分号<br>    用#define和连接符可以定义复杂函数<br>    比如：</p><pre><code>#define swap(a.b) do{\    int t = 0;\    t=a;\    a=b;\    b=t;\    }while(0)</code></pre><p>三、虚函数表<br>    1、虚函数表是在对象被创建的时候生成的，每一个对象对应一张虚函数表<br>    2、虚函数表中存有对象的所有函数，包括从基类继承的，没有被派生类覆盖的<br>    3、键关系图<br>    至少包含一个纯虚函数的类是抽象类，抽象类不能实例化对象。<br>    接口中不予许含有成员变量，但可以含有静态变量，不可以有构造函数，但一定要有纯虚析构函数<br>    虚函数就可以执行动态绑定。纯虚函数是在虚函数的末尾加入=0;<br>    <img src="/2019/04/03/C-查漏补缺/虚函数表.png" alt="虚函数表"><br>四、#undefined 临时关闭一个#define的宏<br>五、指针数组与指向指针的数组，引出指针运算的结合顺序：<br>        在无括号时，从右向左解释；有括号时，先解释括号中的内容，然后再说明按照从右向左的顺序解释<br>        typedef int Patharc[10];<br>        void shortPath(MGrath g,Patharc <em>p)<br>        形参的类型：int (</em>p)[10],说明p是一个指向数组的指针<br>        特别注意的一点是：行指针与指针数组都需要先申请内存才能用。<br>六、深拷贝和浅拷贝主要针对指针来说，对于存在指针变量的对象，执行浅拷贝时没有分离两个对象的关联。此时需要自定义深拷贝构造函数<br>     原则是：对于值类型直接赋值，指针类型要重新分配内存空间。<br>     拷贝构造函数形式：类名(类名 &amp;,…)<br>七、C++使用默认参数<br>    1、在声明中指定默认参数，在定义时要省略这个参数<br>    2、若不声明，可以在定义中直接指定默认参数<br>    double sqrt(double f = 1.0); //函数声明</p><pre><code>double sqrt(double f)  //函数定义{  // ....  }</code></pre><p>八、函数指针作为形参有两种形式<br>    1、直接在形参的位置声明一个函数指针—void Mysort(vector<int> v,bool (*cmp)(const int a,const int b))<br>    2、使用typedef定义一种函数指针新类型，然后在形参处使用这种类型定义的变量相当于函数指针了。<br>九、c register and static用法<br>    1、register变量将被频繁调用，请求编译器尽可能存在cpu中，而不是内存中<br>        注意：<br>        register变量必须是被cpu寄存器接受的值。<br>        register变量不能用取地址符&amp;<br>        只有局部变量和形参可以用static，全局变量和静态变量不可以<br>    2、static关键字的作用<br>        首先static的最主要功能是隐藏，其次因为static变量存放在静态存储区，所以它具备持久性和默认值0<br>十、#define的高级用法——定义复杂函数,只是没有{}，语句结尾没有分号<br>    用#define和连接符可以定义复杂函数<br>    比如：</int></p><pre><code>#define swap(a.b) do{\    int t = 0;\    t=a;\    a=b;\    b=t;\    }while(0)</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主要记录使用C++的过程中的不足和tips&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="template,alogorithm,class,API" scheme="http://yoursite.com/tags/template-alogorithm-class-API/"/>
+    
+  </entry>
   
   <entry>
     <title>python笔记</title>
