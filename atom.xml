@@ -61,11 +61,33 @@
   </entry>
   
   <entry>
+    <title>再读STM32笔记</title>
+    <link href="http://yoursite.com/2019/04/03/%E5%86%8D%E8%AF%BBSTM32%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/04/03/再读STM32笔记/</id>
+    <published>2019-04-03T05:25:24.000Z</published>
+    <updated>2019-04-03T06:05:39.620Z</updated>
+    
+    <content type="html"><![CDATA[<p>这些天将STM32的正点原子的历程调了一遍，收获还真不少，为了方便自己理解，现在从接口，编程思路，ARM结构，外设，LWIP，UCOSIII几部分进行一下总结。<br><a id="more"></a><br>一、接口，先了解的接口有：<br>SCCB–DCMI—数字摄像头接口<br>SAI—串行音频接口<br>SDIO—安全数字输入输出接口<br>LTCD—RGB显示屏接口<br>FMC—扩展外部RAM接口<br>二、ARM结构<br>cotexM4CPU的共分7个block，每个block=512M。block3、4、5、6为FMC连接的外部存储器。block0包含flash memory=1M为用户程序存储器。64k的CCMRAM。block1包含还包含192k的SRAM。block2为APB1,2与AHB1,2连接的外设。这些外设当然就是那些接口。cotexM4采用总线矩阵的形式管理取址，取数据，执行的过程。<br><img src="/2019/04/03/再读STM32笔记/总线结构.png" alt="总线结构"><br>由于这种单片机的功能太多，一个引脚对应一种功能太浪费资源。出现了重映射与复用。重映射也就是说一个外设可能对应多种引脚，比如UART0_RX可以和4个引脚对应，这是就可以用重映射到其他引脚。复用就是用来一个引脚的第二三功能。开启复用功能时不需要把一个外设的所有引都打开，只需要打开一个引脚的复用功能就好。<br><img src="/2019/04/03/再读STM32笔记/引脚复用.png" alt="引脚复用"><br>在线升级应用程序IAP<br><img src="/2019/04/03/再读STM32笔记/IAP.png" alt="IAP"><br>中断管理这里先不说，在线升级IAP也先看不明白。<br>三、编程思路<br>HAL库与正点原子的编程思路给了我很多启示 。看梁晓旭率代码也给了我很多启示 。尽量不要一行一行看代码，哪个变量或地址不懂可以直接全局搜索。这样很容易捋清调用关系。用宏定义多个变量，用分号隔开。建立四个缓冲区的循环buffer和乒乓buffer结合在一起。和加入阈值的处理。<br>四、外设。<br>现在调试过得外设有SDRAM，NOR flash，SD卡，摄像头、RTC时钟、分段式内存管理、FATFS文件系统。<br>五、UCOS操作系统<br>主要是学会建立任务，发信号量与互斥信号量、发送消息队列，事件标志组。<br>六LWIP<br>使用network框架可以像linux那样的TCP框架实现数据的收发。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这些天将STM32的正点原子的历程调了一遍，收获还真不少，为了方便自己理解，现在从接口，编程思路，ARM结构，外设，LWIP，UCOSIII几部分进行一下总结。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="嵌入式" scheme="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+      <category term="chips" scheme="http://yoursite.com/tags/chips/"/>
+    
+  </entry>
+  
+  <entry>
     <title>nanoPi配置AP热点</title>
     <link href="http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
     <id>http://yoursite.com/2019/04/03/nanoPi配置AP热点/</id>
     <published>2019-04-03T05:18:45.000Z</published>
-    <updated>2019-04-03T06:01:04.171Z</updated>
+    <updated>2019-04-03T06:05:41.820Z</updated>
     
     <content type="html"><![CDATA[<p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br><a id="more"></a><br>一、AP是无线访问接入点，可以是WiFi，可以是蓝牙，可以将无线网络客户端连接到一起，然后将无线网络连接到以太网。hostapd可以将无线网卡切换成AP/master模式的守护进程。DHCP服务是根据mac地址自动分配ip的进程。DNS服务器是将域名与ip地址建立在数据库的主机。<br>二、配置AP接入点时要确保没有任何一个应用程序占用无线网卡。包括WSP进程。<br>三、nanaopi通过pppoe连接以太网，需要输入用户名与密码。<br>详见网址：<br><a href="https://www.cnblogs.com/ssooking/p/8571749.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssooking/p/8571749.html</a><br>需要注意的是在输入username是要把横向上的字符串清0<br>四、busybox的作用和功能以及在arm版上安装<a href="https://blog.csdn.net/cy_weiyi/article/details/46953233" target="_blank" rel="noopener">https://blog.csdn.net/cy_weiyi/article/details/46953233</a><br>待补充。</p><p>五、管理网络的工具ip，iw，rfkill<br>1、rfkill用于对系统的无线设备进行打开关闭查找<br>sudo rfkill list :列出所有无线设备<br>sudo rfkill block 0  关闭第0个无线设备<br>ip a<br>ip addr add 192.168.1.199 dev eth0<br>ip link set eth0 up/down<br>iw 启动WIFI连接。<br><a href="https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/" target="_blank" rel="noopener">https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/</a><br>sudo -s 进入root目录<br>service networking restart<br>server isc-dhcp-server restart<br>文件 /etc/network/interface 修改动态ip和静态ip,改完之后重启networking服务<br>文件 /etc/hostapd/hostapd.config<br>文件 /etc/dhcp/dhcpd.config<br>rfkill unblock wlan 启动wlan<br>rfkill block wlan wlan<br>ifup wlan 修改配置文件之后的启动网卡。从静态ip到动态ip<br>hostapd /etc/hostapd/hostapd.config<br>dhcpd</p>]]></content>
     
@@ -173,7 +195,7 @@
     <link href="http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
     <id>http://yoursite.com/2019/04/02/vim学习笔记一/</id>
     <published>2019-04-02T02:31:56.000Z</published>
-    <updated>2019-04-03T05:57:37.869Z</updated>
+    <updated>2019-04-03T06:05:37.589Z</updated>
     
     <content type="html"><![CDATA[<p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p><p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>]]></content>
     
@@ -186,7 +208,7 @@
       <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
     
-      <category term="operator" scheme="http://yoursite.com/tags/operator/"/>
+      <category term="operate" scheme="http://yoursite.com/tags/operate/"/>
     
   </entry>
   

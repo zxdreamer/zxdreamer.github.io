@@ -4,13 +4,53 @@
     
   <url>
     <loc>http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/</loc>
-    <lastmod>2019-04-03T06:01:04.171Z</lastmod>
+    <lastmod>2019-04-03T06:05:41.820Z</lastmod>
     <data>
         <display>
         <title>nanoPi配置AP热点</title>
         <pubTime>2019-04-03T05:18:45.000Z</pubTime>
         
         <tag>ways </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/03/%E5%86%8D%E8%AF%BBSTM32%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2019-04-03T06:05:39.620Z</lastmod>
+    <data>
+        <display>
+        <title>再读STM32笔记</title>
+        <pubTime>2019-04-03T05:25:24.000Z</pubTime>
+        
+        <tag>chips </tag>
+         
+         
+           
+             
+              <breadCrumb title="嵌入式" url="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    <lastmod>2019-04-03T06:05:37.589Z</lastmod>
+    <data>
+        <display>
+        <title>vim学习笔记(一)</title>
+        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
+        
+        <tag>operate </tag>
          
          
            
@@ -36,26 +76,6 @@
            
              
               <breadCrumb title="协议" url="http://yoursite.com/categories/%E5%8D%8F%E8%AE%AE/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
-    <lastmod>2019-04-03T05:57:37.869Z</lastmod>
-    <data>
-        <display>
-        <title>vim学习笔记(一)</title>
-        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
-        
-        <tag>operator </tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
         </display>
     </data>
