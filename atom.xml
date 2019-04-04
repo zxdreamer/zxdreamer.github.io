@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-04T01:26:15.823Z</updated>
+  <updated>2019-04-04T14:55:04.963Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>shell指令</title>
+    <link href="http://yoursite.com/2019/04/04/shell%E6%8C%87%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/04/04/shell指令/</id>
+    <published>2019-04-04T14:50:28.000Z</published>
+    <updated>2019-04-04T14:55:04.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述shell编程中的常用命令：apt<br><a id="more"></a><br>一、apt指令<br>    apt-cache search # ——(package 搜索包)<br>    apt-cache show #——(package 获取包的相关信息，如说明、大小、版本等)<br>    sudo apt-get install # ——(package 安装包)sudo apt-get install # —–(package - - reinstall 重新安装包)<br>    sudo apt-get -f install # —–(强制安装?#”-f = –fix-missing”当是修复安装吧…)<br>    sudo apt-get remove #—–(package 删除包)<br>    sudo apt-get remove - - purge # ——(package 删除包，包括删除配置文件等)<br>    sudo apt-get autoremove –purge # —-(package 删除包及其依赖的软件包+配置文件等（只对6.10有效，强烈推荐）)<br>    sudo apt-get update #——更新源<br>    sudo apt-get upgrade #——更新已安装的包<br>    sudo apt-get dist-upgrade # ———升级系统<br>    sudo apt-get dselect-upgrade #——使用 dselect 升级<br>    apt-cache depends #——-(package 了解使用依赖)<br>    apt-cache rdepends # ——(package 了解某个具体的依赖?#当是查看该包被哪些包依赖吧…)<br>    sudo apt-get build-dep # ——(package 安装相关的编译环境)<br>    apt-get source #——(package 下载该包的源代码)<br>    sudo apt-get clean &amp;&amp; sudo apt-get autoclean # ——–清理下载文件的存档 &amp;&amp; 只清理过时的包<br>    sudo apt-get check #——-检查是否有损坏的依赖</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述shell编程中的常用命令：apt&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="program" scheme="http://yoursite.com/tags/program/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>51单片机扩展RAM与ROM</title>
+    <link href="http://yoursite.com/2019/04/04/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%89%A9%E5%B1%95RAM%E4%B8%8EROM/"/>
+    <id>http://yoursite.com/2019/04/04/51单片机扩展RAM与ROM/</id>
+    <published>2019-04-04T05:05:58.000Z</published>
+    <updated>2019-04-04T05:05:58.992Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>51单片机RAM与ROM</title>
@@ -131,7 +167,7 @@
     <link href="http://yoursite.com/2019/04/03/%E7%BC%96%E8%AF%91%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2019/04/03/编译连接原理/</id>
     <published>2019-04-03T04:51:05.000Z</published>
-    <updated>2019-04-03T05:31:29.259Z</updated>
+    <updated>2019-04-04T01:29:03.027Z</updated>
     
     <content type="html"><![CDATA[<p>讲述c语言从.c和.h文件中产生可执行文件的过程，不同变量的存放位置<br>指定链接库的指令。<br><a id="more"></a><br>1、C语言的编译连接原理—-2018/7/4<br>编辑器：编写代码的窗口<br>编译器：检查代码的语法错误，并将其编译成汇编代码<br>汇编器：将编译出的汇编文件编译成一定功能的目标代码。<br>连接器：将目标代码连接成可执行文件。<br>C语言编译原理：<br>c源程序——预编译处理——编译，优化处理——汇编程序——连接程序——可执行文件。<br>预处理：</p><p>#define 宏定义展开<br>条件编译指令：#if/#endif等</p><p>#include<br>处理注释等特殊符号<br>添加行号和文件标识，输出编译错误警告输出行号。</p><p>#pragma被保留，<br>使用gcc -E可以只进行预编译。<br>编译<br>把预编译的文件进行一系列语法分析生成相应的汇编代码。<br>使用gcc -S 生成编译后的汇编代码<br>汇编：汇编器将汇编代码转换成机器可以执行的命令，每一个汇编指令几乎都对应一条机器指令。根据汇编指令与机器指令的对照表一一翻译即可。<br>执行汇编的指令：gcc -c<br>连接：程序运行需要一多个目标文件，以及所依赖的其他库文件。最后生成可执行文件。连接的目的是将各个模块相互引用的部分处理好。<br>静态连接：在编译阶段将静态库加入到可执行文件中去。相当于复制静态链接库。<br>         -l静态库名（是艾欧）<br>动态连接：连接只需要一些描述信息，而程序执行时在从系统中把相应的动态库加载到内存中。linux动态链接库: .so<br>windows动态连接库 .dll<br>2、C语言的编译连接原理—-2018/7/16<br>预编译会把偷吻键全部复制过去，在编译时会保留使用的将要使用的函数，并编译成汇编文件。<br>今天主要针对多个.c ”重定义“问题进行了思考，对于多个.c与.h文件，虽然有预编译指令#ifndef，但是只对单独的.c文件有过滤性，每个.c文件在预编译时都会复制一份.h中的内容。也就是说，一个.c文件包含了多个.h文件，这些.h文件又相互包含，此时#ifndef才起作用。</p><p>备注：将多个静态库打包成一个静态库的方法：<br>问题：<br>    我有多个静态连接库比如A.a,B.a,C.a，并且我并不知道A B C三个库<br>    由那些文件编译而来，现在我想把他们编译成一个库。</p><p>解答：<br>    .a 文件的结构和.tar文件就没有什么区别。 x 命令解出来， a 命令添加， t命令列表</p><pre><code>楼主的要求只需要，假设A.a, B.a C.a 在/usr/local/lib目录下mkdir /tmp/libABCcd /tmp/libABCar x /usr/local/lib/A.aar x /usr/local/lib/B.aar x /usr/local/lib/C.aar cru libABC.a *.oranlib libABC.a</code></pre>]]></content>
     
@@ -143,6 +179,8 @@
     
       <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
+    
+      <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
     
   </entry>
   
@@ -217,7 +255,7 @@
     <link href="http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
     <id>http://yoursite.com/2019/04/02/vim学习笔记一/</id>
     <published>2019-04-02T02:31:56.000Z</published>
-    <updated>2019-04-03T06:05:37.589Z</updated>
+    <updated>2019-04-04T14:49:23.220Z</updated>
     
     <content type="html"><![CDATA[<p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p><p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>]]></content>
     
