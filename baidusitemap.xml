@@ -3,6 +3,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/03/04/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%89%A9%E5%B1%95RAM%E4%B8%8EROM/</loc>
+    <lastmod>2019-04-05T02:22:58.006Z</lastmod>
+    <data>
+        <display>
+        <title>51单片机扩展RAM与ROM</title>
+        <pubTime>2019-03-04T05:05:58.000Z</pubTime>
+        
+        <tag>chips </tag>
+         
+         
+           
+             
+              <breadCrumb title="嵌入式" url="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/04/04/shell%E6%8C%87%E4%BB%A4/</loc>
     <lastmod>2019-04-04T14:55:04.963Z</lastmod>
     <data>
@@ -37,21 +57,6 @@
              
               <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/04/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%89%A9%E5%B1%95RAM%E4%B8%8EROM/</loc>
-    <lastmod>2019-04-04T05:05:58.992Z</lastmod>
-    <data>
-        <display>
-        <title>51单片机扩展RAM与ROM</title>
-        <pubTime>2019-04-04T05:05:58.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
