@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="operate,">
+  <meta name="keywords" content="loveNight,linux,C++,python,ARM">
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串">
-<meta name="keywords" content="operate">
+<meta name="description" content="Linux各种混乱 不堪的发行版相比，FreeBSD只有唯一的版本，同时，FreeBSD关注的是操作系统的稳定性、性能和品质，适合作为服务器的操作系统。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sedd指令">
-<meta property="og:url" content="http://yoursite.com/2019/04/17/sedd指令/index.html">
+<meta property="og:title" content="freeBSD学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/freeBSD学习笔记/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串">
+<meta property="og:description" content="Linux各种混乱 不堪的发行版相比，FreeBSD只有唯一的版本，同时，FreeBSD关注的是操作系统的稳定性、性能和品质，适合作为服务器的操作系统。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T04:29:40.632Z">
+<meta property="og:updated_time" content="2019-04-18T08:25:41.642Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sedd指令">
-<meta name="twitter:description" content="这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串">
+<meta name="twitter:title" content="freeBSD学习笔记">
+<meta name="twitter:description" content="Linux各种混乱 不堪的发行版相比，FreeBSD只有唯一的版本，同时，FreeBSD关注的是操作系统的稳定性、性能和品质，适合作为服务器的操作系统。">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/17/sedd指令/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/freeBSD学习笔记/">
 
 
 
 
 
-  <title>sedd指令 | Dreamer</title>
+  <title>freeBSD学习笔记 | Dreamer</title>
   
 
 
@@ -255,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/sedd指令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/freeBSD学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦的蓝天">
@@ -272,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sedd指令</h1>
+          <h1 class="post-title" itemprop="name headline">freeBSD学习笔记</h1>
         
 
         <div class="post-meta">
@@ -284,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T12:26:54+08:00">
-                2019-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T15:44:12+08:00">
+                2019-04-18
               </time>
             
 
@@ -307,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/freeBSD/" itemprop="url" rel="index">
+                    <span itemprop="name">freeBSD</span>
                   </a>
                 </span>
 
@@ -344,14 +343,9 @@
       
 
       
-        <p>这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串<br><a id="more"></a><br>vim在编译模式下进行多文件查找与替换</p>
-<p>替换<br>在一个文件中在vim的编辑模式下这样替换：<br>:25,52s/addr/abcdefg/cg     #将文件中addr替换成abcdefg，c：每次替换会询问，g：全部替换<br>sed指令介绍<br>sed指令把处理的行存入临时缓冲区中，接着用sed指令处理缓冲区的内容，处理完之后把缓冲区的内容送到屏幕<br>但是文件中的内容并没有改变，如果想改变文件中的内容，可以用参数i<br>格式：<br>1、sed [options] ‘指令’ files<br>2、sed [options] -f 脚本 files<br>其中’指令’处可以是正则表达式，正则表达式用/…/分隔<br>替换：<br>1、sed ’s/book/books/‘ files         # s 替换<br>2、sed -n ‘s/book/books/p’ files     # -n -p 结合只用于输出改变的行<br>3、sed ‘s/book/books/g’    files     # g：全部替换<br>4、sed ’s/book/books/ng’   files     # 从n处开始替换<br>5、sed -i ‘s/book/books/g’  files    # 直接编辑文本<br>6、sed -i ‘s/$/abcdefh/g’ files      # 每行的末尾加入abcdefh<br>删除：<br>删除空白行：sed -i ‘/^$/d’ files<br>删除第n行： sed -i ‘/4/d’ files<br>指定删除范围： sed -i ‘2,$/d’ files<br>删除最后一行： sed -i ‘$/d’ files<br>删除文件所有以test开头的行：sed ‘/^test/d’ files</p>
-<p>多个sed组合<br>sed ‘表达式’ | sed ‘表达式’</p>
-<p>-e选项，允许在同一条指令中执行多条语句<br>例如：sed -e ‘1,5d’ -e ‘s/test/abcdef/g’ files<br>第一条语句会对第二条造成影响</p>
-<p>选定行的范围<br>sed -n ‘/test/,/check/p’ files<br>例如：sed -n ‘/5,/^test/p’ files<br>w:写入文件指令(这条指令完全可以用重定向解决)<br>sed -n ‘/test/w file’ example     # 在example中所有包含test的行都被写入到file中，且file被清空</p>
-<p>a\命令 行后添加一行<br>sed ‘/return/this is a line’ client.cpp    # 在client.cpp中包含return的行后面添加this is a line<br>i\命令 行前添加<br>sed ‘/2i\’this is a line’ client.cpp</p>
-<p>注意：<br>1、sed默认使用单引号来引用，但是表达式内部包含变量字符串是，需要用双引号<br>    test=hello<br>    echo hello WORLD | sed “s/$test/HELLO</p>
-<p>awk指令</p>
+        <p>Linux各种混乱 不堪的发行版相比，FreeBSD只有唯一的版本，同时，FreeBSD关注的是操作系统的稳定性、性能和品质，适合作为服务器的操作系统。<br><a id="more"></a><br>三个主流的linux发行版：Red Hat、Mandrake和SUSE。每一个Linux发行版本都存在一些差异，而它们之间最大的差异则在于文件系统的结构。</p>
+<p>FreeBSD使用“包”来安装、卸载和升级应用程序。‘pkg_add’命令被用于安装一个你手工下载到计算机的包。你也可以用‘-r’开关来让 它自动的从<br>Internet获取，当然，也包括这个包所依赖的一切。FreeBSD包的真正美妙之处在于“连接点”(Ports)树。连接点树是 ——FreeBSD包含的应用程序<br>之间的继承关系。每一个文件夹都包含Makefile，以及让特定应用程序能够在FreeBSD上正确运行所需要的补丁。例如，如果我想安装<br>Apache web服务器，我所需要做的只是cd到/usr/ports/www/apache文件夹，然后运行‘make &amp;&amp; make install’，然后去小吃售卖机前。<br>如果我拥有一台速度够快的电脑，同时拥有一个足够大方的Internet连接，当我回来的时候Apache源代码 的下载、补丁、编译和安装<br>肯定都已经做完了。连接点树也能够处理Apache运行依赖的那些程序，无论我用连接点树安装、手工编译，还是通过安装已经编译<br>好的二进制包。连接点树能够通过$PATH找到它需要的东西。<br>Linux和FreeBSD的另一个区别在于，对于FreeBSD而言，你安装的连接点或者包99%都会被放到/usr/local，而在 Linux上有时是/usr，<br>有时是/opt。这可能只是一个很小的区别，但你至少可以知道你的程序安装到了/usr/local，而不是扩散到了文件系 统的各个地方。</p>
+<p>FreeBSD系统使用cvsup来保持它是最新的。一旦你建立了‘sup-file’，cvsup将会把你本地的系统和cvsup服务器上的进行比较，并且下载那些修改过的东西。</p>
 
       
     </div>
@@ -367,17 +361,27 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/operate/" rel="tag"># operate</a>
-          
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/17/sed指令/" rel="next" title="sed指令">
+                <i class="fa fa-chevron-left"></i> sed指令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
         </div>
-      
-
-      
-      
-      
-
       
 
       
@@ -470,7 +474,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -481,7 +485,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -492,7 +496,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
