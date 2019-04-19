@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="program,">
+  <meta name="keywords" content="chips,">
 
 
 
@@ -81,18 +81,22 @@
 
 
 
-<meta name="description" content="讲述linux服务器开发4条指令">
-<meta name="keywords" content="program">
+<meta name="description" content="讲述51单片机扩展片外RAM和ROM的方式">
+<meta name="keywords" content="chips">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux服务器开发常用四条指令">
-<meta property="og:url" content="http://yoursite.com/2019/04/06/linux服务器开发常用四条指令/index.html">
+<meta property="og:title" content="51单片机扩展RAM与ROM">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="讲述linux服务器开发4条指令">
+<meta property="og:description" content="讲述51单片机扩展片外RAM和ROM的方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-06T15:39:55.518Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/最小系统.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/P0分时复用.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/扩展.png">
+<meta property="og:updated_time" content="2019-04-05T02:22:58.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux服务器开发常用四条指令">
-<meta name="twitter:description" content="讲述linux服务器开发4条指令">
+<meta name="twitter:title" content="51单片机扩展RAM与ROM">
+<meta name="twitter:description" content="讲述51单片机扩展片外RAM和ROM的方式">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/最小系统.png">
 
 
 
@@ -122,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/06/linux服务器开发常用四条指令/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/">
 
 
 
 
 
-  <title>linux服务器开发常用四条指令 | Dreamer</title>
+  <title>51单片机扩展RAM与ROM | Dreamer</title>
   
 
 
@@ -255,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/linux服务器开发常用四条指令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦的蓝天">
@@ -272,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux服务器开发常用四条指令</h1>
+          <h1 class="post-title" itemprop="name headline">51单片机扩展RAM与ROM</h1>
         
 
         <div class="post-meta">
@@ -284,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T23:38:19+08:00">
-                2019-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T13:05:58+08:00">
+                2019-03-04
               </time>
             
 
@@ -307,8 +311,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/嵌入式/" itemprop="url" rel="index">
+                    <span itemprop="name">嵌入式</span>
                   </a>
                 </span>
 
@@ -344,7 +348,7 @@
       
 
       
-        <p>讲述linux服务器开发4条指令<br><a id="more"></a><br>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息</p>
+        <p>讲述51单片机扩展片外RAM和ROM的方式<br><a id="more"></a><br>一、最小系统<br>  片内带程序存储器的8051本身即可构成一片最小系统，只需接上时钟电路和复位电路即可。<br>  同时EA接高电平，ALE和PSEN不接，系统即可工作。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/最小系统.png" alt="最小系统"><br>二、单片机的三总线结构<br>  数据总线：P0口<br>  地址总线：带地址锁存的P2口和不带地址锁存的P0口<br>  控制总线：PSEN、WR、RD组成<br>  单片机的P0口的读写周期中，前半周期输出地址，单片机自动将ALE输出高电平，后半周期输出数据，ALE为低电平<br>  所以，可以用ALE接地址锁存器的锁存端。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/P0分时复用.png" alt="P0分时复用"><br>三、系统扩展连线图<br>  在这里不谈线选法和译码法，只提供一种包含系统扩展原理的原理图。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/扩展.png" alt="扩展"><br>  对于扩展芯片多于1片时可以考虑加译码器。</p>
 
       
     </div>
@@ -362,7 +366,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/program/" rel="tag"># program</a>
+            <a href="/tags/chips/" rel="tag"># chips</a>
           
         </div>
       
@@ -375,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/05/子网掩码与网关/" rel="next" title="子网掩码与网关">
-                <i class="fa fa-chevron-left"></i> 子网掩码与网关
+              <a href="/2019/02/03/二叉排序树/" rel="next" title="二叉排序树">
+                <i class="fa fa-chevron-left"></i> 二叉排序树
               </a>
             
           </div>
@@ -385,8 +389,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/08/工厂类/" rel="prev" title="工厂类">
-                工厂类 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/02/vim学习笔记一/" rel="prev" title="vim学习笔记(一)">
+                vim学习笔记(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
