@@ -78,6 +78,146 @@
     </url>
 
     
+  <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    <lastmod>2019-04-15T17:21:25.377Z</lastmod>
+    <data>
+        <display>
+        <title>vim学习笔记(一)</title>
+        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
+        
+        <tag>operate </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/08/%E5%B7%A5%E5%8E%82%E7%B1%BB/</loc>
+    <lastmod>2019-04-08T14:42:28.616Z</lastmod>
+    <data>
+        <display>
+        <title>工厂类</title>
+        <pubTime>2019-04-08T14:37:49.000Z</pubTime>
+        
+        <tag>program </tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/05/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E4%B8%8E%E7%BD%91%E5%85%B3/</loc>
+    <lastmod>2019-04-05T12:38:50.546Z</lastmod>
+    <data>
+        <display>
+        <title>子网掩码与网关</title>
+        <pubTime>2019-04-05T12:35:19.000Z</pubTime>
+        
+        <tag>principle </tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/04/shell%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2019-04-04T14:55:04.963Z</lastmod>
+    <data>
+        <display>
+        <title>shell指令</title>
+        <pubTime>2019-04-04T14:50:28.000Z</pubTime>
+        
+        <tag>program </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/03/%E7%BC%96%E8%AF%91%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2019-04-04T01:29:03.027Z</lastmod>
+    <data>
+        <display>
+        <title>编译连接原理</title>
+        <pubTime>2019-04-03T04:51:05.000Z</pubTime>
+        
+        <tag>principle </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/02/03/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</loc>
+    <lastmod>2019-04-03T15:13:50.157Z</lastmod>
+    <data>
+        <display>
+        <title>二叉排序树</title>
+        <pubTime>2019-02-03T14:53:58.000Z</pubTime>
+        
+        <tag>algorithm </tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://yoursite.com/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/03/%E5%86%8D%E8%AF%BBSTM32%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2019-04-03T06:05:39.620Z</lastmod>
+    <data>
+        <display>
+        <title>再读STM32笔记</title>
+        <pubTime>2019-04-03T05:25:24.000Z</pubTime>
+        
+        <tag>chips </tag>
+         
+         
+           
+             
+              <breadCrumb title="嵌入式" url="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
 </urlset>

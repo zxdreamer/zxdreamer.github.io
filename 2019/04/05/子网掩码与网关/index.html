@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="loveNight,linux,C++,python,ARM">
+  <meta name="keywords" content="principle,">
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="以下我们就来深入浅出地讲解什么是子网掩码。">
+<meta name="keywords" content="principle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="子网掩码与网关">
+<meta property="og:url" content="http://yoursite.com/2019/04/05/子网掩码与网关/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
+<meta property="og:description" content="以下我们就来深入浅出地讲解什么是子网掩码。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-02T03:24:10.889Z">
+<meta property="og:updated_time" content="2019-04-05T12:38:50.546Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
+<meta name="twitter:title" content="子网掩码与网关">
+<meta name="twitter:description" content="以下我们就来深入浅出地讲解什么是子网掩码。">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/05/子网掩码与网关/">
 
 
 
 
 
-  <title>categories | Dreamer</title>
+  <title>子网掩码与网关 | Dreamer</title>
   
 
 
@@ -242,40 +243,203 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/子网掩码与网关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦的蓝天">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/background.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dreamer">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 7 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/freeBSD/">freeBSD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pragrom/">pragrom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/嵌入式/">嵌入式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">子网掩码与网关</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-05T20:35:19+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>以下我们就来深入浅出地讲解什么是子网掩码。<br><a id="more"></a><br>一、IP地址的结构<br>    要想理解什么是子网掩码，就不能不了解IP地址的构成。互联网是由许多小型网络构成的，每个网络上都有许多主机，<br>    这样便构成了一个有层次的结构。IP地址在设计时就考虑到地址分配的层次特点，将每个IP地址都分割成网络号和主机号两部分，<br>    以便于IP地址的寻址操作。IP地址的网络号和主机号各是多少位呢？如果不指定，就不知道哪些位是网络号、哪些是主机号，<br>    这就需要通过子网掩码来实现。<br>    对于这样的结构ip/1-32，代表子网掩码中网络号的长度<br>    192.168.1.1/24，网络号长度为24</p>
+<p>二、什么是子网掩码<br>    子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码只有一个作用，就是将某个IP地址划分成网络地址和主机地址两部分。<br>    子网掩码的设定必须遵循一定的规则。与IP地址相同，子网掩码的长度也是32位，左边是网络位，用二进制数字“1”表示；右边是主机位，用二进制数字“0”表示。</p>
+<p>三、三类IP地址<br>    划分A,B,C三类子网的方式是根据IP地址的第一段信息<br>    A类IP地址：1-126<br>    B类IP地址：128-191<br>    C类IP地址：192-155</p>
+<p>四、网络地址与广播地址<br>    网络地址：IP地址与子网掩码&amp;的结果<br>    广播地址：下一个网段的网络地址-1</p>
+<p>五、网关地址<br>    要实现两个子网之间的通信，必须使用网关。比如A网络向B网络发送数据。A网络的主机发现目的主机不在本局域网内，<br>    就将数据发送到自己的网关，再转发到B网络的网关，再有B网络的网关B发送到次局域网中的目的主机。</p>
+<p>再根据CCNA中会出现的题目给大家举个例子：<br>首先，我们看一个考试中常见的题型：一个主机的IP地址是202.112.14.137，掩码是255.255.255.224，要求计算这个主机所在网络的网络地址和广播地址。<br>常规办法是把这个主机地址和子网掩码都换算成二进制数，两者进行逻辑与运算后即可得到网络地址。<br>其实大家只要仔细想想，可以得到另一个方法：255.255.255.224的掩码所容纳的IP地址有256－224＝32个（包括网络地址和广播地址），<br>那么具有这种掩码的网络地址一定是32的倍数。而网络地址是子网IP地址的开始，广播地址是结束，可使用的主机地址在这个范围内，<br>因此略小于137而又是32的倍数的只有128，所以得出网络地址是202.112.14.128。而广播地址就是下一个网络的网络地址减1。而下一个32的倍数是160，<br>因此可以得到广播地址为202.112.14.159。</p>
+<p>子网络 2进制子网络域数 2进制主机域数的范围 2进制主机域数的范围<br>第1个子网络 000 00000 thru 11111 .0 thru.31<br>第2个子网络 001 00000 thru 11111 .32 thru.63<br>第3个子网络 010 00000 thru 11111 .64 thru.95<br>第4个子网络 011 00000 thru 11111 .96 thru.127<br>第5个子网络 100 00000 thru 11111 .128 thru.159<br>第6个子网络 101 00000 thru 11111 .160 thru.191<br>第7个子网络 110 00000 thru 11111 .192 thru.223<br>第8个子网络 111 00000 thru 11111 .124 thru.255 </p>
+<p>CCNA考试中，还有一种题型，要你根据每个网络的主机数量进行子网地址的规划和计算子网掩码。这也可按上述原则进行计算。比如一个子网有10台主机，那么对于这个子网需要的IP地址是：<br>10＋1＋1＋1＝13<br>注意：加的第一个1是指这个网络连接时所需的网关地址，接着的两个1分别是指网络地址和广播地址。因为13小于16（16等于2的4次方），所以主机位为4位。而<br>256－16＝240<br>所以该子网掩码为255.255.255.240。<br>如果一个子网有14台主机，不少人常犯的错误是：依然分配具有16个地址空间的子网，而忘记了给网关分配地址。这样就错误了，因为：<br>14＋1＋1＋1＝17<br>17大于16，所以我们只能分配具有32个地址（32等于2的5次方）空间的子网。这时子网掩码为：255.255.255.224 </p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/principle/" rel="tag"># principle</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/04/shell指令/" rel="next" title="shell指令">
+                <i class="fa fa-chevron-left"></i> shell指令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/08/工厂类/" rel="prev" title="工厂类">
+                工厂类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
   </div>
 
 
