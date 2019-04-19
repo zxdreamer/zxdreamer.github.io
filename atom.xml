@@ -101,6 +101,28 @@
   </entry>
   
   <entry>
+    <title>int,size_t,ssize_t的区别</title>
+    <link href="http://yoursite.com/2019/04/11/int-size-t-ssize-t%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2019/04/11/int-size-t-ssize-t的区别/</id>
+    <published>2019-04-11T15:27:22.000Z</published>
+    <updated>2019-04-11T16:07:57.248Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述int,size_t,ssize_t的区别<br><a id="more"></a><br>科普一下：<br>    32位机器与64位机器是指通用寄存器的长度，代表一次可以处理的数据长度，并不是地址总线的数量。<br>    32位机器，内存空间为4G，所以地址总线最少为32位<br>    64位机器，地址总线一般在40位左右。<br>    地址总线过多，内存位数过多，处理起来很麻烦。</p><p>一、int<br>    int在32位与64位机器上都是32位。32位的大小范围是[-2^31~2^31] 大约等于[-10^9~10^9)<br>二、size_t<br>    size_t这个类型足以表示这台机器上的任何数据的大小。并且一定是unsigned类型。<br>    对于32位机器，size_t是unsigned int，<br>    对于64位机器，size_t是unsigned long 或 unsigned long long<br>三、ssize_t<br>    ssize_t与size_t一样，这个类型足以表示这台机器上的任何数据的大小，只是这个类型一定是signed类型。<br>    对于32位机器，size_t是signed int，<br>    对于64位机器，size_t是signed long 或 signed long long </p><p>下面看一段官方解释<br>&lt;%codeblock%&gt;<br>     This’s a way of defining size_t and ssize_t in Linux:</p><pre><code> //&quot;linux/types.h&quot; typedef __kernel_size_t size_t; typedef __kernel_ssize_t ssize_t; //&quot;asm/posix_types.h&quot;typedef unsigned int __kernel_size_t; typedef int __kernel_ssize_t; It seems so tricky to me. What benefits do we get from such a tricky typedef ? better name (size_t is shorter than unsigned int) ?[/color]On some 64-bit platforms, &apos;int&apos; and &apos;unsigned int&apos; may be 32-bits,while addresses and even memory sizes could require 64 bits(e.g. for the size of an allocated memory block &gt; 4GB).On such platforms, size_t could be typedef&apos;d to a differenttype, such as &apos;unsigned long long&apos;.Note also that &apos;size_t&apos; is a typedef required by the ISO C standard(it must be available if &lt;stddef.h&gt; is included). However, &apos;ssize_t&apos;does not exist in the C standard -- the standard &apos;ptrdiff_t&apos;typedef is nearly equivalent.</code></pre><p>&lt;%endcodeblock%&gt;</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述int,size_t,ssize_t的区别&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="program" scheme="http://yoursite.com/tags/program/"/>
+    
+  </entry>
+  
+  <entry>
     <title>工厂类</title>
     <link href="http://yoursite.com/2019/04/08/%E5%B7%A5%E5%8E%82%E7%B1%BB/"/>
     <id>http://yoursite.com/2019/04/08/工厂类/</id>
@@ -116,6 +138,28 @@
     </summary>
     
       <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="program" scheme="http://yoursite.com/tags/program/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux服务器开发常用四条指令</title>
+    <link href="http://yoursite.com/2019/04/06/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%9B%9B%E6%9D%A1%E6%8C%87%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/04/06/linux服务器开发常用四条指令/</id>
+    <published>2019-04-06T15:38:19.000Z</published>
+    <updated>2019-04-06T15:39:55.518Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述linux服务器开发4条指令<br><a id="more"></a><br>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述linux服务器开发4条指令&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
     
       <category term="program" scheme="http://yoursite.com/tags/program/"/>
@@ -167,6 +211,28 @@
   </entry>
   
   <entry>
+    <title>C语言DLL文件产生和调用</title>
+    <link href="http://yoursite.com/2019/04/03/C%E8%AF%AD%E8%A8%80DLL%E6%96%87%E4%BB%B6%E4%BA%A7%E7%94%9F%E5%92%8C%E8%B0%83%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/</id>
+    <published>2019-04-03T05:33:33.000Z</published>
+    <updated>2019-04-04T00:44:09.645Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述C/C++产生的DLL文件怎样被C++或C#调用<br><a id="more"></a><br>创建DLL文件，选择win32项目，选择生成DLL<br><img src="/2019/04/03/C语言DLL文件产生和调用/创建.png" alt="创建"><br>添加头文件和.c文件<br>头文件中的声明<br><img src="/2019/04/03/C语言DLL文件产生和调用/声明.png" alt="声明"><br>.c文件中可以定义中间函数，这个中间函数可一直任何普通函数。然后导出函数一定要加<br>_stdcall 并且导出函数一定是要在头文件中用_declsped声明的。<br><img src="/2019/04/03/C语言DLL文件产生和调用/导出.png" alt="导出"><br>3.添加模块文件.def。<br>4.点击生成解决方案就产生了DLL。</p><p>二、C#调用DLL的方法<br>  包含运行时库<br>using System.Runtime.InteropServices;//运行时库<br>将DLL拷贝到根目录<br>导出语法如下：<br><img src="/2019/04/03/C语言DLL文件产生和调用/Csharp导入.png" alt="Csharp导入"><br>4.Area就是一个在C#中直接调用的成员方法。<br>详细网址<br><a href="https://blog.csdn.net/C_xxy/article/details/78998758" target="_blank" rel="noopener">https://blog.csdn.net/C_xxy/article/details/78998758</a></p><p>三、C++调用DLL的方法<br>1、加载DLL库<br>    HINSTANCE hinstLib = LoadLibrary(TEXT(“ytr.dll”));<br>2、声明函数指针<br>    typedef int (__stdcall *MYPROC)(LPWSTR,LPWSTR);<br>    MYPROC ProcAdd;<br>3、函数指针赋值<br>    ProcAdd = (MYPROC)GetProcAddress(hinstLib,”FB_Open”);<br>4、函数指针调用函数<br>    ProcAdd(3,”abc”)    //两个参数的函数指针调用过程<br>5、释放DLL<br>    BOOL fFreeResult = FreeLibrary(hinstLib);<br>用VS查看DLL是多少位的，这里需要注意64为的应用程序不能调用32 为DLL，32 为应用程序也不能调用64为DLL。<br><img src="/2019/04/03/C语言DLL文件产生和调用/查看.png" alt="查看"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述C/C++产生的DLL文件怎样被C++或C#调用&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="program" scheme="http://yoursite.com/tags/program/"/>
+    
+  </entry>
+  
+  <entry>
     <title>再读STM32笔记</title>
     <link href="http://yoursite.com/2019/04/03/%E5%86%8D%E8%AF%BBSTM32%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2019/04/03/再读STM32笔记/</id>
@@ -189,6 +255,28 @@
   </entry>
   
   <entry>
+    <title>nanoPi配置AP热点</title>
+    <link href="http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
+    <id>http://yoursite.com/2019/04/03/nanoPi配置AP热点/</id>
+    <published>2019-04-03T05:18:45.000Z</published>
+    <updated>2019-04-03T06:05:41.820Z</updated>
+    
+    <content type="html"><![CDATA[<p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br><a id="more"></a><br>一、AP是无线访问接入点，可以是WiFi，可以是蓝牙，可以将无线网络客户端连接到一起，然后将无线网络连接到以太网。hostapd可以将无线网卡切换成AP/master模式的守护进程。DHCP服务是根据mac地址自动分配ip的进程。DNS服务器是将域名与ip地址建立在数据库的主机。<br>二、配置AP接入点时要确保没有任何一个应用程序占用无线网卡。包括WSP进程。<br>三、nanaopi通过pppoe连接以太网，需要输入用户名与密码。<br>详见网址：<br><a href="https://www.cnblogs.com/ssooking/p/8571749.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssooking/p/8571749.html</a><br>需要注意的是在输入username是要把横向上的字符串清0<br>四、busybox的作用和功能以及在arm版上安装<a href="https://blog.csdn.net/cy_weiyi/article/details/46953233" target="_blank" rel="noopener">https://blog.csdn.net/cy_weiyi/article/details/46953233</a><br>待补充。</p><p>五、管理网络的工具ip，iw，rfkill<br>1、rfkill用于对系统的无线设备进行打开关闭查找<br>sudo rfkill list :列出所有无线设备<br>sudo rfkill block 0  关闭第0个无线设备<br>ip a<br>ip addr add 192.168.1.199 dev eth0<br>ip link set eth0 up/down<br>iw 启动WIFI连接。<br><a href="https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/" target="_blank" rel="noopener">https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/</a><br>sudo -s 进入root目录<br>service networking restart<br>server isc-dhcp-server restart<br>文件 /etc/network/interface 修改动态ip和静态ip,改完之后重启networking服务<br>文件 /etc/hostapd/hostapd.config<br>文件 /etc/dhcp/dhcpd.config<br>rfkill unblock wlan 启动wlan<br>rfkill block wlan wlan<br>ifup wlan 修改配置文件之后的启动网卡。从静态ip到动态ip<br>hostapd /etc/hostapd/hostapd.config<br>dhcpd</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，&lt;br&gt;通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="ways" scheme="http://yoursite.com/tags/ways/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编译连接原理</title>
     <link href="http://yoursite.com/2019/04/03/%E7%BC%96%E8%AF%91%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2019/04/03/编译连接原理/</id>
@@ -204,6 +292,50 @@
     </summary>
     
       <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux并发API</title>
+    <link href="http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/"/>
+    <id>http://yoursite.com/2019/04/03/linux并发API/</id>
+    <published>2019-04-03T04:43:57.000Z</published>
+    <updated>2019-04-03T04:49:34.202Z</updated>
+    
+    <content type="html"><![CDATA[<p>总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：<br>线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存<br><a id="more"></a><br>1、int pthread_attr_init(pthread_attr_t <em>attr)<br>   int pthread_attr_destory(pthread_attr_t </em>attr)</p><p>2、int pthread_equal(pthread_t th1,pthread_t th2)   // 比较两个线程id<br>    pthread_self(void)                                 // 获取自身线程id</p><p>3、int pthread_create(pthread_t tidp,pthread_attr_t <em>restrict attr,void </em>(<em>start_rtn(void </em>)),void <em>arg)   //每个线程提供一个errno副本<br>4、线程退出方式：（1）简单返回：return n<br>                   （2）被同一进程中的其他线程取消<br>                   （3）pthread_exit(void </em>rval_ptr)<br>5、void pthread_join(pthread_t thread,void *<em> rval_ptr) //阻塞等待指定线程退出<br>6、int pthread_cancel(pthread_t tid) //请求同一进程中的其他线程非正常退出<br>7、void pthread_cleanup_push(void (</em>rtn)(void <em>),void </em>arg)    //线程退出时回调函数，将函数依次放到栈中<br>   void pthread_cleanup_pop(int execute);                        //1.清理回调函数 2.execute非0时调用回调函数<br>   //线程执行以下动作时，回调函数才会触发：<br>   (1)调用pthread_exit()<br>   (2)用非0execute调用pthread_cleanup_pop<br>   (3)响应请求取消</p><p>8、int pthread_detach(pthread_t tid)  //将结合态的线程变成分离态的线程<br>9、int pthread_mutex_init(pthread_mutex_t <em>restrict mutex,const pthread_mutexattr_t </em>restrict attr);<br>    int pthread_mutex_destroy(pthread_mutex_t <em>);<br>    int pthread_mutex_lock(pthread_mutex_t </em>);<br>    int pthread_mutex_unlock(pthread_mutex_t <em>);<br>    int pthread_mutex_trylock(pthread_mutex_t </em>);  //如果互斥锁已经被锁住，返回一个错误状态。<br>10、int pthread_mutex_timedlock();<br>11、int pthread_rwlock_init(pthread_rwlock_t <em>restrict attr,const pthread_rwlockattr_t </em>restrict attr) //初始化读写锁<br>    int pthread_rwlock_destory(pthread_rwlock_t <em>rwlock)<br>    int pthread_rwlock_rdlock(pthread_rwlock_t </em>);<br>    int pthread_rwlock_wrlock(pthread_rwlock_t <em>);<br>    int pthread_rwlock_unlock(pthread_rwlock_t </em>);<br>12、pthread_cond_init(pthread_cond_t <em>reatrict cond,const pthread_condattr_t </em>restrict attr);           //初始化条件变量<br>    int pthread_cond_destory(pthread_cond_t <em>);<br>    int pthread_cond_wait(pthread_cond_t </em>restrict cond,pthread_mutex_t *restrict mutex);</p><p>13、int pthread_barrier_init();                            //屏障，同步多个线程，参数省略<br>    int pthread_barrier_destory();<br>    int pthread_barrier_wait(pthread_barrier_t *)      // 屏障等待多个线程</p><p>14、//内存映射(进程)<br>    void<em> mmap(void </em>addr,size_t len,int port,int flags,int fd,off_t offset)  //将文件映射成内存<br>    int munmap(void <em>addr,size_t len)                                            //解除映射，共享内存中的内容写入文件<br>    int msync(void </em>addr,size_t len,int flags)                                  //保证共享内存与文件的内容一致<br>    //XSI共享存储<br>    int shmget(key_t key,size_t size,int flags)                                 //创建或得到共享内存，返回shmid<br>    void <em>shmat(int shmid,const void </em>addr,int flags)                          //将shmget得到的共享内存映射到进程的地址空间，返回被映射的地址<br>    int shmdt(void *addr);                                                       //解除映射</p><p>15、//消息队列<br>    int msgget(key_t key,int msgflag);                                            //IPC_PRIVATE:创建消息队列<br>    int msgctl(key_t key,int cmd,struct msqid_ds<em> buf)                          //设置<br>    ssize_t msgsnd(int msgid,const void</em> msgp,size_t msgsz,int flag)           //消息写入队列  flag常设置成IPC_NOWAIT，空/满不阻塞<br>    int msgrcv(int msgid,const void* msgp,size_t msgsz,int flag)                //从队列中取消息    msgp指向消息的类型，接下来是消息信息</p><pre><code>//用户定义的通用结构：struct msgstru{    long mtype;                    //大于0，消息类型    char mtext[512];                //消息内容};</code></pre><p>16、//system V信号量<br>    int semget(key_t key,int nsems,int semflg)                                  //创建，成功返回信号量的id<br>    int semop(int semid,struct sembuf *sops,unsigned nsops)                    //执行信号量集合上的操作数组，PV操作函数<br>    int semctl(int semid,int semnum,int cmd,union semun arg)                   //实现对信号量的各种控制操作，初始化，删除等</p><pre><code>//POSIX信号量int sem_init(sem_t *sem.int pshared,unsigned value)                        //初始化信号量int sem_wait(sem_t *)                                                         //阻塞当前线程直到sem大于0int sem_post(sem_t *)                                                         //信号量的值加1intsem_destory(sem_t *)                                                       //释放信号量</code></pre><p>17、//条件变量<br>    int pthread_cond_init(pthread_cond_t <em>cond,pthread_condattr_t </em>attr)      //动态初始化条件变量，静态初始化PTHREAD_COND_INITIALIZER<br>    int pthread_cond_wait(pthread_cond_t <em>cond,pthread_mutex_lock </em>lock)      //等待条件变量发信号，同时释放互斥锁<br>    int pthread_cond_signal(pthread_cond_t <em>cond)                                // 只能使一个等待的条件变量编程非阻塞，若有多个条件变量处于等待状态，会按照线程优先级选择<br>    int pthread_cond_broadsignal(pthread_cond_t </em>cond)                          //</p><pre><code>//xxxctl常用命令字IPC_STAT  //取东西IPC_SRT   //设置东西IPC_RMID  //删除</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：&lt;br&gt;线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="API" scheme="http://yoursite.com/tags/API/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python笔记</title>
+    <link href="http://yoursite.com/2019/04/02/python%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/04/02/python笔记/</id>
+    <published>2019-04-02T05:16:00.000Z</published>
+    <updated>2019-04-03T05:36:02.138Z</updated>
+    
+    <content type="html"><![CDATA[<p>python学习笔记<br><a id="more"></a></p><p>一、dict使用<br>    1、创建{}<br>    2、使用dict()将含有双值子序列的序列转化成字典<br>    3、使用update()合并两个字典，若有重复则替换<br>    4、使用del删除指定key的字典<br>    5、使用clear()或指向一个{}清空dict<br>    6、使用in判断键值是否在字典中<br>    7、使用keys()获取所有键。使用values获取所有值<br>    8、使用items获取所有键值对，每一个键值对用tuple形式存储，整体用list存储<br>二、tuple使用<br>    1、创建， </p><p>三、函数<br>    1、yield 创建迭代器函数使用的关键字，每一次迭代遇到yield就返回其后的值，下一次迭代从此处(函数处)开始。<br>        def my_range(first=0,last=5,step=1):<br>            number = first<br>            while number &lt; last:<br>                yield number<br>                number += step</p><p>四、类<br>    1、self 指向这个被创建的对象本身<br>    2、对象调用成员函数做的两件事：<br>        a、找到对象所属的类<br>        b、将对象传递给成员函数的self参数<br>    3、super()方法<br>    4、属性 name=property(get,set)<br>    5、名称重整：<strong>name<br>    6、@classmethod 类方法，@staticmethod 静态方法<br>    7、iterator和iteratable：重要的两个方法：</strong>iter__()：返回迭代器本身<br>                                             <strong>next</strong>():返回当前值<br>                                                       :改变iterator状态<br>    8、generator 只要包含<strong>iter</strong>()和<strong>next</strong>()即可，但直接用yield也可以。有两种使用方式：next()和send()<br>    9、特殊方法，其实就是运算符重载<br>五、@abstractmethod方法<br>    python中的接口必须借助ABC模块使用–from abc import AECMeta,abstarctmethod<br>    @abstractmethod<br>    def 方法名():</p><pre><code>@abstractmethod方法必须被子类重载。带@abstractmethod的方法不能实例化        </code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;python学习笔记&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
     
     
       <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
