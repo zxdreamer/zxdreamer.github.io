@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="常用vim指令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T17:21:25.377Z">
+<meta property="og:updated_time" content="2019-04-21T04:08:54.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim学习笔记(一)">
 <meta name="twitter:description" content="常用vim指令">
@@ -344,7 +344,7 @@
       
 
       
-        <p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置)<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p>
+        <p>常用vim指令<br><a id="more"></a><br>撤销：u<br>复制和粘贴：在退出编辑后。v+移动光标+y(复制)+p(粘贴)  –yump(复制)，put(放置),复制多行nyy<br>批量缩进：  在退出编辑后。:24,26&gt;  –右移，:24,26&lt; –左移<br>修改指令别名：<br>    以下是一种改完之后永久生效的方法<br>    1、在用户的家目录找到.bashrc,vim ~/.bashrc<br>    2、在.bashrc中添加修改别名语句：alias wmysql=’mysql -u root -pxidianicelab313’，保存退出<br>    3、在终端使.bashrc生效（不用重启）：source ~/.bashrc</p>
 <p>备注：source指令：使当前shell读入文件路径并以此执行文件中的指令，用于执行刚修改的初始化文件。</p>
 <p>查看内存:free -m(m为MB，g为GB)<br>                  total        used        free      shared  buff/cache   available<br>    Mem:           3933        1193         358          32        2382        2372<br>    Swap:          4093           9        4084</p>
 <p>查看磁盘:df -lh<br>    Filesystem      Size  Used Avail Use% Mounted on<br>    udev            2.0G     0  2.0G   0% /dev<br>    tmpfs           394M   27M  368M   7% /run<br>    /dev/sda1        16G   14G  1.1G  93% /<br>    tmpfs           2.0G  248K  2.0G   1% /dev/shm<br>    tmpfs           5.0M  4.0K  5.0M   1% /run/lock<br>    tmpfs           2.0G     0  2.0G   0% /sys/fs/cgroup<br>    vmhgfs-fuse     292G  156G  137G  54% /mnt/hgfs<br>    cgmfs           100K     0  100K   0% /run/cgmanager/fs<br>    tmpfs           394M   88K  394M   1% /run/user/1000<br>CPU使用：cat /proc/cpuinfo</p>
