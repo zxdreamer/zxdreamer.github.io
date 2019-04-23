@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-21T15:20:15.786Z</updated>
+  <updated>2019-04-23T09:21:46.723Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARP</title>
+    <link href="http://yoursite.com/2019/04/23/ARP/"/>
+    <id>http://yoursite.com/2019/04/23/ARP/</id>
+    <published>2019-04-23T09:02:01.000Z</published>
+    <updated>2019-04-23T09:21:46.723Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲解地址解析协议ARP的工作原理<br><a id="more"></a><br>ARP：将32位IP地址转化成48位MAC地址。<br>每一台主机或路由器中都存在一张ARP表，记录IP地址与MAC地址的映射关系，这种映射关系是这样形成的：<br>当主机A向主机B发送数据包时，<br>先查询ARP表中是否有IP和MAC地址的缓存，如果缓存存在，则将用户数据<br>加入TCP/UDP首部，加入IP首部，加入以太网首部，其中以太网首部包含MAC地址和帧类型(IPv4,IPv6)。<br>如果主机A中不存在主机B的IP与MAC的ARP缓存，主机A发送一个ARP报文，ARP包结构如下：<br><img src="/2019/04/23/ARP/ARP.png" alt="ARP.png"><br>硬件类型（16位）：指定物理地址的类型，1表示以太网。<br>上层协议类型（16位）：指定要将MAC地址映射成什么协议的地址。0x0800表示IP地址。<br>MAC地址长度（8位）：指定MAC地址的长度，单位是字节。<br>协议地址长度（8位）：指定协议地址的长度，单位为字节。<br>操作类型：1表示ARP请求、2表示ARP回应、3表示RARP请求，4表示RARP回应。<br>接下来为发送源的物理地址和协议地址（由于回应时要知道发送给谁，以此来封装以太帧），目的物理地址和协议地址。<br>封装ARP请求时，发送源除了目的物理地址外都会填写。</p><p>ARP请求报文中存主机B的IP地址，MAC地址为FF-FF-FF-FF-FF-FF，代表广播MAC地址。子网中每一台主机收到<br>这个ARP报文后，与报文中的IP地址比较，若想等，将自己的MAC地址放入ARP应答报文中，发送给主机A，同时<br>子网中每一台设备的ARP表中存放主机Ａ的IP和MAC的映射关系。主机A收到ARP应答报文后，在原来的ARP表中追加记录。<br>并发送IP数据报。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲解地址解析协议ARP的工作原理&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>STL源码-list</title>
@@ -165,9 +183,9 @@
     <link href="http://yoursite.com/2019/04/17/sed%E6%8C%87%E4%BB%A4/"/>
     <id>http://yoursite.com/2019/04/17/sed指令/</id>
     <published>2019-04-17T04:26:54.000Z</published>
-    <updated>2019-04-17T04:31:06.703Z</updated>
+    <updated>2019-04-21T16:36:05.044Z</updated>
     
-    <content type="html"><![CDATA[<p>这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串<br><a id="more"></a><br>vim在编译模式下进行多文件查找与替换</p><p>替换<br>在一个文件中在vim的编辑模式下这样替换：<br>:25,52s/addr/abcdefg/cg     #将文件中addr替换成abcdefg，c：每次替换会询问，g：全部替换<br>sed指令介绍<br>sed指令把处理的行存入临时缓冲区中，接着用sed指令处理缓冲区的内容，处理完之后把缓冲区的内容送到屏幕<br>但是文件中的内容并没有改变，如果想改变文件中的内容，可以用参数i<br>格式：<br>1、sed [options] ‘指令’ files<br>2、sed [options] -f 脚本 files<br>其中’指令’处可以是正则表达式，正则表达式用/…/分隔<br>替换：<br>1、sed ’s/book/books/‘ files         # s 替换<br>2、sed -n ‘s/book/books/p’ files     # -n -p 结合只用于输出改变的行<br>3、sed ‘s/book/books/g’    files     # g：全部替换<br>4、sed ’s/book/books/ng’   files     # 从n处开始替换<br>5、sed -i ‘s/book/books/g’  files    # 直接编辑文本<br>6、sed -i ‘s/$/abcdefh/g’ files      # 每行的末尾加入abcdefh<br>删除：<br>删除空白行：sed -i ‘/^$/d’ files<br>删除第n行： sed -i ‘/4/d’ files<br>指定删除范围： sed -i ‘2,$/d’ files<br>删除最后一行： sed -i ‘$/d’ files<br>删除文件所有以test开头的行：sed ‘/^test/d’ files</p><p>多个sed组合<br>sed ‘表达式’ | sed ‘表达式’</p><p>-e选项，允许在同一条指令中执行多条语句<br>例如：sed -e ‘1,5d’ -e ‘s/test/abcdef/g’ files<br>第一条语句会对第二条造成影响</p><p>选定行的范围<br>sed -n ‘/test/,/check/p’ files<br>例如：sed -n ‘/5,/^test/p’ files<br>w:写入文件指令(这条指令完全可以用重定向解决)<br>sed -n ‘/test/w file’ example     # 在example中所有包含test的行都被写入到file中，且file被清空</p><p>a\命令 行后添加一行<br>sed ‘/return/this is a line’ client.cpp    # 在client.cpp中包含return的行后面添加this is a line<br>i\命令 行前添加<br>sed ‘/2i\’this is a line’ client.cpp</p><p>注意：<br>1、sed默认使用单引号来引用，但是表达式内部包含变量字符串是，需要用双引号<br>    test=hello<br>    echo hello WORLD | sed “s/$test/HELLO</p><p>awk指令</p>]]></content>
+    <content type="html"><![CDATA[<p>这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串<br><a id="more"></a><br>vim在编译模式下进行多文件查找与替换</p><p>替换<br>在一个文件中在vim的编辑模式下这样替换：<br>:25,52s/addr/abcdefg/cg     #将文件中addr替换成abcdefg，c：每次替换会询问，g：全部替换<br>sed指令介绍<br>sed指令把处理的行存入临时缓冲区中，接着用sed指令处理缓冲区的内容，处理完之后把缓冲区的内容送到屏幕<br>但是文件中的内容并没有改变，如果想改变文件中的内容，可以用参数i<br>格式：<br>1、sed [options] ‘指令’ files<br>2、sed [options] -f 脚本 files<br>其中’指令’处可以是正则表达式，正则表达式用/…/分隔<br>替换：<br>1、sed ’s/book/books/‘ files         # s 替换<br>2、sed -n ‘s/book/books/p’ files     # -n -p 结合只用于输出改变的行<br>3、sed ‘s/book/books/g’    files     # g：全部替换<br>4、sed ’s/book/books/ng’   files     # 从n处开始替换<br>5、sed -i ‘s/book/books/g’  files    # 直接编辑文本<br>6、sed -i ‘s/$/abcdefh/g’ files      # 每行的末尾加入abcdefh<br>7、sed -i ‘s/\&lt;num>/nums/g’ taccumulate.cpp   # 仅仅匹配num,不匹配numss这样的单词。<br>删除：<br>删除空白行：sed -i ‘/^$/d’ files<br>删除第n行： sed -i ‘/4/d’ files<br>指定删除范围： sed -i ‘2,$/d’ files<br>删除最后一行： sed -i ‘$/d’ files<br>删除文件所有以test开头的行：sed ‘/^test/d’ files</p><p>多个sed组合<br>sed ‘表达式’ | sed ‘表达式’</p><p>-e选项，允许在同一条指令中执行多条语句<br>例如：sed -e ‘1,5d’ -e ‘s/test/abcdef/g’ files<br>第一条语句会对第二条造成影响</p><p>选定行的范围<br>sed -n ‘/test/,/check/p’ files<br>例如：sed -n ‘/5,/^test/p’ files<br>w:写入文件指令(这条指令完全可以用重定向解决)<br>sed -n ‘/test/w file’ example     # 在example中所有包含test的行都被写入到file中，且file被清空</p><p>a\命令 行后添加一行<br>sed ‘/return/this is a line’ client.cpp    # 在client.cpp中包含return的行后面添加this is a line<br>i\命令 行前添加<br>sed ‘/2i\’this is a line’ client.cpp</p><p>注意：<br>1、sed默认使用单引号来引用，但是表达式内部包含变量字符串是，需要用双引号<br>    test=hello<br>    echo hello WORLD | sed “s/$test/HELLO</p><p>awk指令</p>]]></content>
     
     <summary type="html">
     
@@ -231,9 +249,9 @@
     <link href="http://yoursite.com/2019/04/06/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%9B%9B%E6%9D%A1%E6%8C%87%E4%BB%A4/"/>
     <id>http://yoursite.com/2019/04/06/linux服务器开发常用四条指令/</id>
     <published>2019-04-06T15:38:19.000Z</published>
-    <updated>2019-04-06T15:39:55.518Z</updated>
+    <updated>2019-04-22T13:33:57.313Z</updated>
     
-    <content type="html"><![CDATA[<p>讲述linux服务器开发4条指令<br><a id="more"></a><br>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息</p>]]></content>
+    <content type="html"><![CDATA[<p>讲述linux服务器开发4条指令<br><a id="more"></a><br>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息<br>    tcpdump -D 获取网络适配器列表<br>    tcpdump -i &lt;网络适配器编号&gt;  指定监控哪个网络适配器<br>    tcp -i 2 host 192.168.1.199 and tcp port 8088     指定监控有线网卡ip地址为192.168.1.199上端口号为8088的TCP协议。<br>    tcpdump -X -i 2 host 172.16.86.111 and tcp port 443     捕获数据包header部分。<br>    tcpdump -X -s 0 -i 2 host 172.16.86.111 and tcp port 443   -s后面加长度数据，0表示自动设置长度使其能显示所有数据。</p>]]></content>
     
     <summary type="html">
     
@@ -319,9 +337,9 @@
     <link href="http://yoursite.com/2019/04/03/%E5%8D%8F%E8%AE%AE/"/>
     <id>http://yoursite.com/2019/04/03/协议/</id>
     <published>2019-04-03T05:47:13.000Z</published>
-    <updated>2019-04-17T04:36:41.192Z</updated>
+    <updated>2019-04-22T08:56:17.088Z</updated>
     
-    <content type="html"><![CDATA[<p>记录TCP滑动窗口，带外数据和缓冲区<br><a id="more"></a><br>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p><p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"></p>]]></content>
+    <content type="html"><![CDATA[<p>记录TCP滑动窗口，带外数据和缓冲区<br><a id="more"></a><br>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p><p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"><br>TCP总是告知对端在任何时刻它一次能从对端接受多少字节，者称为滑动窗口。</p>]]></content>
     
     <summary type="html">
     
@@ -421,28 +439,6 @@
     
     
       <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux并发API</title>
-    <link href="http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/"/>
-    <id>http://yoursite.com/2019/04/03/linux并发API/</id>
-    <published>2019-04-03T04:43:57.000Z</published>
-    <updated>2019-04-03T04:49:34.202Z</updated>
-    
-    <content type="html"><![CDATA[<p>总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：<br>线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存<br><a id="more"></a><br>1、int pthread_attr_init(pthread_attr_t <em>attr)<br>   int pthread_attr_destory(pthread_attr_t </em>attr)</p><p>2、int pthread_equal(pthread_t th1,pthread_t th2)   // 比较两个线程id<br>    pthread_self(void)                                 // 获取自身线程id</p><p>3、int pthread_create(pthread_t tidp,pthread_attr_t <em>restrict attr,void </em>(<em>start_rtn(void </em>)),void <em>arg)   //每个线程提供一个errno副本<br>4、线程退出方式：（1）简单返回：return n<br>                   （2）被同一进程中的其他线程取消<br>                   （3）pthread_exit(void </em>rval_ptr)<br>5、void pthread_join(pthread_t thread,void *<em> rval_ptr) //阻塞等待指定线程退出<br>6、int pthread_cancel(pthread_t tid) //请求同一进程中的其他线程非正常退出<br>7、void pthread_cleanup_push(void (</em>rtn)(void <em>),void </em>arg)    //线程退出时回调函数，将函数依次放到栈中<br>   void pthread_cleanup_pop(int execute);                        //1.清理回调函数 2.execute非0时调用回调函数<br>   //线程执行以下动作时，回调函数才会触发：<br>   (1)调用pthread_exit()<br>   (2)用非0execute调用pthread_cleanup_pop<br>   (3)响应请求取消</p><p>8、int pthread_detach(pthread_t tid)  //将结合态的线程变成分离态的线程<br>9、int pthread_mutex_init(pthread_mutex_t <em>restrict mutex,const pthread_mutexattr_t </em>restrict attr);<br>    int pthread_mutex_destroy(pthread_mutex_t <em>);<br>    int pthread_mutex_lock(pthread_mutex_t </em>);<br>    int pthread_mutex_unlock(pthread_mutex_t <em>);<br>    int pthread_mutex_trylock(pthread_mutex_t </em>);  //如果互斥锁已经被锁住，返回一个错误状态。<br>10、int pthread_mutex_timedlock();<br>11、int pthread_rwlock_init(pthread_rwlock_t <em>restrict attr,const pthread_rwlockattr_t </em>restrict attr) //初始化读写锁<br>    int pthread_rwlock_destory(pthread_rwlock_t <em>rwlock)<br>    int pthread_rwlock_rdlock(pthread_rwlock_t </em>);<br>    int pthread_rwlock_wrlock(pthread_rwlock_t <em>);<br>    int pthread_rwlock_unlock(pthread_rwlock_t </em>);<br>12、pthread_cond_init(pthread_cond_t <em>reatrict cond,const pthread_condattr_t </em>restrict attr);           //初始化条件变量<br>    int pthread_cond_destory(pthread_cond_t <em>);<br>    int pthread_cond_wait(pthread_cond_t </em>restrict cond,pthread_mutex_t *restrict mutex);</p><p>13、int pthread_barrier_init();                            //屏障，同步多个线程，参数省略<br>    int pthread_barrier_destory();<br>    int pthread_barrier_wait(pthread_barrier_t *)      // 屏障等待多个线程</p><p>14、//内存映射(进程)<br>    void<em> mmap(void </em>addr,size_t len,int port,int flags,int fd,off_t offset)  //将文件映射成内存<br>    int munmap(void <em>addr,size_t len)                                            //解除映射，共享内存中的内容写入文件<br>    int msync(void </em>addr,size_t len,int flags)                                  //保证共享内存与文件的内容一致<br>    //XSI共享存储<br>    int shmget(key_t key,size_t size,int flags)                                 //创建或得到共享内存，返回shmid<br>    void <em>shmat(int shmid,const void </em>addr,int flags)                          //将shmget得到的共享内存映射到进程的地址空间，返回被映射的地址<br>    int shmdt(void *addr);                                                       //解除映射</p><p>15、//消息队列<br>    int msgget(key_t key,int msgflag);                                            //IPC_PRIVATE:创建消息队列<br>    int msgctl(key_t key,int cmd,struct msqid_ds<em> buf)                          //设置<br>    ssize_t msgsnd(int msgid,const void</em> msgp,size_t msgsz,int flag)           //消息写入队列  flag常设置成IPC_NOWAIT，空/满不阻塞<br>    int msgrcv(int msgid,const void* msgp,size_t msgsz,int flag)                //从队列中取消息    msgp指向消息的类型，接下来是消息信息</p><pre><code>//用户定义的通用结构：struct msgstru{    long mtype;                    //大于0，消息类型    char mtext[512];                //消息内容};</code></pre><p>16、//system V信号量<br>    int semget(key_t key,int nsems,int semflg)                                  //创建，成功返回信号量的id<br>    int semop(int semid,struct sembuf *sops,unsigned nsops)                    //执行信号量集合上的操作数组，PV操作函数<br>    int semctl(int semid,int semnum,int cmd,union semun arg)                   //实现对信号量的各种控制操作，初始化，删除等</p><pre><code>//POSIX信号量int sem_init(sem_t *sem.int pshared,unsigned value)                        //初始化信号量int sem_wait(sem_t *)                                                         //阻塞当前线程直到sem大于0int sem_post(sem_t *)                                                         //信号量的值加1intsem_destory(sem_t *)                                                       //释放信号量</code></pre><p>17、//条件变量<br>    int pthread_cond_init(pthread_cond_t <em>cond,pthread_condattr_t </em>attr)      //动态初始化条件变量，静态初始化PTHREAD_COND_INITIALIZER<br>    int pthread_cond_wait(pthread_cond_t <em>cond,pthread_mutex_lock </em>lock)      //等待条件变量发信号，同时释放互斥锁<br>    int pthread_cond_signal(pthread_cond_t <em>cond)                                // 只能使一个等待的条件变量编程非阻塞，若有多个条件变量处于等待状态，会按照线程优先级选择<br>    int pthread_cond_broadsignal(pthread_cond_t </em>cond)                          //</p><pre><code>//xxxctl常用命令字IPC_STAT  //取东西IPC_SRT   //设置东西IPC_RMID  //删除</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;总结linux中posix 和system V 中相关的多线程与多进程中的API函数，包括：&lt;br&gt;线程创建，设置线程属性，互斥锁，读写锁，条件变量，屏障，信号量，消息队列，共享内存&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
-    
-    
-      <category term="API" scheme="http://yoursite.com/tags/API/"/>
     
   </entry>
   

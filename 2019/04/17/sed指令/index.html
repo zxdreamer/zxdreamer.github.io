@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T04:31:06.703Z">
+<meta property="og:updated_time" content="2019-04-21T16:36:05.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sed指令">
 <meta name="twitter:description" content="这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串">
@@ -345,7 +345,7 @@
 
       
         <p>这个问题来源于怎样通过shell指令查找、替换多个文件中的某字符串<br><a id="more"></a><br>vim在编译模式下进行多文件查找与替换</p>
-<p>替换<br>在一个文件中在vim的编辑模式下这样替换：<br>:25,52s/addr/abcdefg/cg     #将文件中addr替换成abcdefg，c：每次替换会询问，g：全部替换<br>sed指令介绍<br>sed指令把处理的行存入临时缓冲区中，接着用sed指令处理缓冲区的内容，处理完之后把缓冲区的内容送到屏幕<br>但是文件中的内容并没有改变，如果想改变文件中的内容，可以用参数i<br>格式：<br>1、sed [options] ‘指令’ files<br>2、sed [options] -f 脚本 files<br>其中’指令’处可以是正则表达式，正则表达式用/…/分隔<br>替换：<br>1、sed ’s/book/books/‘ files         # s 替换<br>2、sed -n ‘s/book/books/p’ files     # -n -p 结合只用于输出改变的行<br>3、sed ‘s/book/books/g’    files     # g：全部替换<br>4、sed ’s/book/books/ng’   files     # 从n处开始替换<br>5、sed -i ‘s/book/books/g’  files    # 直接编辑文本<br>6、sed -i ‘s/$/abcdefh/g’ files      # 每行的末尾加入abcdefh<br>删除：<br>删除空白行：sed -i ‘/^$/d’ files<br>删除第n行： sed -i ‘/4/d’ files<br>指定删除范围： sed -i ‘2,$/d’ files<br>删除最后一行： sed -i ‘$/d’ files<br>删除文件所有以test开头的行：sed ‘/^test/d’ files</p>
+<p>替换<br>在一个文件中在vim的编辑模式下这样替换：<br>:25,52s/addr/abcdefg/cg     #将文件中addr替换成abcdefg，c：每次替换会询问，g：全部替换<br>sed指令介绍<br>sed指令把处理的行存入临时缓冲区中，接着用sed指令处理缓冲区的内容，处理完之后把缓冲区的内容送到屏幕<br>但是文件中的内容并没有改变，如果想改变文件中的内容，可以用参数i<br>格式：<br>1、sed [options] ‘指令’ files<br>2、sed [options] -f 脚本 files<br>其中’指令’处可以是正则表达式，正则表达式用/…/分隔<br>替换：<br>1、sed ’s/book/books/‘ files         # s 替换<br>2、sed -n ‘s/book/books/p’ files     # -n -p 结合只用于输出改变的行<br>3、sed ‘s/book/books/g’    files     # g：全部替换<br>4、sed ’s/book/books/ng’   files     # 从n处开始替换<br>5、sed -i ‘s/book/books/g’  files    # 直接编辑文本<br>6、sed -i ‘s/$/abcdefh/g’ files      # 每行的末尾加入abcdefh<br>7、sed -i ‘s/\&lt;num>/nums/g’ taccumulate.cpp   # 仅仅匹配num,不匹配numss这样的单词。<br>删除：<br>删除空白行：sed -i ‘/^$/d’ files<br>删除第n行： sed -i ‘/4/d’ files<br>指定删除范围： sed -i ‘2,$/d’ files<br>删除最后一行： sed -i ‘$/d’ files<br>删除文件所有以test开头的行：sed ‘/^test/d’ files</p>
 <p>多个sed组合<br>sed ‘表达式’ | sed ‘表达式’</p>
 <p>-e选项，允许在同一条指令中执行多条语句<br>例如：sed -e ‘1,5d’ -e ‘s/test/abcdef/g’ files<br>第一条语句会对第二条造成影响</p>
 <p>选定行的范围<br>sed -n ‘/test/,/check/p’ files<br>例如：sed -n ‘/5,/^test/p’ files<br>w:写入文件指令(这条指令完全可以用重定向解决)<br>sed -n ‘/test/w file’ example     # 在example中所有包含test的行都被写入到file中，且file被清空</p>
@@ -490,7 +490,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
