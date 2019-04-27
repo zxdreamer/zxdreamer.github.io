@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-25T08:22:40.904Z</updated>
+  <updated>2019-04-27T16:04:22.144Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>static成员变量的赋值</title>
+    <link href="http://yoursite.com/2019/04/27/static-%E6%88%90%E5%91%98/"/>
+    <id>http://yoursite.com/2019/04/27/static-成员/</id>
+    <published>2019-04-27T15:52:22.000Z</published>
+    <updated>2019-04-27T16:04:22.144Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲述static成员变量的初始化与赋值<br><a id="more"></a><br>static变量在类内声明时，属于类，或者说属于所有对象，我们可以使用类或对象调用。<br>但是static变量的定义放到哪里呢？<br>&lt;&lt;c++ primer&gt;&gt;说在类外定义和初始化是保证static成员变量只被定义一次的好方法。<br>但，为什么static const int就可以在类里面初始化呢？<br>想起C中一个函数里定义一个static变量是为了保证只初始化一次。<br>那么，是否可以这样理解:<br>static数据成员在类外定义和初始化是为了保证只被定义和初始化一次,<br>这样编译器就不必考虑类的函数里面第一个对static变量的’=’操作是赋值还是初始化了。<br>比如：<br>class A{<br>    static int a = 5;<br>    int b = 6;<br>};<br>接下来我们用对象调用a,b<br>A a1;<br>a1.a = 6;//此时a被赋值成6</p><p>A a2;   //此时编译器不知道成员a是5 还是6，就造成错误。</p><p>所以C++规定static成员变量只能在类内声明，在类外实例化。<br>比如如下操作时合理的<br>.h文件声明</p><p>#include “fixed_alloc.h”<br>class Foo{<br>    private:<br>        int i;<br>    public:<br>        Foo(int x):i(x){}<br>        int get(){<br>            return i;<br>        }   </p><pre><code>    static void* operator new(size_t size);    static void operator delete(void* p,size_t size);protected:    static FixedAlloc alloc;    static const int a = 5;</code></pre><p>};<br>.cpp文件中实例化</p><p>#include “Foo.h”<br>FixedAlloc Foo::alloc(sizeof(Foo),64);<br>void* Foo::operator new(size_t size)<br>{<br>    if(sizeof(Foo) != size)<br>        return ::operator new(size);</p><pre><code>return alloc.allocate();</code></pre><p>}<br>void Foo::operator delete(void* p,size_t size)<br>{<br>    if(p == NULL)<br>        return;<br>    if(size != sizeof(Foo))<br>    {<br>        ::operator delete(p);<br>        return;<br>    }<br>    return alloc.deallocate(p);<br>}<br>这里特别注意static结合const使用时是可以在类内初始化的，看了上面的解释就能明白为什么。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲述static成员变量的初始化与赋值&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="知识点" scheme="http://yoursite.com/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>ctags插件使用</title>
@@ -417,28 +437,6 @@
     
     
       <category term="chips" scheme="http://yoursite.com/tags/chips/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nanoPi配置AP热点</title>
-    <link href="http://yoursite.com/2019/04/03/nanoPi%E9%85%8D%E7%BD%AEAP%E7%83%AD%E7%82%B9/"/>
-    <id>http://yoursite.com/2019/04/03/nanoPi配置AP热点/</id>
-    <published>2019-04-03T05:18:45.000Z</published>
-    <updated>2019-04-03T06:05:41.820Z</updated>
-    
-    <content type="html"><![CDATA[<p>在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，<br>通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。<br><a id="more"></a><br>一、AP是无线访问接入点，可以是WiFi，可以是蓝牙，可以将无线网络客户端连接到一起，然后将无线网络连接到以太网。hostapd可以将无线网卡切换成AP/master模式的守护进程。DHCP服务是根据mac地址自动分配ip的进程。DNS服务器是将域名与ip地址建立在数据库的主机。<br>二、配置AP接入点时要确保没有任何一个应用程序占用无线网卡。包括WSP进程。<br>三、nanaopi通过pppoe连接以太网，需要输入用户名与密码。<br>详见网址：<br><a href="https://www.cnblogs.com/ssooking/p/8571749.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssooking/p/8571749.html</a><br>需要注意的是在输入username是要把横向上的字符串清0<br>四、busybox的作用和功能以及在arm版上安装<a href="https://blog.csdn.net/cy_weiyi/article/details/46953233" target="_blank" rel="noopener">https://blog.csdn.net/cy_weiyi/article/details/46953233</a><br>待补充。</p><p>五、管理网络的工具ip，iw，rfkill<br>1、rfkill用于对系统的无线设备进行打开关闭查找<br>sudo rfkill list :列出所有无线设备<br>sudo rfkill block 0  关闭第0个无线设备<br>ip a<br>ip addr add 192.168.1.199 dev eth0<br>ip link set eth0 up/down<br>iw 启动WIFI连接。<br><a href="https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/" target="_blank" rel="noopener">https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/</a><br>sudo -s 进入root目录<br>service networking restart<br>server isc-dhcp-server restart<br>文件 /etc/network/interface 修改动态ip和静态ip,改完之后重启networking服务<br>文件 /etc/hostapd/hostapd.config<br>文件 /etc/dhcp/dhcpd.config<br>rfkill unblock wlan 启动wlan<br>rfkill block wlan wlan<br>ifup wlan 修改配置文件之后的启动网卡。从静态ip到动态ip<br>hostapd /etc/hostapd/hostapd.config<br>dhcpd</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在nanoPi上移植friendly-core的Ubuntu裁剪版操作系统，并通过iw,ip管理网络，&lt;br&gt;通过hostapd搭建AP热点，通过dhcpd动态自动分配子网。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
-    
-    
-      <category term="ways" scheme="http://yoursite.com/tags/ways/"/>
     
   </entry>
   
