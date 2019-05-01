@@ -81,19 +81,16 @@
 
 
 
-<meta name="description" content="讲解地址解析协议ARP的工作原理">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ARP">
-<meta property="og:url" content="http://yoursite.com/2019/04/23/ARP/index.html">
+<meta name="description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dreamer">
+<meta property="og:url" content="http://yoursite.com/archives/2019/05/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="讲解地址解析协议ARP的工作原理">
+<meta property="og:description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/23/ARP/ARP.png">
-<meta property="og:updated_time" content="2019-04-23T09:21:46.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ARP">
-<meta name="twitter:description" content="讲解地址解析协议ARP的工作原理">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/23/ARP/ARP.png">
+<meta name="twitter:title" content="Dreamer">
+<meta name="twitter:description" content="自古求真皆寂寞，唯挑心灯伴夜霭">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/23/ARP/">
+  <link rel="canonical" href="http://yoursite.com/archives/2019/05/">
 
 
 
 
 
-  <title>ARP | Dreamer</title>
+  <title>归档 | Dreamer</title>
   
 
 
@@ -148,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -242,172 +239,72 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 28 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/ARP/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦的蓝天">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/background.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dreamer">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">ARP</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/05/01/sed指令-高阶/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">sed指令--高阶</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T17:02:01+08:00">
-                2019-04-23
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-01T15:16:47+08:00" content="2019-05-01">
+          05-01
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>讲解地址解析协议ARP的工作原理<br><a id="more"></a><br>ARP：将32位IP地址转化成48位MAC地址。<br>每一台主机或路由器中都存在一张ARP表，记录IP地址与MAC地址的映射关系，这种映射关系是这样形成的：<br>当主机A向主机B发送数据包时，<br>先查询ARP表中是否有IP和MAC地址的缓存，如果缓存存在，则将用户数据<br>加入TCP/UDP首部，加入IP首部，加入以太网首部，其中以太网首部包含MAC地址和帧类型(IPv4,IPv6)。<br>如果主机A中不存在主机B的IP与MAC的ARP缓存，主机A发送一个ARP报文，ARP包结构如下：<br><img src="/2019/04/23/ARP/ARP.png" alt="ARP.png"><br>硬件类型（16位）：指定物理地址的类型，1表示以太网。<br>上层协议类型（16位）：指定要将MAC地址映射成什么协议的地址。0x0800表示IP地址。<br>MAC地址长度（8位）：指定MAC地址的长度，单位是字节。<br>协议地址长度（8位）：指定协议地址的长度，单位为字节。<br>操作类型：1表示ARP请求、2表示ARP回应、3表示RARP请求，4表示RARP回应。<br>接下来为发送源的物理地址和协议地址（由于回应时要知道发送给谁，以此来封装以太帧），目的物理地址和协议地址。<br>封装ARP请求时，发送源除了目的物理地址外都会填写。</p>
-<p>ARP请求报文中存主机B的IP地址，MAC地址为FF-FF-FF-FF-FF-FF，代表广播MAC地址。子网中每一台主机收到<br>这个ARP报文后，与报文中的IP地址比较，若想等，将自己的MAC地址放入ARP应答报文中，发送给主机A，同时<br>子网中每一台设备的ARP表中存放主机Ａ的IP和MAC的映射关系。主机A收到ARP应答报文后，在原来的ARP表中追加记录。<br>并发送IP数据报。</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/21/STL源码-list/" rel="next" title="STL源码-list">
-                <i class="fa fa-chevron-left"></i> STL源码-list
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/25/ctags插件使用/" rel="prev" title="ctags插件使用">
-                ctags插件使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-<span class="jiathis_txt">分享到：</span>
-<a class="jiathis_button_fav">收藏夹</a>
-<a class="jiathis_button_copy">复制网址</a>
-<a class="jiathis_button_email">邮件</a>
-<a class="jiathis_button_weixin">微信</a>
-<a class="jiathis_button_qzone">QQ空间</a>
-<a class="jiathis_button_tqq">腾讯微博</a>
-<a class="jiathis_button_douban">豆瓣</a>
-<a class="jiathis_button_share">一键分享</a>
 
-<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-<a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript">
-var jiathis_config={
-  data_track_clickback:true,
-  summary:"",
-  shortUrl:false,
-  hideMore:false
-}
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-      
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -415,10 +312,6 @@ var jiathis_config={
 
 
           
-
-  
-
-
 
         </div>
         
@@ -670,10 +563,6 @@ var jiathis_config={
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
