@@ -3,6 +3,46 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/</loc>
+    <lastmod>2019-05-06T13:42:51.726Z</lastmod>
+    <data>
+        <display>
+        <title>linux并发API</title>
+        <pubTime>2019-04-03T04:43:57.000Z</pubTime>
+        
+        <tag>API </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    <lastmod>2019-05-03T10:42:04.019Z</lastmod>
+    <data>
+        <display>
+        <title>vim学习笔记(一)</title>
+        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
+        
+        <tag>operate </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/05/01/sed%E6%8C%87%E4%BB%A4-%E9%AB%98%E9%98%B6/</loc>
     <lastmod>2019-05-01T07:33:21.035Z</lastmod>
     <data>
@@ -29,26 +69,6 @@
         <display>
         <title>sed指令-低阶</title>
         <pubTime>2019-04-17T04:26:54.000Z</pubTime>
-        
-        <tag>operate </tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
-    <lastmod>2019-04-30T06:42:55.095Z</lastmod>
-    <data>
-        <display>
-        <title>vim学习笔记(一)</title>
-        <pubTime>2019-04-02T02:31:56.000Z</pubTime>
         
         <tag>operate </tag>
          
@@ -519,26 +539,6 @@
            
              
               <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/</loc>
-    <lastmod>2019-04-03T04:49:34.202Z</lastmod>
-    <data>
-        <display>
-        <title>linux并发API</title>
-        <pubTime>2019-04-03T04:43:57.000Z</pubTime>
-        
-        <tag>API </tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
         </display>
     </data>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/</loc>
+    
+    <lastmod>2019-05-06T13:42:51.726Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
+    
+    <lastmod>2019-05-03T10:42:04.019Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/05/01/sed%E6%8C%87%E4%BB%A4-%E9%AB%98%E9%98%B6/</loc>
     
     <lastmod>2019-05-01T07:33:21.035Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://yoursite.com/2019/04/17/sed%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2019-05-01T07:15:45.695Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/02/vim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
-    
-    <lastmod>2019-04-30T06:42:55.095Z</lastmod>
     
   </url>
   
@@ -187,13 +194,6 @@
     <loc>http://yoursite.com/2019/04/02/python%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2019-04-03T05:36:02.138Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/</loc>
-    
-    <lastmod>2019-04-03T04:49:34.202Z</lastmod>
     
   </url>
   
