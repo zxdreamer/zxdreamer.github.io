@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="loveNight,linux,C++,python,ARM">
+  <meta name="keywords" content="算法,">
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="讲解C++友元在使用时注意事项">
+<meta name="description" content="题目背景：有n个地点，m条路给出现有路径，求在修多少路可以是n个地点互通。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273#include &amp;lt;iostream&amp;gt">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cplusplus友元">
-<meta property="og:url" content="http://yoursite.com/2019/04/19/cplusplus友元/index.html">
+<meta property="og:title" content="并查集">
+<meta property="og:url" content="http://yoursite.com/2019/08/30/并查集/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="讲解C++友元在使用时注意事项">
+<meta property="og:description" content="题目背景：有n个地点，m条路给出现有路径，求在修多少路可以是n个地点互通。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273#include &amp;lt;iostream&amp;gt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-19T06:40:12.478Z">
+<meta property="og:updated_time" content="2019-08-29T16:10:33.573Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cplusplus友元">
-<meta name="twitter:description" content="讲解C++友元在使用时注意事项">
+<meta name="twitter:title" content="并查集">
+<meta name="twitter:description" content="题目背景：有n个地点，m条路给出现有路径，求在修多少路可以是n个地点互通。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273#include &amp;lt;iostream&amp;gt">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/19/cplusplus友元/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/30/并查集/">
 
 
 
 
 
-  <title>cplusplus友元 | Dreamer</title>
+  <title>并查集 | Dreamer</title>
   
 
 
@@ -254,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/cplusplus友元/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/并查集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦的蓝天">
@@ -271,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">cplusplus友元</h1>
+          <h1 class="post-title" itemprop="name headline">并查集</h1>
         
 
         <div class="post-meta">
@@ -283,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T14:38:55+08:00">
-                2019-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T00:08:28+08:00">
+                2019-08-30
               </time>
             
 
@@ -293,28 +294,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识点/" itemprop="url" rel="index">
-                    <span itemprop="name">知识点</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -343,22 +322,9 @@
       
 
       
-        <p>讲解C++友元在使用时注意事项</p>
-<a id="more"></a>
-<p>友元函数可以访问类的私有成员和保护成员。<br>友元分为友元函数和友元类<br>友元函数：在类中用friend声明，在类外面直接定义，可不用指定类名和friend，友元函数的参数一般会接受一个类对象，用这个类对象访问类中私有成员。</p>
-<p>友元类：在一个类中用friend声明的类叫友元类，整个类的成员函数都是友元函数。<br>    #include “stdafx.h”<br>    #include <iostream><br>    using namespace std;<br>    class Box<br>    {<br>        double width;<br>    public:<br>        friend void printWidth(Box box);//友元函数<br>        friend class BigBox;            //友元类<br>        void setWidth(double wid);<br>    };<br>    class BigBox<br>    {<br>    public:<br>        void Print(int width, Box &amp;box)<br>        {<br>            // BigBox是Box的友元类，它可以直接访问Box类的任何成员<br>            box.setWidth(width);<br>            cout &lt;&lt; “Width of box : “ &lt;&lt; box.width &lt;&lt; endl;<br>        }<br>    };<br>    // 成员函数定义<br>    void Box::setWidth(double wid)<br>    {<br>        width = wid;<br>    }<br>    // 请注意：printWidth() 不是任何类的成员函数<br>    void printWidth(Box box)<br>    {<br>        /* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */<br>        cout &lt;&lt; “Width of box : “ &lt;&lt; box.width &lt;&lt; endl;<br>    }<br>    // 程序的主函数<br>    int main()<br>    {<br>        Box box;<br>        BigBox big;</iostream></p>
-<pre><code>    // 使用成员函数设置宽度
-    box.setWidth(10.0);
-
-    // 使用友元函数输出宽度
-    printWidth(box);
-
-    // 使用友元类中的方法设置宽度
-    big.Print(20, box);
-
-    getchar();
-    return 0;
-}</code></pre><p>友元函数注意事项：<br>    1、友元函数不是累的成员，所以不能被继承。<br>    2、友元函数可以访问类的成员，但不能访问类的成员函数。<br>    3、一个函数可以是多个类的友元。</p>
+        <a id="more"></a>
+<p>题目背景：<br>有n个地点，m条路<br>给出现有路径，求在修多少路可以是n个地点互通。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//4 2 4个点，2条路</span></span><br><span class="line"><span class="comment">//1 3 4 3</span></span><br><span class="line"><span class="keyword">int</span> pre[<span class="number">1000</span>];</span><br><span class="line"><span class="comment">//查找掌门同时路径压缩</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> r = x;</span><br><span class="line">	<span class="keyword">while</span> (pre[r] != r)  <span class="comment">//直到找到掌门为止，无路径压缩</span></span><br><span class="line">		r = pre[r];      </span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i = x; <span class="keyword">int</span> j;    <span class="comment">//路径压缩</span></span><br><span class="line">	<span class="keyword">while</span> (i != r)</span><br><span class="line">	&#123;</span><br><span class="line">		j = pre[i];      <span class="comment">//i的上级  </span></span><br><span class="line">		pre[i] = r;      <span class="comment">//指向大掌门</span></span><br><span class="line">		i = j;           <span class="comment">//记下i</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span>   <span class="comment">//掌门人之间连接起来</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fx = find(x);</span><br><span class="line">	<span class="keyword">int</span> fy = find(y);</span><br><span class="line">	<span class="keyword">if</span> (fx != fy)</span><br><span class="line">	&#123;</span><br><span class="line">		pre[fx] = fy;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, k,m, p1, p2, i, total, f1, f2;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt;m;          <span class="comment">//读入n个位置，m条路                                                         //刚开始的时候，有n个城镇，一条路都没有 //那么要修n-1条路才能把它们连起来</span></span><br><span class="line">	</span><br><span class="line">	total = n - <span class="number">1</span>;         <span class="comment">//连接n个顶点，使用n-1条路</span></span><br><span class="line">	<span class="comment">//每个点互相独立，自成一个集合，从1编号到n，所以每个点的上级都是自己</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>;i &lt;= n;i++) &#123; pre[i] = i; &#125;                <span class="comment">//共有m条路</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (m--)</span><br><span class="line">	&#123;    <span class="comment">//下面这段代码，其实就是join函数，只是稍作改动以适应题目要求</span></span><br><span class="line">		 <span class="comment">//每读入一条路，看它的端点p1，p2是否已经在一个连通分支里了</span></span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; p1 &gt;&gt; p2;</span><br><span class="line">		f1 = find(p1);</span><br><span class="line">		f2 = find(p2);</span><br><span class="line">		<span class="comment">//如果是不连通的，那么把这两个分支连起来</span></span><br><span class="line">		<span class="comment">//分支的总数就减少了1，还需建的路也就减了1</span></span><br><span class="line">		<span class="keyword">if</span> (f1 != f2)</span><br><span class="line">		&#123;</span><br><span class="line">			pre[f2] = f1;</span><br><span class="line">			total--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//如果两点已经连通了，那么这条路只是在图上增加了一个环 //对连通性没有任何影响，无视掉</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//最后输出还要修的路条数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, k-total);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -374,6 +340,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
 
       
       
@@ -383,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/epoll模型学习笔记/" rel="next" title="epoll模型学习笔记">
-                <i class="fa fa-chevron-left"></i> epoll模型学习笔记
+              <a href="/2019/08/30/宏函数linux版/" rel="next" title="宏函数linux版">
+                <i class="fa fa-chevron-left"></i> 宏函数linux版
               </a>
             
           </div>
@@ -393,8 +365,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/19/cplusplus三大特性/" rel="prev" title="cplusplus三大特性">
-                cplusplus三大特性 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/30/排列组合/" rel="prev" title="排列组合">
+                排列组合 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
