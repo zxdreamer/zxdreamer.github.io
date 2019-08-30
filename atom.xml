@@ -159,6 +159,30 @@
   </entry>
   
   <entry>
+    <title>x的n次幂</title>
+    <link href="http://yoursite.com/2019/08/30/x%E7%9A%84n%E6%AC%A1%E5%B9%82/"/>
+    <id>http://yoursite.com/2019/08/30/x的n次幂/</id>
+    <published>2019-08-29T16:04:31.000Z</published>
+    <updated>2019-08-29T16:06:16.459Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mypow</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> x;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> t = mypow(x, n / <span class="number">2</span>);</span><br><span class="line"><span class="keyword">return</span> t*t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> t = mypow(x, n / <span class="number">2</span>);</span><br><span class="line"><span class="keyword">return</span> t*t*x;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">pow</span>(n, m) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; mypow(n, m) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>宏函数linux版</title>
     <link href="http://yoursite.com/2019/08/30/%E5%AE%8F%E5%87%BD%E6%95%B0linux%E7%89%88/"/>
     <id>http://yoursite.com/2019/08/30/宏函数linux版/</id>
@@ -422,26 +446,6 @@
     
     
       <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>平衡二叉树</title>
-    <link href="http://yoursite.com/2019/04/18/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://yoursite.com/2019/04/18/平衡二叉树/</id>
-    <published>2019-04-18T13:16:40.000Z</published>
-    <updated>2019-04-19T01:16:26.005Z</updated>
-    
-    <content type="html"><![CDATA[<p>讲解平衡二叉树的定义，相关术语，</p><a id="more"></a><p>定义：是一种平衡二叉树，其中每个节点的左子树和右子树的高度差不大于1.<br>相关术语：<br>平衡因子：二叉树上节点的左子树的高度减去右子树的高度的差值称为平衡因子。<br>最小不平衡子树：距离插入节点最近的，且平衡因子的绝对值大于1的节点为根的子树。<br>左旋：右孩子的左结点，如果右孩子存在左结点，需要先把他调整为根结点的右结点，然后再追加右孩子的左结点。<br>右旋：左孩子的右结点，如果左孩子存在右结点，需要先把他调整成根节点的左结点，然后再追加左孩子的右结点。<br>构建思想：在构建二叉排序树的过程中，每当插入一个结点时，先检查是否因为插入而破坏了树的平衡性，若是，则找出最小不平衡子树，进行相应的旋转，使之成为新的平衡子树。<br>          对于最小不平衡子树根结点BF与它子树的BF符号相反时，说明子树现在的结构与要旋转方向不一至，必须先调整子树结构。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;讲解平衡二叉树的定义，相关术语，&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="pragrom" scheme="http://yoursite.com/categories/pragrom/"/>
-    
     
   </entry>
   
