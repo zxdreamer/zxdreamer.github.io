@@ -615,6 +615,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/排列组合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦的蓝天">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/background.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dreamer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/30/排列组合/" itemprop="url">排列组合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T00:11:06+08:00">
+                2019-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">一、全排列</span><br><span class="line"><span class="comment">//这里的一个难点在于vecPermutated不用清零。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Permutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecPermutated, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecWaitPermuta)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (vecWaitPermuta.size() &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itNum = vecWaitPermuta.begin();itNum != vecWaitPermuta.end();++itNum)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecPermutatedTmp = vecPermutated;</span><br><span class="line">			vecPermutatedTmp.push_back(*itNum);</span><br><span class="line"></span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecWaitPermutaTmp = vecWaitPermuta;</span><br><span class="line">			<span class="comment">//删除当前已经加入排列完毕的元素</span></span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator retFind = find(vecWaitPermutaTmp.begin(), vecWaitPermutaTmp.end(), *itNum);</span><br><span class="line">			<span class="keyword">if</span> (vecWaitPermutaTmp.end() != retFind)</span><br><span class="line">			&#123;</span><br><span class="line">				vecWaitPermutaTmp.erase(retFind);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//继续递归调用排列算法</span></span><br><span class="line">			Permutation(vecPermutatedTmp, vecWaitPermutaTmp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="comment">//一组排列完毕</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//打印排列结果</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vecPermutated.size();++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; vecPermutated.at(i) &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">二、组合问题</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">combine</span><span class="params">( <span class="keyword">int</span> a[], <span class="keyword">int</span> n, <span class="keyword">int</span> m                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ,  <span class="keyword">int</span> b[], <span class="keyword">const</span> <span class="keyword">int</span> M )</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n; i&gt;=m; i--)   <span class="comment">// 注意这里的循环范围</span></span><br><span class="line">	&#123;</span><br><span class="line">		b[m<span class="number">-1</span>] = i - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (m &gt; <span class="number">1</span>)</span><br><span class="line">			combine(a,i<span class="number">-1</span>,m<span class="number">-1</span>,b,M);</span><br><span class="line">		<span class="keyword">else</span>                     <span class="comment">// m == 1, 输出一个组合</span></span><br><span class="line">		&#123;   </span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=M<span class="number">-1</span>; j&gt;=<span class="number">0</span>; j--)</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; a[b[j]] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">4</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> a[N];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">		a[i] = i+<span class="number">1</span>;</span><br><span class="line">	<span class="comment">// 递归方法</span></span><br><span class="line">	<span class="keyword">int</span> b[M];</span><br><span class="line">	combine(a,N,M,b,M);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/DFS与BFS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1410,152 +1530,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/STL源码-list/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦的蓝天">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/background.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dreamer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/21/STL源码-list/" itemprop="url">STL源码-list</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T10:50:13+08:00">
-                2019-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/STL/" itemprop="url" rel="index">
-                    <span itemprop="name">STL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>list在标准库中被定义成双向链表，接下来我们重点介绍list模板类，list的迭代器<br>和解决算法与迭代器的问答关系的萃取机–iterator_traits。<br><img src="/2019/04/21/STL源码-list/list%E7%BB%93%E6%9E%84.png" alt="list结构"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/21/STL源码-list/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1608,7 +1582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

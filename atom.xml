@@ -87,6 +87,30 @@
   </entry>
   
   <entry>
+    <title>排列组合</title>
+    <link href="http://yoursite.com/2019/08/30/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/"/>
+    <id>http://yoursite.com/2019/08/30/排列组合/</id>
+    <published>2019-08-29T16:11:06.000Z</published>
+    <updated>2019-08-29T16:11:45.857Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">一、全排列</span><br><span class="line"><span class="comment">//这里的一个难点在于vecPermutated不用清零。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Permutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecPermutated, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecWaitPermuta)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> (vecWaitPermuta.size() &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itNum = vecWaitPermuta.begin();itNum != vecWaitPermuta.end();++itNum)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecPermutatedTmp = vecPermutated;</span><br><span class="line">vecPermutatedTmp.push_back(*itNum);</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vecWaitPermutaTmp = vecWaitPermuta;</span><br><span class="line"><span class="comment">//删除当前已经加入排列完毕的元素</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator retFind = find(vecWaitPermutaTmp.begin(), vecWaitPermutaTmp.end(), *itNum);</span><br><span class="line"><span class="keyword">if</span> (vecWaitPermutaTmp.end() != retFind)</span><br><span class="line">&#123;</span><br><span class="line">vecWaitPermutaTmp.erase(retFind);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//继续递归调用排列算法</span></span><br><span class="line">Permutation(vecPermutatedTmp, vecWaitPermutaTmp);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="comment">//一组排列完毕</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//打印排列结果</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"\t"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vecPermutated.size();++i)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; vecPermutated.at(i) &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">二、组合问题</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">combine</span><span class="params">( <span class="keyword">int</span> a[], <span class="keyword">int</span> n, <span class="keyword">int</span> m                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ,  <span class="keyword">int</span> b[], <span class="keyword">const</span> <span class="keyword">int</span> M )</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=n; i&gt;=m; i--)   <span class="comment">// 注意这里的循环范围</span></span><br><span class="line">&#123;</span><br><span class="line">b[m<span class="number">-1</span>] = i - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (m &gt; <span class="number">1</span>)</span><br><span class="line">combine(a,i<span class="number">-1</span>,m<span class="number">-1</span>,b,M);</span><br><span class="line"><span class="keyword">else</span>                     <span class="comment">// m == 1, 输出一个组合</span></span><br><span class="line">&#123;   </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=M<span class="number">-1</span>; j&gt;=<span class="number">0</span>; j--)</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; a[b[j]] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">a[i] = i+<span class="number">1</span>;</span><br><span class="line"><span class="comment">// 递归方法</span></span><br><span class="line"><span class="keyword">int</span> b[M];</span><br><span class="line">combine(a,N,M,b,M);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>DFS与BFS</title>
     <link href="http://yoursite.com/2019/08/29/DFS%E4%B8%8EBFS/"/>
     <id>http://yoursite.com/2019/08/29/DFS与BFS/</id>
@@ -415,28 +439,6 @@
     </summary>
     
       <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="program" scheme="http://yoursite.com/tags/program/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux服务器开发常用四条指令</title>
-    <link href="http://yoursite.com/2019/04/06/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%9B%9B%E6%9D%A1%E6%8C%87%E4%BB%A4/"/>
-    <id>http://yoursite.com/2019/04/06/linux服务器开发常用四条指令/</id>
-    <published>2019-04-06T15:38:19.000Z</published>
-    <updated>2019-04-22T13:33:57.313Z</updated>
-    
-    <content type="html"><![CDATA[<p>讲述linux服务器开发4条指令</p><a id="more"></a><p>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息<br>    tcpdump -D 获取网络适配器列表<br>    tcpdump -i &lt;网络适配器编号&gt;  指定监控哪个网络适配器<br>    tcp -i 2 host 192.168.1.199 and tcp port 8088     指定监控有线网卡ip地址为192.168.1.199上端口号为8088的TCP协议。<br>    tcpdump -X -i 2 host 172.16.86.111 and tcp port 443     捕获数据包header部分。<br>    tcpdump -X -s 0 -i 2 host 172.16.86.111 and tcp port 443   -s后面加长度数据，0表示自动设置长度使其能显示所有数据。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;讲述linux服务器开发4条指令&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
     
     
       <category term="program" scheme="http://yoursite.com/tags/program/"/>
