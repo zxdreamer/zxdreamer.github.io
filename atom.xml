@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-30T02:00:09.314Z</updated>
+  <updated>2019-08-30T02:05:54.040Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单例模式</title>
+    <link href="http://yoursite.com/2019/08/30/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/08/30/单例模式/</id>
+    <published>2019-08-30T02:05:15.000Z</published>
+    <updated>2019-08-30T02:05:54.040Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">tank</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">~tank();</span><br><span class="line"><span class="function"><span class="keyword">static</span> tank* <span class="title">getObj</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getID</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">tank()</span><br><span class="line">&#123;</span><br><span class="line">g_id = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">tank(<span class="keyword">const</span> tank&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">tank&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> tank&amp;) = <span class="keyword">delete</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">static</span> tank *obj;</span><br><span class="line"><span class="keyword">int</span> g_id;</span><br><span class="line"><span class="keyword">static</span> mutex mx;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"tank.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">tank::~tank()</span><br><span class="line">&#123;</span><br><span class="line">g_id--;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"~tank"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> tank::getID()</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> ++g_id;</span><br><span class="line">&#125;</span><br><span class="line">tank* tank::getObj()</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (obj == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">mx.lock();</span><br><span class="line"><span class="keyword">if</span> (obj == <span class="literal">NULL</span>)</span><br><span class="line">obj = <span class="keyword">new</span> tank();</span><br><span class="line">mx.unlock();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//静态成员初始化一次</span></span><br><span class="line">tank* tank::obj = <span class="literal">NULL</span>;</span><br><span class="line">mutex tank::mx;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">tank *t1=tank::getObj();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; t1-&gt;getID() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">tank *t2 = tank::getObj();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; t2-&gt;getID() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>排序算法</title>
@@ -422,28 +445,6 @@
     
     
       <category term="operate" scheme="http://yoursite.com/tags/operate/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>int,size_t,ssize_t的区别</title>
-    <link href="http://yoursite.com/2019/04/11/int-size-t-ssize-t%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://yoursite.com/2019/04/11/int-size-t-ssize-t的区别/</id>
-    <published>2019-04-11T15:27:22.000Z</published>
-    <updated>2019-04-11T16:07:57.248Z</updated>
-    
-    <content type="html"><![CDATA[<p>讲述int,size_t,ssize_t的区别</p><a id="more"></a><p>科普一下：<br>    32位机器与64位机器是指通用寄存器的长度，代表一次可以处理的数据长度，并不是地址总线的数量。<br>    32位机器，内存空间为4G，所以地址总线最少为32位<br>    64位机器，地址总线一般在40位左右。<br>    地址总线过多，内存位数过多，处理起来很麻烦。</p><p>一、int<br>    int在32位与64位机器上都是32位。32位的大小范围是[-2^31<del>2^31] 大约等于[-10^9</del>10^9)<br>二、size_t<br>    size_t这个类型足以表示这台机器上的任何数据的大小。并且一定是unsigned类型。<br>    对于32位机器，size_t是unsigned int，<br>    对于64位机器，size_t是unsigned long 或 unsigned long long<br>三、ssize_t<br>    ssize_t与size_t一样，这个类型足以表示这台机器上的任何数据的大小，只是这个类型一定是signed类型。<br>    对于32位机器，size_t是signed int，<br>    对于64位机器，size_t是signed long 或 signed long long </p><p>下面看一段官方解释<br>&lt;%codeblock%&gt;<br>     This’s a way of defining size_t and ssize_t in Linux:</p><pre><code> //&quot;linux/types.h&quot; typedef __kernel_size_t size_t; typedef __kernel_ssize_t ssize_t; //&quot;asm/posix_types.h&quot;typedef unsigned int __kernel_size_t; typedef int __kernel_ssize_t; It seems so tricky to me. What benefits do we get from such a tricky typedef ? better name (size_t is shorter than unsigned int) ?[/color]On some 64-bit platforms, &apos;int&apos; and &apos;unsigned int&apos; may be 32-bits,while addresses and even memory sizes could require 64 bits(e.g. for the size of an allocated memory block &gt; 4GB).On such platforms, size_t could be typedef&apos;d to a differenttype, such as &apos;unsigned long long&apos;.Note also that &apos;size_t&apos; is a typedef required by the ISO C standard(it must be available if &lt;stddef.h&gt; is included). However, &apos;ssize_t&apos;does not exist in the C standard -- the standard &apos;ptrdiff_t&apos;typedef is nearly equivalent.</code></pre><p>&lt;%endcodeblock%&gt;</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;讲述int,size_t,ssize_t的区别&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="program" scheme="http://yoursite.com/tags/program/"/>
     
   </entry>
   
