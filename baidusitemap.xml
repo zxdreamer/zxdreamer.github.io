@@ -3,6 +3,63 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/08/29/DFS%E4%B8%8EBFS/</loc>
+    <lastmod>2019-08-30T01:13:00.001Z</lastmod>
+    <data>
+        <display>
+        <title>DFS与BFS</title>
+        <pubTime>2019-08-29T15:57:22.000Z</pubTime>
+        
+        <tag>数据结构 </tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/04/shell%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2019-08-29T15:34:01.088Z</lastmod>
+    <data>
+        <display>
+        <title>shell指令</title>
+        <pubTime>2019-04-04T14:50:28.000Z</pubTime>
+        
+        <tag>program </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/04/17/sed%E6%8C%87%E4%BB%A4%E5%92%8Cawk%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2019-08-29T15:27:08.595Z</lastmod>
+    <data>
+        <display>
+        <title>sed指令和awk指令-低阶</title>
+        <pubTime>2019-04-17T04:26:54.000Z</pubTime>
+        
+        <tag>operate </tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/04/03/linux%E5%B9%B6%E5%8F%91API/</loc>
     <lastmod>2019-05-06T13:42:51.726Z</lastmod>
     <data>
@@ -49,26 +106,6 @@
         <display>
         <title>sed指令--高阶</title>
         <pubTime>2019-05-01T07:16:47.000Z</pubTime>
-        
-        <tag>operate </tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/17/sed%E6%8C%87%E4%BB%A4/</loc>
-    <lastmod>2019-05-01T07:15:45.695Z</lastmod>
-    <data>
-        <display>
-        <title>sed指令-低阶</title>
-        <pubTime>2019-04-17T04:26:54.000Z</pubTime>
         
         <tag>operate </tag>
          
@@ -379,26 +416,6 @@
            
              
               <breadCrumb title="嵌入式" url="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2019/04/04/shell%E6%8C%87%E4%BB%A4/</loc>
-    <lastmod>2019-04-04T14:55:04.963Z</lastmod>
-    <data>
-        <display>
-        <title>shell指令</title>
-        <pubTime>2019-04-04T14:50:28.000Z</pubTime>
-        
-        <tag>program </tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
         </display>
     </data>
