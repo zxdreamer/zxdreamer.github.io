@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-30T01:13:00.001Z</updated>
+  <updated>2019-08-30T00:57:54.797Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字典树</title>
+    <link href="http://yoursite.com/2019/08/30/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/08/30/字典树/</id>
+    <published>2019-08-30T00:56:42.000Z</published>
+    <updated>2019-08-30T00:57:54.797Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字典树边作为存储字母，节点表示从根节点到此节点路径上的所有字母。所以叶子节点存储全部单词。</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Max 26</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>[<span class="title">Max</span>];</span></span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line">&#125;Node;</span><br><span class="line"><span class="comment">//创建一个新节点</span></span><br><span class="line"><span class="function">Node *<span class="title">createNew</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Node *p = <span class="keyword">new</span> Node;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;Max;i++)</span><br><span class="line">&#123;</span><br><span class="line">p-&gt;next[i] = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line">p-&gt;num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入一个字符串</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert_str</span><span class="params">(<span class="keyword">char</span> str[], Node *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">Node *t, *p = head;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> c = str[i] - <span class="string">'a'</span>;</span><br><span class="line"><span class="keyword">if</span> (p-&gt;next[c] == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">t = createNew();</span><br><span class="line">p-&gt;next[c] = t;</span><br><span class="line">p-&gt;num++;</span><br><span class="line"><span class="comment">//cout&lt;&lt;p-&gt;num&lt;&lt;endl;</span></span><br><span class="line">p = p-&gt;next[c];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">p = p-&gt;next[c];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Search_str</span><span class="params">(<span class="keyword">char</span> str[], Node *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Node *p = head;</span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> c = str[i] - <span class="string">'a'</span>;</span><br><span class="line"><span class="keyword">if</span> (p-&gt;next[c] == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"不存在字符串"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">p = p-&gt;next[c];</span><br><span class="line">count = p-&gt;num;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"nihao"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">Node *head = createNew();</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s, <span class="built_in">strcmp</span>(s, <span class="string">"quit"</span>))</span><br><span class="line">&#123;</span><br><span class="line">Insert_str(s, head);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> c = Search_str(<span class="string">"abc"</span>, head);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">system(<span class="string">"pause"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>DFS与BFS</title>
@@ -418,28 +442,6 @@
     
     
       <category term="chips" scheme="http://yoursite.com/tags/chips/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>滑动串口、OOD数据</title>
-    <link href="http://yoursite.com/2019/04/03/%E5%8D%8F%E8%AE%AE/"/>
-    <id>http://yoursite.com/2019/04/03/协议/</id>
-    <published>2019-04-03T05:47:13.000Z</published>
-    <updated>2019-04-22T08:56:17.088Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录TCP滑动窗口，带外数据和缓冲区</p><a id="more"></a><p>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p><p>二、缓冲区<br><img src="/2019/04/03/协议/%E7%BC%93%E5%86%B2%E5%8C%BA.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A31.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A32.png" alt="滑动窗口2"><br>TCP总是告知对端在任何时刻它一次能从对端接受多少字节，者称为滑动窗口。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录TCP滑动窗口，带外数据和缓冲区&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="principle" scheme="http://yoursite.com/tags/principle/"/>
     
   </entry>
   
