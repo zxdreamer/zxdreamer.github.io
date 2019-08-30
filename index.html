@@ -254,6 +254,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/排序算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦的蓝天">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/background.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dreamer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/30/排序算法/" itemprop="url">排序算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T09:57:51+08:00">
+                2019-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">void BubbleSort2(SqList *L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;L-&gt;length &amp;&amp; flag == <span class="number">1</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(j=L-&gt;length<span class="number">-2</span>;j&gt;=i;j--)</span><br><span class="line">            <span class="keyword">if</span>(L-&gt;r[j] &gt; L-&gt;r[j+<span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                swap(L,j,j+<span class="number">1</span>);</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void InsertSort(SqList *L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,key;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>;i&lt;L-&gt;length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(L-&gt;r[i] &lt; L-&gt;r[i<span class="number">-1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            key = L-&gt;r[i];        <span class="comment">//set watcher to permit j to lower then 0</span></span><br><span class="line">            <span class="keyword">for</span>(j = i<span class="number">-1</span>;j &gt;= <span class="number">0</span> &amp;&amp; L-&gt;r[j]&gt;key;j--)</span><br><span class="line">            &#123;</span><br><span class="line">                L-&gt;r[j+<span class="number">1</span>] = L-&gt;r[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j &lt; <span class="number">0</span>)</span><br><span class="line">                L-&gt;r[<span class="number">0</span>] = key;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                L-&gt;r[j+<span class="number">1</span>] = key;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void SelectSort(SqList *L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,min;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span> ;i&lt;L-&gt;length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span>(j = i+<span class="number">1</span>;j&lt;L-&gt;length;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(L-&gt;r[min] &gt; L-&gt;r[j])   <span class="comment">//sort</span></span><br><span class="line">                min = j;</span><br><span class="line">           <span class="comment">// if(L-&gt;r[min] &lt; L-&gt;r[j])   //desc sort</span></span><br><span class="line">           <span class="comment">//     min = j;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(min != i)</span><br><span class="line">            swap(L,i,min);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void ShellSort(SqList *L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,gap;</span><br><span class="line">    gap = L-&gt;length;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        gap = gap/<span class="number">3</span>+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(i = gap + <span class="number">1</span>;i&lt;=L-&gt;length;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(L-&gt;r[i] &lt; L-&gt;r[i-gap])</span><br><span class="line">            &#123;</span><br><span class="line">                L-&gt;r[<span class="number">0</span>] = L-&gt;r[i];</span><br><span class="line">                <span class="keyword">for</span>(j = i-gap;j&gt;<span class="number">0</span> &amp;&amp; L-&gt;r[j] &gt; L-&gt;r[<span class="number">0</span>];j-=gap)</span><br><span class="line">                L-&gt;r[j+gap] = L-&gt;r[j];</span><br><span class="line"></span><br><span class="line">                L-&gt;r[j+gap] = L-&gt;r[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(gap &gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void HeapAdjest(SqList *L,<span class="keyword">int</span> s,<span class="keyword">int</span> m)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> temp = L-&gt;r[s];</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">2</span>*s;i &lt;= m;i *= <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; m &amp;&amp; L-&gt;r[i] &lt; L-&gt;r[i+<span class="number">1</span>])</span><br><span class="line">            ++i;</span><br><span class="line">        <span class="keyword">if</span>(temp &gt;= L-&gt;r[i])</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        L-&gt;r[s] = L-&gt;r[i];</span><br><span class="line">        s=i;</span><br><span class="line">    &#125;</span><br><span class="line">    L-&gt;r[s] = temp;</span><br><span class="line">&#125;</span><br><span class="line">void HeapSort(SqList *L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=L-&gt;length/<span class="number">2</span>;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">        HeapAdjest(L,i,L-&gt;length);</span><br><span class="line">    <span class="keyword">for</span>(i=L-&gt;length;i&gt;<span class="number">1</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        swap(L,<span class="number">1</span>,i);</span><br><span class="line">        HeapAdjest(L,<span class="number">1</span>,i<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Partition3(SqList *L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> pivotkey;</span><br><span class="line">    <span class="keyword">int</span> m = low + (high - low)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;r[low] &gt; L-&gt;r[high])</span><br><span class="line">        swap(L,low,high);</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;r[m] &gt; L-&gt;r[high])</span><br><span class="line">        swap(L,m,high);</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;r[m] &gt; L-&gt;r[low])</span><br><span class="line">        swap(L,low,m);</span><br><span class="line">    pivotkey = L-&gt;r[low];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(low &lt; high &amp;&amp; L-&gt;r[high] &gt; pivotkey)</span><br><span class="line">            high--;</span><br><span class="line">        swap(L,low,high);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(low &lt; high &amp;&amp; L-&gt;r[low] &lt; pivotkey)</span><br><span class="line">            low++;</span><br><span class="line">        swap(L,low,high);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/字典树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1436,152 +1556,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/cplusplus三大特性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦的蓝天">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/background.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dreamer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/19/cplusplus三大特性/" itemprop="url">cplusplus三大特性</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T14:41:21+08:00">
-                2019-04-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识点/" itemprop="url" rel="index">
-                    <span itemprop="name">知识点</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>讲解C++的继承、多态机制。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/19/cplusplus三大特性/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1634,7 +1608,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
