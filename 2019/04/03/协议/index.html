@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,14 +89,14 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="记录TCP滑动窗口，带外数据和缓冲区">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/协议/缓冲区.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/协议/滑动窗口1.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/协议/滑动窗口2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/协议/%E7%BC%93%E5%86%B2%E5%8C%BA.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/协议/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A31.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/协议/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A32.png">
 <meta property="og:updated_time" content="2019-04-22T08:56:17.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="滑动串口、OOD数据">
 <meta name="twitter:description" content="记录TCP滑动窗口，带外数据和缓冲区">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/03/协议/缓冲区.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/03/协议/%E7%BC%93%E5%86%B2%E5%8C%BA.png">
 
 
 
@@ -348,8 +348,10 @@
       
 
       
-        <p>记录TCP滑动窗口，带外数据和缓冲区<br><a id="more"></a><br>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p>
-<p>二、缓冲区<br><img src="/2019/04/03/协议/缓冲区.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/滑动窗口1.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/滑动窗口2.png" alt="滑动窗口2"><br>TCP总是告知对端在任何时刻它一次能从对端接受多少字节，者称为滑动窗口。</p>
+        <p>记录TCP滑动窗口，带外数据和缓冲区</p>
+<a id="more"></a>
+<p>一、带外数据：OOB数据是是传输协议层使用的out of data(带外数据)，来发送一些重要数据。一般不使用与数据相同的通道，而是使用特殊的通道，使得数据不容易被阻塞。TCP协议没有所谓的带外数据，而是使用一种紧急模式：设置URG位为1。在程序中，接受OOB数据将recv中的flag为设置成MSG_OOB（windows），发送OOB数据将send的flag设置成MSG_OOB即可。      </p>
+<p>二、缓冲区<br><img src="/2019/04/03/协议/%E7%BC%93%E5%86%B2%E5%8C%BA.png" alt="缓冲区"><br>当没有调用recv时，内核接受缓冲区的数据一致存在。<br>由于TCP发送完数据之后需要应答ACK，一致等待应答很浪费时间，此时需要滑动窗口。<br>三、滑动窗口<br><img src="/2019/04/03/协议/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A31.png" alt="滑动窗口1"><br>在窗口内的数据：#2，#3。已经发送但还未应答的数据段32-45.TCP会分成四段发送出去：s1,s2,s3,s4。如果已经收到s1，s2，s4但未收到s3。此时接受端发送应答。此时窗口会右移到s3处。为了保证传输顺序。此时TCP等待一段时间之后会重传（重传机制），重传成功后，s3,s4被遗弃确认。不成功s4被丢弃。<br>流量控制：<br>超时重传机制：见上面。<br>累计ACK：TCP并不是对被一个报文段都会ACK，可能会两个报文一起ACK。<br><img src="/2019/04/03/协议/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A32.png" alt="滑动窗口2"><br>TCP总是告知对端在任何时刻它一次能从对端接受多少字节，者称为滑动窗口。</p>
 
       
     </div>

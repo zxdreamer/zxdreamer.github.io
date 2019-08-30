@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -343,20 +343,18 @@
       
 
       
-        <p>讲述static成员变量的初始化与赋值<br><a id="more"></a><br>static变量在类内声明时，属于类，或者说属于所有对象，我们可以使用类或对象调用。<br>但是static变量的定义放到哪里呢？<br>&lt;&lt;c++ primer&gt;&gt;说在类外定义和初始化是保证static成员变量只被定义一次的好方法。<br>但，为什么static const int就可以在类里面初始化呢？<br>想起C中一个函数里定义一个static变量是为了保证只初始化一次。<br>那么，是否可以这样理解:<br>static数据成员在类外定义和初始化是为了保证只被定义和初始化一次,<br>这样编译器就不必考虑类的函数里面第一个对static变量的’=’操作是赋值还是初始化了。<br>比如：<br>class A{<br>    static int a = 5;<br>    int b = 6;<br>};<br>接下来我们用对象调用a,b<br>A a1;<br>a1.a = 6;//此时a被赋值成6</p>
+        <p>讲述static成员变量的初始化与赋值</p>
+<a id="more"></a>
+<p>static变量在类内声明时，属于类，或者说属于所有对象，我们可以使用类或对象调用。<br>但是static变量的定义放到哪里呢？<br>&lt;&lt;c++ primer&gt;&gt;说在类外定义和初始化是保证static成员变量只被定义一次的好方法。<br>但，为什么static const int就可以在类里面初始化呢？<br>想起C中一个函数里定义一个static变量是为了保证只初始化一次。<br>那么，是否可以这样理解:<br>static数据成员在类外定义和初始化是为了保证只被定义和初始化一次,<br>这样编译器就不必考虑类的函数里面第一个对static变量的’=’操作是赋值还是初始化了。<br>比如：<br>class A{<br>    static int a = 5;<br>    int b = 6;<br>};<br>接下来我们用对象调用a,b<br>A a1;<br>a1.a = 6;//此时a被赋值成6</p>
 <p>A a2;   //此时编译器不知道成员a是5 还是6，就造成错误。</p>
-<p>所以C++规定static成员变量只能在类内声明，在类外实例化。<br>比如如下操作时合理的<br>.h文件声明</p>
-<p>#include “fixed_alloc.h”<br>class Foo{<br>    private:<br>        int i;<br>    public:<br>        Foo(int x):i(x){}<br>        int get(){<br>            return i;<br>        }   </p>
+<p>所以C++规定static成员变量只能在类内声明，在类外实例化。<br>比如如下操作时合理的<br>.h文件声明<br>#include “fixed_alloc.h”<br>class Foo{<br>    private:<br>        int i;<br>    public:<br>        Foo(int x):i(x){}<br>        int get(){<br>            return i;<br>        }   </p>
 <pre><code>    static void* operator new(size_t size);
     static void operator delete(void* p,size_t size);
 
 protected:
     static FixedAlloc alloc;
-    static const int a = 5;
-</code></pre><p>};<br>.cpp文件中实例化</p>
-<p>#include “Foo.h”<br>FixedAlloc Foo::alloc(sizeof(Foo),64);<br>void* Foo::operator new(size_t size)<br>{<br>    if(sizeof(Foo) != size)<br>        return ::operator new(size);</p>
-<pre><code>return alloc.allocate();
-</code></pre><p>}<br>void Foo::operator delete(void* p,size_t size)<br>{<br>    if(p == NULL)<br>        return;<br>    if(size != sizeof(Foo))<br>    {<br>        ::operator delete(p);<br>        return;<br>    }<br>    return alloc.deallocate(p);<br>}<br>这里特别注意static结合const使用时是可以在类内初始化的，看了上面的解释就能明白为什么。</p>
+    static const int a = 5;</code></pre><p>};<br>.cpp文件中实例化<br>#include “Foo.h”<br>FixedAlloc Foo::alloc(sizeof(Foo),64);<br>void* Foo::operator new(size_t size)<br>{<br>    if(sizeof(Foo) != size)<br>        return ::operator new(size);</p>
+<pre><code>return alloc.allocate();</code></pre><p>}<br>void Foo::operator delete(void* p,size_t size)<br>{<br>    if(p == NULL)<br>        return;<br>    if(size != sizeof(Foo))<br>    {<br>        ::operator delete(p);<br>        return;<br>    }<br>    return alloc.deallocate(p);<br>}<br>这里特别注意static结合const使用时是可以在类内初始化的，看了上面的解释就能明白为什么。</p>
 
       
     </div>

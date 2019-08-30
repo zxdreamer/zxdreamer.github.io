@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -343,47 +343,11 @@
       
 
       
-        <p>讲解C++友元在使用时注意事项<br><a id="more"></a><br>友元函数可以访问类的私有成员和保护成员。<br>友元分为友元函数和友元类<br>友元函数：在类中用friend声明，在类外面直接定义，可不用指定类名和friend，友元函数的参数一般会接受一个类对象，用这个类对象访问类中私有成员。</p>
-<p>友元类：在一个类中用friend声明的类叫友元类，整个类的成员函数都是友元函数。</p>
-<pre><code>#include &quot;stdafx.h&quot;
-#include &lt;iostream&gt;
-using namespace std;
-class Box
-{
-    double width;
-public:
-    friend void printWidth(Box box);//友元函数
-    friend class BigBox;            //友元类
-    void setWidth(double wid);
-};
-class BigBox
-{
-public:
-    void Print(int width, Box &amp;box)
-    {
-        // BigBox是Box的友元类，它可以直接访问Box类的任何成员
-        box.setWidth(width);
-        cout &lt;&lt; &quot;Width of box : &quot; &lt;&lt; box.width &lt;&lt; endl;
-    }
-};
-// 成员函数定义
-void Box::setWidth(double wid)
-{
-    width = wid;
-}
-// 请注意：printWidth() 不是任何类的成员函数
-void printWidth(Box box)
-{
-    /* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */
-    cout &lt;&lt; &quot;Width of box : &quot; &lt;&lt; box.width &lt;&lt; endl;
-}
-// 程序的主函数
-int main()
-{
-    Box box;
-    BigBox big;
-
-    // 使用成员函数设置宽度
+        <p>讲解C++友元在使用时注意事项</p>
+<a id="more"></a>
+<p>友元函数可以访问类的私有成员和保护成员。<br>友元分为友元函数和友元类<br>友元函数：在类中用friend声明，在类外面直接定义，可不用指定类名和friend，友元函数的参数一般会接受一个类对象，用这个类对象访问类中私有成员。</p>
+<p>友元类：在一个类中用friend声明的类叫友元类，整个类的成员函数都是友元函数。<br>    #include “stdafx.h”<br>    #include <iostream><br>    using namespace std;<br>    class Box<br>    {<br>        double width;<br>    public:<br>        friend void printWidth(Box box);//友元函数<br>        friend class BigBox;            //友元类<br>        void setWidth(double wid);<br>    };<br>    class BigBox<br>    {<br>    public:<br>        void Print(int width, Box &amp;box)<br>        {<br>            // BigBox是Box的友元类，它可以直接访问Box类的任何成员<br>            box.setWidth(width);<br>            cout &lt;&lt; “Width of box : “ &lt;&lt; box.width &lt;&lt; endl;<br>        }<br>    };<br>    // 成员函数定义<br>    void Box::setWidth(double wid)<br>    {<br>        width = wid;<br>    }<br>    // 请注意：printWidth() 不是任何类的成员函数<br>    void printWidth(Box box)<br>    {<br>        /* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */<br>        cout &lt;&lt; “Width of box : “ &lt;&lt; box.width &lt;&lt; endl;<br>    }<br>    // 程序的主函数<br>    int main()<br>    {<br>        Box box;<br>        BigBox big;</iostream></p>
+<pre><code>    // 使用成员函数设置宽度
     box.setWidth(10.0);
 
     // 使用友元函数输出宽度
@@ -394,8 +358,7 @@ int main()
 
     getchar();
     return 0;
-}
-</code></pre><p>友元函数注意事项：<br>    1、友元函数不是累的成员，所以不能被继承。<br>    2、友元函数可以访问类的成员，但不能访问类的成员函数。<br>    3、一个函数可以是多个类的友元。</p>
+}</code></pre><p>友元函数注意事项：<br>    1、友元函数不是累的成员，所以不能被继承。<br>    2、友元函数可以访问类的成员，但不能访问类的成员函数。<br>    3、一个函数可以是多个类的友元。</p>
 
       
     </div>

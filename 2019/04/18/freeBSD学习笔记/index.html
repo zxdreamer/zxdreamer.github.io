@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -343,7 +343,9 @@
       
 
       
-        <p>Linux各种混乱 不堪的发行版相比，FreeBSD只有唯一的版本，同时，FreeBSD关注的是操作系统的稳定性、性能和品质，适合作为服务器的操作系统。<br><a id="more"></a><br>三个主流的linux发行版：Red Hat、Mandrake和SUSE。每一个Linux发行版本都存在一些差异，而它们之间最大的差异则在于文件系统的结构。</p>
+        <p>Linux各种混乱 不堪的发行版相比，FreeBSD只有唯一的版本，同时，FreeBSD关注的是操作系统的稳定性、性能和品质，适合作为服务器的操作系统。</p>
+<a id="more"></a>
+<p>三个主流的linux发行版：Red Hat、Mandrake和SUSE。每一个Linux发行版本都存在一些差异，而它们之间最大的差异则在于文件系统的结构。</p>
 <p>FreeBSD使用“包”来安装、卸载和升级应用程序。‘pkg_add’命令被用于安装一个你手工下载到计算机的包。你也可以用‘-r’开关来让 它自动的从<br>Internet获取，当然，也包括这个包所依赖的一切。FreeBSD包的真正美妙之处在于“连接点”(Ports)树。连接点树是 ——FreeBSD包含的应用程序<br>之间的继承关系。每一个文件夹都包含Makefile，以及让特定应用程序能够在FreeBSD上正确运行所需要的补丁。例如，如果我想安装<br>Apache web服务器，我所需要做的只是cd到/usr/ports/www/apache文件夹，然后运行‘make &amp;&amp; make install’，然后去小吃售卖机前。<br>如果我拥有一台速度够快的电脑，同时拥有一个足够大方的Internet连接，当我回来的时候Apache源代码 的下载、补丁、编译和安装<br>肯定都已经做完了。连接点树也能够处理Apache运行依赖的那些程序，无论我用连接点树安装、手工编译，还是通过安装已经编译<br>好的二进制包。连接点树能够通过$PATH找到它需要的东西。<br>Linux和FreeBSD的另一个区别在于，对于FreeBSD而言，你安装的连接点或者包99%都会被放到/usr/local，而在 Linux上有时是/usr，<br>有时是/opt。这可能只是一个很小的区别，但你至少可以知道你的程序安装到了/usr/local，而不是扩散到了文件系 统的各个地方。</p>
 <p>FreeBSD系统使用cvsup来保持它是最新的。一旦你建立了‘sup-file’，cvsup将会把你本地的系统和cvsup服务器上的进行比较，并且下载那些修改过的东西。</p>
 

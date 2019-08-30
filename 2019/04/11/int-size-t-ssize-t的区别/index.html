@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -344,8 +344,10 @@
       
 
       
-        <p>讲述int,size_t,ssize_t的区别<br><a id="more"></a><br>科普一下：<br>    32位机器与64位机器是指通用寄存器的长度，代表一次可以处理的数据长度，并不是地址总线的数量。<br>    32位机器，内存空间为4G，所以地址总线最少为32位<br>    64位机器，地址总线一般在40位左右。<br>    地址总线过多，内存位数过多，处理起来很麻烦。</p>
-<p>一、int<br>    int在32位与64位机器上都是32位。32位的大小范围是[-2^31~2^31] 大约等于[-10^9~10^9)<br>二、size_t<br>    size_t这个类型足以表示这台机器上的任何数据的大小。并且一定是unsigned类型。<br>    对于32位机器，size_t是unsigned int，<br>    对于64位机器，size_t是unsigned long 或 unsigned long long<br>三、ssize_t<br>    ssize_t与size_t一样，这个类型足以表示这台机器上的任何数据的大小，只是这个类型一定是signed类型。<br>    对于32位机器，size_t是signed int，<br>    对于64位机器，size_t是signed long 或 signed long long </p>
+        <p>讲述int,size_t,ssize_t的区别</p>
+<a id="more"></a>
+<p>科普一下：<br>    32位机器与64位机器是指通用寄存器的长度，代表一次可以处理的数据长度，并不是地址总线的数量。<br>    32位机器，内存空间为4G，所以地址总线最少为32位<br>    64位机器，地址总线一般在40位左右。<br>    地址总线过多，内存位数过多，处理起来很麻烦。</p>
+<p>一、int<br>    int在32位与64位机器上都是32位。32位的大小范围是[-2^31<del>2^31] 大约等于[-10^9</del>10^9)<br>二、size_t<br>    size_t这个类型足以表示这台机器上的任何数据的大小。并且一定是unsigned类型。<br>    对于32位机器，size_t是unsigned int，<br>    对于64位机器，size_t是unsigned long 或 unsigned long long<br>三、ssize_t<br>    ssize_t与size_t一样，这个类型足以表示这台机器上的任何数据的大小，只是这个类型一定是signed类型。<br>    对于32位机器，size_t是signed int，<br>    对于64位机器，size_t是signed long 或 signed long long </p>
 <p>下面看一段官方解释<br>&lt;%codeblock%&gt;<br>     This’s a way of defining size_t and ssize_t in Linux:</p>
 <pre><code> //&quot;linux/types.h&quot;
  typedef __kernel_size_t size_t;
@@ -365,8 +367,7 @@ type, such as &apos;unsigned long long&apos;.
 Note also that &apos;size_t&apos; is a typedef required by the ISO C standard
 (it must be available if &lt;stddef.h&gt; is included). However, &apos;ssize_t&apos;
 does not exist in the C standard -- the standard &apos;ptrdiff_t&apos;
-typedef is nearly equivalent.
-</code></pre><p>&lt;%endcodeblock%&gt;</p>
+typedef is nearly equivalent.</code></pre><p>&lt;%endcodeblock%&gt;</p>
 
       
     </div>

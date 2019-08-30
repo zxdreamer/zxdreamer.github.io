@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,14 +89,14 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="讲述51单片机扩展片外RAM和ROM的方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/最小系统.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/P0分时复用.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/扩展.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/P0%E5%88%86%E6%97%B6%E5%A4%8D%E7%94%A8.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/%E6%89%A9%E5%B1%95.png">
 <meta property="og:updated_time" content="2019-04-05T02:22:58.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51单片机扩展RAM与ROM">
 <meta name="twitter:description" content="讲述51单片机扩展片外RAM和ROM的方式">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/最小系统.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/04/51单片机扩展RAM与ROM/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F.png">
 
 
 
@@ -348,7 +348,9 @@
       
 
       
-        <p>讲述51单片机扩展片外RAM和ROM的方式<br><a id="more"></a><br>一、最小系统<br>  片内带程序存储器的8051本身即可构成一片最小系统，只需接上时钟电路和复位电路即可。<br>  同时EA接高电平，ALE和PSEN不接，系统即可工作。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/最小系统.png" alt="最小系统"><br>二、单片机的三总线结构<br>  数据总线：P0口<br>  地址总线：带地址锁存的P2口和不带地址锁存的P0口<br>  控制总线：PSEN、WR、RD组成<br>  单片机的P0口的读写周期中，前半周期输出地址，单片机自动将ALE输出高电平，后半周期输出数据，ALE为低电平<br>  所以，可以用ALE接地址锁存器的锁存端。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/P0分时复用.png" alt="P0分时复用"><br>三、系统扩展连线图<br>  在这里不谈线选法和译码法，只提供一种包含系统扩展原理的原理图。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/扩展.png" alt="扩展"><br>  对于扩展芯片多于1片时可以考虑加译码器。</p>
+        <p>讲述51单片机扩展片外RAM和ROM的方式</p>
+<a id="more"></a>
+<p>一、最小系统<br>  片内带程序存储器的8051本身即可构成一片最小系统，只需接上时钟电路和复位电路即可。<br>  同时EA接高电平，ALE和PSEN不接，系统即可工作。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F.png" alt="最小系统"><br>二、单片机的三总线结构<br>  数据总线：P0口<br>  地址总线：带地址锁存的P2口和不带地址锁存的P0口<br>  控制总线：PSEN、WR、RD组成<br>  单片机的P0口的读写周期中，前半周期输出地址，单片机自动将ALE输出高电平，后半周期输出数据，ALE为低电平<br>  所以，可以用ALE接地址锁存器的锁存端。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/P0%E5%88%86%E6%97%B6%E5%A4%8D%E7%94%A8.png" alt="P0分时复用"><br>三、系统扩展连线图<br>  在这里不谈线选法和译码法，只提供一种包含系统扩展原理的原理图。<br>  <img src="/2019/03/04/51单片机扩展RAM与ROM/%E6%89%A9%E5%B1%95.png" alt="扩展"><br>  对于扩展芯片多于1片时可以考虑加译码器。</p>
 
       
     </div>

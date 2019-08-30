@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -344,7 +344,9 @@
       
 
       
-        <p>讲述linux服务器开发4条指令<br><a id="more"></a><br>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息<br>    tcpdump -D 获取网络适配器列表<br>    tcpdump -i &lt;网络适配器编号&gt;  指定监控哪个网络适配器<br>    tcp -i 2 host 192.168.1.199 and tcp port 8088     指定监控有线网卡ip地址为192.168.1.199上端口号为8088的TCP协议。<br>    tcpdump -X -i 2 host 172.16.86.111 and tcp port 443     捕获数据包header部分。<br>    tcpdump -X -s 0 -i 2 host 172.16.86.111 and tcp port 443   -s后面加长度数据，0表示自动设置长度使其能显示所有数据。</p>
+        <p>讲述linux服务器开发4条指令</p>
+<a id="more"></a>
+<p>一、ipcs指令-提供进程间通信方式的信息<br>    ipcs -a 列出所有进程间通信方式的信息<br>    ipcs -m 列出共享内存信息<br>    ipcs -q 列出消息队列信息<br>    ipcs -s 列出信号量信息<br>    ipcs -t 列出更改时间<br>    ipcs -c 列出IPC方式的创建者和拥有者<br>    ipcs -c 列出ipc各种方式的在该系统下的限制条件信息<br>二、ipcrm指令-移除一个消息对象。或者共享内存段，或者一个信号集<br>    参数是由规律的：接大写/小写 M,Q,S代表移除的类型。大写代表按照key值移除。小写代表按照id移除。<br>    例如：ipcrm -M shnkey值 # 移除键值为shnkey的共享内存<br>三、netstat指令：用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。<br>    -a (all)显示所有选项，默认不显示LISTEN相关<br>    -t (tcp)仅显示tcp相关选项<br>    -u (udp)仅显示udp相关选项<br>    -n 拒绝显示别名，能显示数字的全部转化成数字。<br>    -l 仅列出有在 Listen (监听) 的服務状态<br>    -p 显示建立相关链接的程序名<br>    -r 显示路由信息，路由表<br>    -e 显示扩展信息，例如uid等<br>    -s 按各个协议进行统计<br>    -c 每隔一个固定时间，执行该netstat命令。<br>    指令组合举例：<br>    netstat -nat | grep “192.168.1.15:22” |awk ‘{print $5}’|awk -F: ‘{print $1}’|sort|uniq -c|sort -nr|head -20<br>四、tcpdump指令:  tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息<br>    tcpdump -D 获取网络适配器列表<br>    tcpdump -i &lt;网络适配器编号&gt;  指定监控哪个网络适配器<br>    tcp -i 2 host 192.168.1.199 and tcp port 8088     指定监控有线网卡ip地址为192.168.1.199上端口号为8088的TCP协议。<br>    tcpdump -X -i 2 host 172.16.86.111 and tcp port 443     捕获数据包header部分。<br>    tcpdump -X -s 0 -i 2 host 172.16.86.111 and tcp port 443   -s后面加长度数据，0表示自动设置长度使其能显示所有数据。</p>
 
       
     </div>

@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -326,6 +326,7 @@
         
           
             <a id="more"></a>
+
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXVEX 4</span></span><br><span class="line"><span class="keyword">bool</span> visited[MAXVEX] = &#123; <span class="literal">false</span>, <span class="literal">false</span> ,<span class="literal">false</span> ,<span class="literal">false</span> &#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; adj(MAXVEX);</span><br><span class="line"><span class="comment">//有向图</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	adj[v].push_back(w);   <span class="comment">//将顶点w加到v的链表上</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//无向图</span></span><br><span class="line"><span class="comment">//void addEdge(int v, int w)</span></span><br><span class="line"><span class="comment">//&#123;</span></span><br><span class="line"><span class="comment">//	adj[v].push_back(w);     // 将w加到v的list </span></span><br><span class="line"><span class="comment">//	adj[w].push_back(v);</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"><span class="comment">//单个连通分量</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> vx = v;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">queue</span>;</span><br><span class="line">	visited[vx] = <span class="literal">true</span>;</span><br><span class="line">	<span class="built_in">queue</span>.push_back(vx);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">queue</span>.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		vx = <span class="built_in">queue</span>.front();</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; vx &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		<span class="built_in">queue</span>.pop_front();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (it = adj[vx].begin();it != adj[vx].end();it++)  <span class="comment">//扫描链表</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (!visited[*it])</span><br><span class="line">			&#123;</span><br><span class="line">				visited[*it] = <span class="literal">true</span>;</span><br><span class="line">				<span class="built_in">queue</span>.push_back(*it);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//多连通分量</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MutilBFS</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; MAXVEX;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!visited[i])</span><br><span class="line">		&#123;</span><br><span class="line">			bfs(i);  <span class="comment">//多个连通分量调用多次BFS，从0个分量开始遍历</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	visited[v] = <span class="literal">true</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span> (it = adj[v].begin();it != adj[v].end();++it)  <span class="comment">//遍历一个节点然后到下一个节点</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!visited[*it])</span><br><span class="line">			dfs(*it);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	addEdge(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	addEdge(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">	addEdge(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">	addEdge(<span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">	addEdge(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	addEdge(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">	bfs(<span class="number">2</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//dfs(2);</span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
@@ -467,7 +468,7 @@
 
       
         
-          <p>讲述正则表达式，sed结合正则表达式的高阶指令<br></p>
+          <p>讲述正则表达式，sed结合正则表达式的高阶指令</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/01/sed指令-高阶/#more" rel="contents">
@@ -613,7 +614,7 @@
 
       
         
-          <p>讲述static成员变量的初始化与赋值<br></p>
+          <p>讲述static成员变量的初始化与赋值</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/27/static-成员/#more" rel="contents">
@@ -759,7 +760,7 @@
 
       
         
-          <p>ctags插件可以实现在多个文件之间跳转，包括转到定义，转回等。<br></p>
+          <p>ctags插件可以实现在多个文件之间跳转，包括转到定义，转回等。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/25/ctags插件使用/#more" rel="contents">
@@ -883,7 +884,7 @@
 
       
         
-          <p>讲解地址解析协议ARP的工作原理<br></p>
+          <p>讲解地址解析协议ARP的工作原理</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/23/ARP/#more" rel="contents">
@@ -1029,7 +1030,7 @@
 
       
         
-          <p>list在标准库中被定义成双向链表，接下来我们重点介绍list模板类，list的迭代器<br>和解决算法与迭代器的问答关系的萃取机–iterator_traits。<br><img src="/2019/04/21/STL源码-list/list结构.png" alt="list结构"><br></p>
+          <p>list在标准库中被定义成双向链表，接下来我们重点介绍list模板类，list的迭代器<br>和解决算法与迭代器的问答关系的萃取机–iterator_traits。<br><img src="/2019/04/21/STL源码-list/list%E7%BB%93%E6%9E%84.png" alt="list结构"></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/21/STL源码-list/#more" rel="contents">
@@ -1175,7 +1176,7 @@
 
       
         
-          <p>讲解C++的继承、多态机制。<br></p>
+          <p>讲解C++的继承、多态机制。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/19/cplusplus三大特性/#more" rel="contents">
@@ -1321,7 +1322,7 @@
 
       
         
-          <p>讲解C++友元在使用时注意事项<br></p>
+          <p>讲解C++友元在使用时注意事项</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/19/cplusplus友元/#more" rel="contents">
@@ -1467,7 +1468,7 @@
 
       
         
-          <p>讲解epoll模型的编程方法，epoll模型的内部原理，以及epoll怎样改进select<br></p>
+          <p>讲解epoll模型的编程方法，epoll模型的内部原理，以及epoll怎样改进select</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/19/epoll模型学习笔记/#more" rel="contents">
@@ -1613,7 +1614,7 @@
 
       
         
-          <p>讲解散列表的<br></p>
+          <p>讲解散列表的</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/19/散列表/#more" rel="contents">

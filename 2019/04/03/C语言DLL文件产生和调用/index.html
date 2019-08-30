@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,16 +89,16 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="讲述C/C++产生的DLL文件怎样被C++或C#调用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/创建.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/声明.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/导出.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/Csharp导入.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/查看.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/%E5%88%9B%E5%BB%BA.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/%E5%A3%B0%E6%98%8E.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/%E5%AF%BC%E5%87%BA.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/Csharp%E5%AF%BC%E5%85%A5.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/%E6%9F%A5%E7%9C%8B.png">
 <meta property="og:updated_time" content="2019-04-04T00:44:09.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言DLL文件产生和调用">
 <meta name="twitter:description" content="讲述C/C++产生的DLL文件怎样被C++或C#调用">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/创建.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/03/C语言DLL文件产生和调用/%E5%88%9B%E5%BB%BA.png">
 
 
 
@@ -350,9 +350,11 @@
       
 
       
-        <p>讲述C/C++产生的DLL文件怎样被C++或C#调用<br><a id="more"></a><br>创建DLL文件，选择win32项目，选择生成DLL<br><img src="/2019/04/03/C语言DLL文件产生和调用/创建.png" alt="创建"><br>添加头文件和.c文件<br>头文件中的声明<br><img src="/2019/04/03/C语言DLL文件产生和调用/声明.png" alt="声明"><br>.c文件中可以定义中间函数，这个中间函数可一直任何普通函数。然后导出函数一定要加<br>_stdcall 并且导出函数一定是要在头文件中用_declsped声明的。<br><img src="/2019/04/03/C语言DLL文件产生和调用/导出.png" alt="导出"><br>3.添加模块文件.def。<br>4.点击生成解决方案就产生了DLL。</p>
-<p>二、C#调用DLL的方法<br>  包含运行时库<br>using System.Runtime.InteropServices;//运行时库<br>将DLL拷贝到根目录<br>导出语法如下：<br><img src="/2019/04/03/C语言DLL文件产生和调用/Csharp导入.png" alt="Csharp导入"><br>4.Area就是一个在C#中直接调用的成员方法。<br>详细网址<br><a href="https://blog.csdn.net/C_xxy/article/details/78998758" target="_blank" rel="noopener">https://blog.csdn.net/C_xxy/article/details/78998758</a></p>
-<p>三、C++调用DLL的方法<br>1、加载DLL库<br>    HINSTANCE hinstLib = LoadLibrary(TEXT(“ytr.dll”));<br>2、声明函数指针<br>    typedef int (__stdcall *MYPROC)(LPWSTR,LPWSTR);<br>    MYPROC ProcAdd;<br>3、函数指针赋值<br>    ProcAdd = (MYPROC)GetProcAddress(hinstLib,”FB_Open”);<br>4、函数指针调用函数<br>    ProcAdd(3,”abc”)    //两个参数的函数指针调用过程<br>5、释放DLL<br>    BOOL fFreeResult = FreeLibrary(hinstLib);<br>用VS查看DLL是多少位的，这里需要注意64为的应用程序不能调用32 为DLL，32 为应用程序也不能调用64为DLL。<br><img src="/2019/04/03/C语言DLL文件产生和调用/查看.png" alt="查看"></p>
+        <p>讲述C/C++产生的DLL文件怎样被C++或C#调用</p>
+<a id="more"></a>
+<p>创建DLL文件，选择win32项目，选择生成DLL<br><img src="/2019/04/03/C语言DLL文件产生和调用/%E5%88%9B%E5%BB%BA.png" alt="创建"><br>添加头文件和.c文件<br>头文件中的声明<br><img src="/2019/04/03/C语言DLL文件产生和调用/%E5%A3%B0%E6%98%8E.png" alt="声明"><br>.c文件中可以定义中间函数，这个中间函数可一直任何普通函数。然后导出函数一定要加<br>_stdcall 并且导出函数一定是要在头文件中用_declsped声明的。<br><img src="/2019/04/03/C语言DLL文件产生和调用/%E5%AF%BC%E5%87%BA.png" alt="导出"><br>3.添加模块文件.def。<br>4.点击生成解决方案就产生了DLL。</p>
+<p>二、C#调用DLL的方法<br>  包含运行时库<br>using System.Runtime.InteropServices;//运行时库<br>将DLL拷贝到根目录<br>导出语法如下：<br><img src="/2019/04/03/C语言DLL文件产生和调用/Csharp%E5%AF%BC%E5%85%A5.png" alt="Csharp导入"><br>4.Area就是一个在C#中直接调用的成员方法。<br>详细网址<br><a href="https://blog.csdn.net/C_xxy/article/details/78998758" target="_blank" rel="noopener">https://blog.csdn.net/C_xxy/article/details/78998758</a></p>
+<p>三、C++调用DLL的方法<br>1、加载DLL库<br>    HINSTANCE hinstLib = LoadLibrary(TEXT(“ytr.dll”));<br>2、声明函数指针<br>    typedef int (__stdcall *MYPROC)(LPWSTR,LPWSTR);<br>    MYPROC ProcAdd;<br>3、函数指针赋值<br>    ProcAdd = (MYPROC)GetProcAddress(hinstLib,”FB_Open”);<br>4、函数指针调用函数<br>    ProcAdd(3,”abc”)    //两个参数的函数指针调用过程<br>5、释放DLL<br>    BOOL fFreeResult = FreeLibrary(hinstLib);<br>用VS查看DLL是多少位的，这里需要注意64为的应用程序不能调用32 为DLL，32 为应用程序也不能调用64为DLL。<br><img src="/2019/04/03/C语言DLL文件产生和调用/%E6%9F%A5%E7%9C%8B.png" alt="查看"></p>
 
       
     </div>

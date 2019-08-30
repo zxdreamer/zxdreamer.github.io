@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -323,7 +323,9 @@
       
 
       
-        <p>讲解地址解析协议ARP的工作原理<br><a id="more"></a><br>ARP：将32位IP地址转化成48位MAC地址。<br>每一台主机或路由器中都存在一张ARP表，记录IP地址与MAC地址的映射关系，这种映射关系是这样形成的：<br>当主机A向主机B发送数据包时，<br>先查询ARP表中是否有IP和MAC地址的缓存，如果缓存存在，则将用户数据<br>加入TCP/UDP首部，加入IP首部，加入以太网首部，其中以太网首部包含MAC地址和帧类型(IPv4,IPv6)。<br>如果主机A中不存在主机B的IP与MAC的ARP缓存，主机A发送一个ARP报文，ARP包结构如下：<br><img src="/2019/04/23/ARP/ARP.png" alt="ARP.png"><br>硬件类型（16位）：指定物理地址的类型，1表示以太网。<br>上层协议类型（16位）：指定要将MAC地址映射成什么协议的地址。0x0800表示IP地址。<br>MAC地址长度（8位）：指定MAC地址的长度，单位是字节。<br>协议地址长度（8位）：指定协议地址的长度，单位为字节。<br>操作类型：1表示ARP请求、2表示ARP回应、3表示RARP请求，4表示RARP回应。<br>接下来为发送源的物理地址和协议地址（由于回应时要知道发送给谁，以此来封装以太帧），目的物理地址和协议地址。<br>封装ARP请求时，发送源除了目的物理地址外都会填写。</p>
+        <p>讲解地址解析协议ARP的工作原理</p>
+<a id="more"></a>
+<p>ARP：将32位IP地址转化成48位MAC地址。<br>每一台主机或路由器中都存在一张ARP表，记录IP地址与MAC地址的映射关系，这种映射关系是这样形成的：<br>当主机A向主机B发送数据包时，<br>先查询ARP表中是否有IP和MAC地址的缓存，如果缓存存在，则将用户数据<br>加入TCP/UDP首部，加入IP首部，加入以太网首部，其中以太网首部包含MAC地址和帧类型(IPv4,IPv6)。<br>如果主机A中不存在主机B的IP与MAC的ARP缓存，主机A发送一个ARP报文，ARP包结构如下：<br><img src="/2019/04/23/ARP/ARP.png" alt="ARP.png"><br>硬件类型（16位）：指定物理地址的类型，1表示以太网。<br>上层协议类型（16位）：指定要将MAC地址映射成什么协议的地址。0x0800表示IP地址。<br>MAC地址长度（8位）：指定MAC地址的长度，单位是字节。<br>协议地址长度（8位）：指定协议地址的长度，单位为字节。<br>操作类型：1表示ARP请求、2表示ARP回应、3表示RARP请求，4表示RARP回应。<br>接下来为发送源的物理地址和协议地址（由于回应时要知道发送给谁，以此来封装以太帧），目的物理地址和协议地址。<br>封装ARP请求时，发送源除了目的物理地址外都会填写。</p>
 <p>ARP请求报文中存主机B的IP地址，MAC地址为FF-FF-FF-FF-FF-FF，代表广播MAC地址。子网中每一台主机收到<br>这个ARP报文后，与报文中的IP地址比较，若想等，将自己的MAC地址放入ARP应答报文中，发送给主机A，同时<br>子网中每一台设备的ARP表中存放主机Ａ的IP和MAC的映射关系。主机A收到ARP应答报文后，在原来的ARP表中追加记录。<br>并发送IP数据报。</p>
 
       

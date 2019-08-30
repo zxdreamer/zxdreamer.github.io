@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,14 +89,14 @@
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="这些天将STM32的正点原子的历程调了一遍，收获还真不少，为了方便自己理解，现在从接口，编程思路，ARM结构，外设，LWIP，UCOSIII几部分进行一下总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/总线结构.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/引脚复用.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/%E5%BC%95%E8%84%9A%E5%A4%8D%E7%94%A8.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/IAP.png">
 <meta property="og:updated_time" content="2019-04-03T06:05:39.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再读STM32笔记">
 <meta name="twitter:description" content="这些天将STM32的正点原子的历程调了一遍，收获还真不少，为了方便自己理解，现在从接口，编程思路，ARM结构，外设，LWIP，UCOSIII几部分进行一下总结。">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/总线结构.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/03/再读STM32笔记/%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -348,7 +348,9 @@
       
 
       
-        <p>这些天将STM32的正点原子的历程调了一遍，收获还真不少，为了方便自己理解，现在从接口，编程思路，ARM结构，外设，LWIP，UCOSIII几部分进行一下总结。<br><a id="more"></a><br>一、接口，先了解的接口有：<br>SCCB–DCMI—数字摄像头接口<br>SAI—串行音频接口<br>SDIO—安全数字输入输出接口<br>LTCD—RGB显示屏接口<br>FMC—扩展外部RAM接口<br>二、ARM结构<br>cotexM4CPU的共分7个block，每个block=512M。block3、4、5、6为FMC连接的外部存储器。block0包含flash memory=1M为用户程序存储器。64k的CCMRAM。block1包含还包含192k的SRAM。block2为APB1,2与AHB1,2连接的外设。这些外设当然就是那些接口。cotexM4采用总线矩阵的形式管理取址，取数据，执行的过程。<br><img src="/2019/04/03/再读STM32笔记/总线结构.png" alt="总线结构"><br>由于这种单片机的功能太多，一个引脚对应一种功能太浪费资源。出现了重映射与复用。重映射也就是说一个外设可能对应多种引脚，比如UART0_RX可以和4个引脚对应，这是就可以用重映射到其他引脚。复用就是用来一个引脚的第二三功能。开启复用功能时不需要把一个外设的所有引都打开，只需要打开一个引脚的复用功能就好。<br><img src="/2019/04/03/再读STM32笔记/引脚复用.png" alt="引脚复用"><br>在线升级应用程序IAP<br><img src="/2019/04/03/再读STM32笔记/IAP.png" alt="IAP"><br>中断管理这里先不说，在线升级IAP也先看不明白。<br>三、编程思路<br>HAL库与正点原子的编程思路给了我很多启示 。看梁晓旭率代码也给了我很多启示 。尽量不要一行一行看代码，哪个变量或地址不懂可以直接全局搜索。这样很容易捋清调用关系。用宏定义多个变量，用分号隔开。建立四个缓冲区的循环buffer和乒乓buffer结合在一起。和加入阈值的处理。<br>四、外设。<br>现在调试过得外设有SDRAM，NOR flash，SD卡，摄像头、RTC时钟、分段式内存管理、FATFS文件系统。<br>五、UCOS操作系统<br>主要是学会建立任务，发信号量与互斥信号量、发送消息队列，事件标志组。<br>六LWIP<br>使用network框架可以像linux那样的TCP框架实现数据的收发。</p>
+        <p>这些天将STM32的正点原子的历程调了一遍，收获还真不少，为了方便自己理解，现在从接口，编程思路，ARM结构，外设，LWIP，UCOSIII几部分进行一下总结。</p>
+<a id="more"></a>
+<p>一、接口，先了解的接口有：<br>SCCB–DCMI—数字摄像头接口<br>SAI—串行音频接口<br>SDIO—安全数字输入输出接口<br>LTCD—RGB显示屏接口<br>FMC—扩展外部RAM接口<br>二、ARM结构<br>cotexM4CPU的共分7个block，每个block=512M。block3、4、5、6为FMC连接的外部存储器。block0包含flash memory=1M为用户程序存储器。64k的CCMRAM。block1包含还包含192k的SRAM。block2为APB1,2与AHB1,2连接的外设。这些外设当然就是那些接口。cotexM4采用总线矩阵的形式管理取址，取数据，执行的过程。<br><img src="/2019/04/03/再读STM32笔记/%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png" alt="总线结构"><br>由于这种单片机的功能太多，一个引脚对应一种功能太浪费资源。出现了重映射与复用。重映射也就是说一个外设可能对应多种引脚，比如UART0_RX可以和4个引脚对应，这是就可以用重映射到其他引脚。复用就是用来一个引脚的第二三功能。开启复用功能时不需要把一个外设的所有引都打开，只需要打开一个引脚的复用功能就好。<br><img src="/2019/04/03/再读STM32笔记/%E5%BC%95%E8%84%9A%E5%A4%8D%E7%94%A8.png" alt="引脚复用"><br>在线升级应用程序IAP<br><img src="/2019/04/03/再读STM32笔记/IAP.png" alt="IAP"><br>中断管理这里先不说，在线升级IAP也先看不明白。<br>三、编程思路<br>HAL库与正点原子的编程思路给了我很多启示 。看梁晓旭率代码也给了我很多启示 。尽量不要一行一行看代码，哪个变量或地址不懂可以直接全局搜索。这样很容易捋清调用关系。用宏定义多个变量，用分号隔开。建立四个缓冲区的循环buffer和乒乓buffer结合在一起。和加入阈值的处理。<br>四、外设。<br>现在调试过得外设有SDRAM，NOR flash，SD卡，摄像头、RTC时钟、分段式内存管理、FATFS文件系统。<br>五、UCOS操作系统<br>主要是学会建立任务，发信号量与互斥信号量、发送消息队列，事件标志组。<br>六LWIP<br>使用network框架可以像linux那样的TCP框架实现数据的收发。</p>
 
       
     </div>
