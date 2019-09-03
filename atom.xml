@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-30T02:05:54.040Z</updated>
+  <updated>2019-09-03T09:01:46.449Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>fork引发的死锁问题</title>
+    <link href="http://yoursite.com/2019/09/03/fork%E5%BC%95%E5%8F%91%E7%9A%84%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/09/03/fork引发的死锁问题/</id>
+    <published>2019-09-03T08:46:57.000Z</published>
+    <updated>2019-09-03T09:01:46.449Z</updated>
+    
+    <content type="html"><![CDATA[<p>fork用于创建子进程，当父进程中拥有了子线程，fork出的子进程只会拥有执行fork函数的线程的副本，并不会拥有全部子线程<br>也就是说此时子进程其实是”孤家寡人”，但是子进程会用于父进程创建的互斥锁，条件变量和读写锁的副本，同时会保留当时的状态。对于一个互斥锁。如果子线程中获得<br>了锁，执行fork的线程阻塞，此时如果fork出的子进程再加锁，此时在子进程中就出现了死锁。</p><a id="more"></a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">pthread_mutex_t</span> lock =  PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">sub_thread</span><span class="params">(<span class="keyword">void</span> *unused)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"---sub thread lock---\n"</span>);</span><br><span class="line">sleep(<span class="number">3</span>);</span><br><span class="line">pthread_mutex_unlock(&amp;lock);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"---sub thread unlock---\n"</span>);</span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pthread_exit(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> pid;</span><br><span class="line"><span class="keyword">pthread_t</span> pt;</span><br><span class="line">pthread_create(&amp;pt,<span class="literal">NULL</span>,sub_thread,<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">usleep(<span class="number">500</span>);</span><br><span class="line"><span class="keyword">if</span>((pid = fork()) &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"fork failed\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"ID %d children\n"</span>,getpid());</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"---children locked---\n"</span>);</span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">pthread_mutex_unlock(&amp;lock);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"---child unlock---\n"</span>);</span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"ID %d father\n"</span>,getpid());</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"---father lock---\n"</span>);</span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">pthread_mutex_unlock(&amp;lock);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"---father unlocked---\n"</span>);</span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>执行结果：<br>—sub thread lock—<br>—sub thread unlock—<br>—father lock—<br>—father unlocked—<br>—sub thread lock—<br>我们发现子进程并没有执行。<br>我们可以得出子进程载条用exec函数之前可以做的事情：<br>我们不能调用函数中通过锁来保持线程安全的函数，比如printf</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;fork用于创建子进程，当父进程中拥有了子线程，fork出的子进程只会拥有执行fork函数的线程的副本，并不会拥有全部子线程&lt;br&gt;也就是说此时子进程其实是”孤家寡人”，但是子进程会用于父进程创建的互斥锁，条件变量和读写锁的副本，同时会保留当时的状态。对于一个互斥锁。如果子线程中获得&lt;br&gt;了锁，执行fork的线程阻塞，此时如果fork出的子进程再加锁，此时在子进程中就出现了死锁。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>单例模式</title>
@@ -435,26 +455,6 @@
     
     
       <category term="program" scheme="http://yoursite.com/tags/program/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cplusplus三大特性</title>
-    <link href="http://yoursite.com/2019/04/19/cplusplus%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/"/>
-    <id>http://yoursite.com/2019/04/19/cplusplus三大特性/</id>
-    <published>2019-04-19T06:41:21.000Z</published>
-    <updated>2019-04-19T06:46:55.764Z</updated>
-    
-    <content type="html"><![CDATA[<p>讲解C++的继承、多态机制。</p><a id="more"></a><p>单继承格式<br>class 类名:继承方式 基类名<br>{<br>派生类新成员；<br>};<br>多继承格式<br>class 类名:继承方式 基类名 继承方式 基类名<br>{</p><p>};<br>继承方式有三种：<br>private ：私有继承，基类中的共有成员和保护成员在子类中均表现为私有成员，不能被派生类的子类访问。<br>           编译器会理解成类型为derived的对象同时也是类型为base的对象，但类型为base的对象不是类型为derived的对象。这点很重要。<br>protected ：保护继承，基类中的共有成员和私有成员均表现为保护成员，可以被派生类成员函数访问和友元函数访问。<br>public ：共有继承，基类的所有成员保留原格式。<br>友元函数不能被继承<br>static成员无论有多少个继承始终就一个，并且访问static用 类名::成员<br>重定义：派生类中与基类同名的函数将覆盖掉基类的函数。<br>多重继承与二义性<br>说明：在多重继承中，若两个或多个类的成员函数有同名的，在派生类调用这个成员函数时如果不指定作用域，就会产生二义性。<br>    class A{<br>    public:<br>        void f();<br>    }</p><pre><code>class B{public:    void f();    void g();}class C:public A,public B{public:    void g();    void h();};</code></pre><p>C c;<br>c.f()就会产生二义性。<br>有三种解决办法<br>法一：调用时指定作用域<br>c.B::f()<br>法二：派生类中同名覆盖<br>    class C:public A,public B{<br>    public:<br>        void g();<br>        void h();<br>        void f()<br>        {<br>            A::f();<br>        }<br>    };<br>法三：虚基类？？？</p><p>C++多态<br>多态可以概括为“一个接口，多种方法”，程序在运行时才决定调用那种方法。C++的多态是通过虚函数来实现的。<br>多态的作用：封装可以使得代码模块化，继承可以扩展已存在的代码，他们的目的都是为了代码重用。而多态的目的则是为了接口重用。<br>             也就是说，不论传递过来的究竟是那个类的对象，函数都能够通过同一个接口调用到适应各自对象的实现方法。<br>早绑定：函数的调用，如果在编译期间就知道函数的地址，就是早绑定<br>晚绑定：函数调用的地址不是在编译时知道的而是在运行时确定的。</p><p>这里重点讲解虚函数表：<br>    虚函数表<br>    1、虚函数表是在对象被创建的时候生成的，每一个对象对应一张虚函数表<br>    2、虚函数表中存有对象的所有函数，包括从基类继承的，没有被派生类覆盖的<br>    3、键关系图<br>    至少包含一个纯虚函数的类是抽象类，抽象类不能实例化对象。<br>    接口中不予许含有成员变量，但可以含有静态变量，不可以有构造函数，但一定要有纯虚析构函数<br>    虚函数就可以执行动态绑定。纯虚函数是在虚函数的末尾加入=0;<br>    <img src="/2019/04/19/cplusplus三大特性/%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8.png" alt="虚函数表"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;讲解C++的继承、多态机制。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="知识点" scheme="http://yoursite.com/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    
     
   </entry>
   
