@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="设计模式,">
+  <meta name="keywords" content="并发编程,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#pragma once#include&amp;lt;string&amp;gt;#include&amp;lt;mutex&amp;gt;using namespace std;class">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="通过一个在项目中使用的服务器编程的例子，记录一下怎样通过线程池和原子操作实现并发编程原始模型是：一个生产者，一个缓存队列，两个消费者，一个条件变量。线程池模型是：线程池中的线程做生产者，分别绑定一个缓存队列，每个缓存队列绑定两个消费者工作过程：线程池中的线程将数据写入自己绑定的队列中，当缓存到达一半时，使用条件变量唤醒两个消费者，迅速将数据消费完      缓存队列的读写指针，使用C++11的原子">
+<meta name="keywords" content="并发编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
-<meta property="og:url" content="http://yoursite.com/2019/08/30/单例模式/index.html">
+<meta property="og:title" content="线程池和无锁队列实现并发">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/线程池和无锁队列实现并发/index.html">
 <meta property="og:site_name" content="Dreamer">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#pragma once#include&amp;lt;string&amp;gt;#include&amp;lt;mutex&amp;gt;using namespace std;class">
+<meta property="og:description" content="通过一个在项目中使用的服务器编程的例子，记录一下怎样通过线程池和原子操作实现并发编程原始模型是：一个生产者，一个缓存队列，两个消费者，一个条件变量。线程池模型是：线程池中的线程做生产者，分别绑定一个缓存队列，每个缓存队列绑定两个消费者工作过程：线程池中的线程将数据写入自己绑定的队列中，当缓存到达一半时，使用条件变量唤醒两个消费者，迅速将数据消费完      缓存队列的读写指针，使用C++11的原子">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-30T02:05:54.040Z">
+<meta property="og:updated_time" content="2019-09-15T07:03:21.946Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#pragma once#include&amp;lt;string&amp;gt;#include&amp;lt;mutex&amp;gt;using namespace std;class">
+<meta name="twitter:title" content="线程池和无锁队列实现并发">
+<meta name="twitter:description" content="通过一个在项目中使用的服务器编程的例子，记录一下怎样通过线程池和原子操作实现并发编程原始模型是：一个生产者，一个缓存队列，两个消费者，一个条件变量。线程池模型是：线程池中的线程做生产者，分别绑定一个缓存队列，每个缓存队列绑定两个消费者工作过程：线程池中的线程将数据写入自己绑定的队列中，当缓存到达一半时，使用条件变量唤醒两个消费者，迅速将数据消费完      缓存队列的读写指针，使用C++11的原子">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/30/单例模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/15/线程池和无锁队列实现并发/">
 
 
 
 
 
-  <title>单例模式 | Dreamer</title>
+  <title>线程池和无锁队列实现并发 | Dreamer</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/单例模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/15/线程池和无锁队列实现并发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦的蓝天">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式</h1>
+          <h1 class="post-title" itemprop="name headline">线程池和无锁队列实现并发</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T10:05:15+08:00">
-                2019-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-15T14:54:17+08:00">
+                2019-09-15
               </time>
             
 
@@ -322,7 +322,10 @@
       
 
       
-        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">tank</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:	</span><br><span class="line">	~tank();</span><br><span class="line">	<span class="function"><span class="keyword">static</span> tank* <span class="title">getObj</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getID</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	tank()</span><br><span class="line">	&#123;</span><br><span class="line">		g_id = <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	tank(<span class="keyword">const</span> tank&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">	tank&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> tank&amp;) = <span class="keyword">delete</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">static</span> tank *obj;</span><br><span class="line">	<span class="keyword">int</span> g_id;</span><br><span class="line">	<span class="keyword">static</span> mutex mx;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"tank.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">tank::~tank()</span><br><span class="line">&#123;</span><br><span class="line">	g_id--;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"~tank"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> tank::getID()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> ++g_id;</span><br><span class="line">&#125;</span><br><span class="line">tank* tank::getObj()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (obj == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		mx.lock();</span><br><span class="line">		<span class="keyword">if</span> (obj == <span class="literal">NULL</span>)</span><br><span class="line">			obj = <span class="keyword">new</span> tank();</span><br><span class="line">		mx.unlock();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//静态成员初始化一次</span></span><br><span class="line">tank* tank::obj = <span class="literal">NULL</span>;</span><br><span class="line">mutex tank::mx;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tank *t1=tank::getObj();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; t1-&gt;getID() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	tank *t2 = tank::getObj();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; t2-&gt;getID() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>通过一个在项目中使用的服务器编程的例子，记录一下怎样通过线程池和原子操作实现并发编程<br>原始模型是：一个生产者，一个缓存队列，两个消费者，一个条件变量。<br>线程池模型是：线程池中的线程做生产者，分别绑定一个缓存队列，每个缓存队列绑定两个消费者<br>工作过程：线程池中的线程将数据写入自己绑定的队列中，当缓存到达一半时，使用条件变量唤醒两个消费者，迅速将数据消费完<br>      缓存队列的读写指针，使用C++11的原子变量，保证两个写者之间的同步。</p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pack_max 512*1024*1024</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">myatomic</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">atomic_int</span> rd;</span><br><span class="line">	<span class="keyword">atomic_int</span> wd:</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">myCmd</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> cmd;</span><br><span class="line">	<span class="keyword">char</span> buf[<span class="number">50</span>];</span><br><span class="line">	<span class="built_in">string</span> ip;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//共享变量</span></span><br><span class="line">myatomic ato_rw1&#123;<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">myCmd Buffer1[pack_max];</span><br><span class="line"><span class="comment">//生产者</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">creator</span><span class="params">(<span class="built_in">string</span> ip,<span class="keyword">int</span> fd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> buf1[<span class="number">50</span>];</span><br><span class="line">	read(fd,buf1,len);</span><br><span class="line">	myCmd inbuf;</span><br><span class="line">	<span class="comment">//填充inbuf</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">	Buffer1[ato_rw1.wd] = inbuf;</span><br><span class="line">	ato_rw1 = (ato_rw1+<span class="number">1</span>)%pack_max;</span><br><span class="line">	<span class="keyword">if</span>((ato_rw1.wd-ato_rw1.rd)&gt;pack_max/<span class="number">2</span> || (ato_rw1.wd&lt;ato_rw1.rd &amp;&amp; ato_rw1.wd+pack_max-ato_rw1.rd&gt;pack_max/<span class="number">2</span>))</span><br><span class="line">		pthread_cont_boardcast();   <span class="comment">//唤醒所有消费者</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//消费者1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(!((ato_rw1.wd-ato_rw1.rd)&gt;pack_max/<span class="number">2</span> || (ato_rw1.wd&lt;ato_rw1.rd &amp;&amp; ato_rw1.wd+pack_max-ato_rw1.rd&gt;pack_max/<span class="number">2</span>)))</span><br><span class="line">		pthread_cont_wait();</span><br><span class="line">	myCmd outbuf = Buffer1[ato_rw1.rd];</span><br><span class="line">	ato_rw1.rd = (ato_rw1.rd+<span class="number">1</span>)%pack_max;</span><br><span class="line">	<span class="comment">//outbuf写入数据库</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//消费者2</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(!((ato_rw1.wd-ato_rw1.rd)&gt;pack_max/<span class="number">2</span> || (ato_rw1.wd&lt;ato_rw1.rd &amp;&amp; ato_rw1.wd+pack_max-ato_rw1.rd&gt;pack_max/<span class="number">2</span>)))</span><br><span class="line">		pthread_cont_wait();</span><br><span class="line">	myCmd outbuf = Buffer1[ato_rw1.rd];</span><br><span class="line">	ato_rw1.rd = (ato_rw1.rd+<span class="number">1</span>)%pack_max;</span><br><span class="line">	<span class="comment">//outbuf写入数据库</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -339,7 +342,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
           
         </div>
       
@@ -352,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/30/排序算法/" rel="next" title="排序算法">
-                <i class="fa fa-chevron-left"></i> 排序算法
+              <a href="/2019/09/12/C-11原子操作一/" rel="next" title="C++11原子操作一">
+                <i class="fa fa-chevron-left"></i> C++11原子操作一
               </a>
             
           </div>
@@ -361,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/03/fork引发的死锁问题/" rel="prev" title="fork引发的死锁问题">
-                fork引发的死锁问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
