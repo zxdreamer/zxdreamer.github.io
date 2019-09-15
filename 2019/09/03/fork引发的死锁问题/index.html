@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="并发,">
+  <meta name="keywords" content="并发编程,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="fork用于创建子进程，当父进程中拥有了子线程，fork出的子进程只会拥有执行fork函数的线程的副本，并不会拥有全部子线程也就是说此时子进程其实是”孤家寡人”，但是子进程会用于父进程创建的互斥锁，条件变量和读写锁的副本，同时会保留当时的状态。对于一个互斥锁。如果子线程中获得了锁，执行fork的线程阻塞，此时如果fork出的子进程再加锁，此时在子进程中就出现了死锁。">
-<meta name="keywords" content="并发">
+<meta name="keywords" content="并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fork引发的死锁问题">
 <meta property="og:url" content="http://yoursite.com/2019/09/03/fork引发的死锁问题/index.html">
 <meta property="og:site_name" content="Dreamer">
 <meta property="og:description" content="fork用于创建子进程，当父进程中拥有了子线程，fork出的子进程只会拥有执行fork函数的线程的副本，并不会拥有全部子线程也就是说此时子进程其实是”孤家寡人”，但是子进程会用于父进程创建的互斥锁，条件变量和读写锁的副本，同时会保留当时的状态。对于一个互斥锁。如果子线程中获得了锁，执行fork的线程阻塞，此时如果fork出的子进程再加锁，此时在子进程中就出现了死锁。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-03T09:01:46.449Z">
+<meta property="og:updated_time" content="2019-09-15T07:08:47.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fork引发的死锁问题">
 <meta name="twitter:description" content="fork用于创建子进程，当父进程中拥有了子线程，fork出的子进程只会拥有执行fork函数的线程的副本，并不会拥有全部子线程也就是说此时子进程其实是”孤家寡人”，但是子进程会用于父进程创建的互斥锁，条件变量和读写锁的副本，同时会保留当时的状态。对于一个互斥锁。如果子线程中获得了锁，执行fork的线程阻塞，此时如果fork出的子进程再加锁，此时在子进程中就出现了死锁。">
@@ -343,7 +343,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/并发/" rel="tag"># 并发</a>
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
           
         </div>
       
@@ -486,7 +486,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
